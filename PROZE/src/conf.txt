@@ -1,0 +1,5 @@
+#Parameters Boi
+#Fri Nov 12 23:01:25 CET 2021
+gameHeight=500
+gameWidth=1000
+highScoreSize=3;
