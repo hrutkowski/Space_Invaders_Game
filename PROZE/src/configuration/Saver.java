@@ -44,7 +44,7 @@ public class Saver {
                 "highScoreTable=" + highScoreTable + "]";
     }
 
-    public void savePlayer(Player plr) throws IOException {
+    /* public void savePlayer(Player plr) throws IOException {
         highScoreTable.add(plr);
         if (highScoreTable.size() > )
 
@@ -57,4 +57,5 @@ public class Saver {
 
         playersProperties.store(os, null);
     }
+    */
 }

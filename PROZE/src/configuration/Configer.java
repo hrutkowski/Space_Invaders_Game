@@ -12,8 +12,15 @@ public class Configer {
     private int maxHighScoreSize;
     Properties proper = new Properties();
 
-    public Configer(String pathToMainConfiguration) {
+    public Configer(String pathToMainConfiguration) throws IOException {
+        InputStream propertiesFile = new FileInputStream(pathToMainConfiguration);
+        proper.load(propertiesFile);
 
+        height = Integer.parseInt(proper.getProperty("gameHeight"));
+        width = Integer.parseInt(proper.getProperty("gameWidth"));
+        maxHighScoreSize = Integer.parseInt(proper.getProperty("highScoreSize"));
+
+        propertiesFile.close();
     }
 
     public int getHeight() {
@@ -31,14 +38,10 @@ public class Configer {
 
     public static void main(String[] args) throws IOException {
 
-        InputStream propertiesFile = new FileInputStream("./Hello/src/config.txt");
-        proper.load(propertiesFile);
+        Configer conf = new Configer("./PROZE/src/conf.txt");
 
-        height = Integer.parseInt(proper.getProperty("gameHeight"));
-        width = Integer.parseInt(proper.getProperty("gameWidth"));
-        maxHighScoreSize = Integer.parseInt(proper.getProperty("highScoreSize"));
-
-        System.out.println("Wysokość okna = " + height + "/n");
-        System.out.println("Szerokość okna = " + width + "/n");
+        System.out.println("Wysokość okna = " + conf.getHeight());
+        System.out.println("Szerokość okna = " + conf.getWidth());
+        System.out.println("Maks graczy = " + conf.getMaxHighScoreSize());
     }
 }
