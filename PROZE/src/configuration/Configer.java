@@ -6,40 +6,38 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-/** Klasa odpowiedzialna za wczytywanie danych z pliku konfiguracyjnego i zapisywanie zmiennych uaktualnianych  trakcie
- * gry w pliku konfiguracyjnym
- */
+/** Klasa odpowiedzialna za wczytywanie danych z pliku konfiguracyjnego */
 
 public class Configer {
-    /** Okresla startową wysokość okna gry*/
+    /** Określa startową wysokość okna gry*/
     private int gameHeight;
-    /** Okresla startową szerokość okna gry*/
+    /** Określa startową szerokość okna gry*/
     private int gameWidth;
-    /** Okresla maksymalną liczbę najwyższych wyników zapisywanych w Rankingu*/
+    /** Określa maksymalną liczbę najwyższych wyników zapisywanych w Rankingu*/
     private int maxHighScoreSize;
     /** Tytuł gry*/
     private String gameTitle;
-    /** tekst w przycisku START*/
+    /** Tekst w przycisku START*/
     private String buttonStartText;
-    /** tekst w przycisku RANKING*/
+    /** Tekst w przycisku RANKING*/
     private String buttonRankText;
-    /** tekst w przycisku SETTINGS*/
+    /** Tekst w przycisku SETTINGS*/
     private String buttonSettingsText;
-    /** tekst w przycisku INFO*/
+    /** Tekst w przycisku INFO*/
     private String buttonInfoText;
-    /** tekst w przycisku EXIT*/
+    /** Tekst w przycisku EXIT*/
     private String buttonEndText;
-    /** tekst w przycisku BACK TO MENU*/
+    /** Tekst w przycisku BACK TO MENU*/
     private String buttonBackToMenuText;
-    /** tekst w przycisku ACCEPT*/
+    /** Tekst w przycisku ACCEPT*/
     private String buttonAcceptText;
-    /** tekst w przycisku PAUSE*/
+    /** Tekst w przycisku PAUSE*/
     private String buttonPauseText;
-    /** tekst w przycisku PLAY AGAIN*/
+    /** Tekst w przycisku PLAY AGAIN*/
     private String buttonPlayAgainText;
-    /** tekst w przycisku GAME OVER*/
+    /** Tekst w przycisku GAME OVER*/
     private String gameOverText;
-    /** tekst w przycisku NICK*/
+    /** Tekst w przycisku NICK*/
     private String nickText;
     /** Instrukcja gry*/
     private String pathInfo;
@@ -81,9 +79,7 @@ public class Configer {
 
 
     Properties proper = new Properties();
-    /**
-     *metoda wczytująca dane z pliku konfiguracyjnego i zapisująca je do odpowiednich pól w klasie
-     */
+    /** Metoda wczytująca dane z pliku konfiguracyjnego */
     public Configer(String pathToMainConfiguration) throws IOException {
         InputStream propertiesFile = new FileInputStream(pathToMainConfiguration);
         proper.load(propertiesFile);
@@ -124,135 +120,135 @@ public class Configer {
 
         propertiesFile.close();
     }
-
+    /** Metoda zwracająca gameHeight */
     public int getGameHeight() {
         return gameHeight;
     }
-
+    /** Metoda zwracająca gameWidth */
     public int getGameWidth() {
         return gameWidth;
     }
-
+    /** Metoda zwracająca maxHighScoreSize */
     public int getMaxHighScoreSize() {
         return maxHighScoreSize;
     }
-
+    /** Metoda zwracająca gameTitle */
     public String getGameTitle() {
         return gameTitle;
     }
-
+    /** Metoda zwracająca buttonStartText */
     public String getButtonStartText() {
         return buttonStartText;
     }
-
+    /** Metoda zwracająca buttonRankText */
     public String getButtonRankText() {
         return buttonRankText;
     }
-
+    /** Metoda zwracająca buttonSettingsText */
     public String getButtonSettingsText() {
         return  buttonSettingsText;
     }
-
+    /** Metoda zwracająca buttonInfoText */
     public String getButtonInfoText() {
         return buttonInfoText;
     }
-
+    /** Metoda zwracająca buttonEndText */
     public String getButtonEndText() {
         return buttonEndText;
     }
-
+    /** Metoda zwracająca buttonBackToMenuText */
     public String getButtonBackToMenuText() {
         return buttonBackToMenuText;
     }
-
+    /** Metoda zwracająca buttonAcceptText */
     public String getButtonAcceptText() {
         return buttonAcceptText;
     }
-
+    /** Metoda zwracająca buttonPauseText */
     public String getButtonPauseText() {
         return buttonPauseText;
     }
-
+    /** Metoda zwracająca buttonPlayAgainText */
     public String getButtonPlayAgainText() {
         return buttonPlayAgainText;
     }
-
+    /** Metoda zwracająca gameOverText */
     public String getGameOverText() {
         return gameOverText;
     }
-
+    /** Metoda zwracająca nickText */
     public String getNickText() {
         return nickText;
     }
-
+    /** Metoda zwracająca pathInfo */
     public String getPathInfo() {
         return pathInfo;
     }
 
     //pathSettings=
-
+    /** Metoda zwracająca initialPoints */
     public int getInitialPoints() {
         return initialPoints;
     }
-
+    /** Metoda zwracająca labelPoints */
     public int getLabelPoints() {
         return labelPoints;
     }
-
+    /** Metoda zwracająca labelLifesLeft */
     public int getLabelLifesLeft() {
         return labelLifesLeft;
     }
-
+    /** Metoda zwracająca fps */
     public int getFps() {
         return fps;
     }
-
+    /** Metoda zwracająca enemyLifes */
     public int getEnemyLifes() {
         return enemyLifes;
     }
-
+    /** Metoda zwracająca enemyRedPoints */
     public int getEnemyRedPoints() {
         return enemyRedPoints;
     }
-
+    /** Metoda zwracająca enemyBluePoints */
     public int getEnemyBluePoints() {
         return enemyBluePoints;
     }
-
+    /** Metoda zwracająca enemyGreenPoints */
     public int getEnemyGreenPoints() {
         return enemyGreenPoints;
     }
-
+    /** Metoda zwracająca enemyYellowPoints */
     public int getEnemyYellowPoints() {
         return enemyYellowPoints;
     }
-
+    /** Metoda zwracająca enemyRedBulletSpeed */
     public int getEnemyRedBulletSpeed() {
         return enemyRedBulletSpeed;
     }
-
+    /** Metoda zwracająca blueBulletSpeed */
     public int getEnemyBlueBulletSpeed() {
         return enemyBlueBulletSpeed;
     }
-
+    /** Metoda zwracająca enemyGreenBulletSpeed */
     public int getEnemyGreenBulletSpeed() {
         return enemyGreenBulletSpeed;
     }
-
+    /** Metoda zwracająca enemyYellowBulletSpeed */
     public int getEnemyYellowBulletSpeed() {
         return enemyYellowBulletSpeed;
     }
-
+    /** Metoda zwracająca playerXScreenPosition */
     public int getPlayerXScreenPosition() {
         return playerXScreenPosition;
     }
-
+    /** Metoda zwracająca playerYScreenPosition */
     public int getPlayerYScreenPosition() {
         return playerYScreenPosition;
     }
 
 
-
+    /** Metoda do testowania klasy */
     public static void main(String[] args) throws IOException {
 
         Configer conf = new Configer("./PROZE/src/conf.txt");
