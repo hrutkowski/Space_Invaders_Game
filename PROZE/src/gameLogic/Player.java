@@ -31,7 +31,7 @@ public class Player implements Comparable<Player> {
         this.points = points;
     }
 
-    /** Nadisana metoda ... */ // ??????
+   /**  Metoda zwracajaca punkty danego gracza */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
