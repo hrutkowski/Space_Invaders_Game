@@ -1,0 +1,8 @@
+#Sat Nov 13 17:44:21 CET 2021
+liczba_nickow=3
+nick_1=strumyk26
+wynik_1=400
+nick_2=marek
+wynik_2=300
+nick_3=marysia
+wynik_3=60
