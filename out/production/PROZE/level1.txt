@@ -1,3 +1,0 @@
-playerSpeed=3
-playerBulletSpeed=3
-enemyNumber=10
