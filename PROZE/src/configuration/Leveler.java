@@ -6,21 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-
 public class Leveler {
-    /**
-     * Określa predkosc gracza
-     */
-    private int playerSpeed;
-    /**
-     * Określa predkoc pocisku gracza
-     */
-    private int playerBulletSpeed;
-    /**
-     * Określa liczbe przeciwnikow na mapie
-     */
-    private int enemyNumber;
-
+    /** Klasa typu Properties do wyciągania wartości z pliku txt */
     Properties proper = new Properties();
 
     /**
@@ -29,28 +16,21 @@ public class Leveler {
     public Leveler(String pathToMainConfiguration) throws IOException {
         InputStream propertiesFile = new FileInputStream(pathToMainConfiguration);
         proper.load(propertiesFile);
-
-        playerSpeed = Integer.parseInt(proper.getProperty("playerSpeed"));
-        playerBulletSpeed = Integer.parseInt(proper.getProperty("playerBulletSpeed"));
-        enemyNumber = Integer.parseInt(proper.getProperty("enemyNumber"));
-
         propertiesFile.close();
 
     }
     /** Metoda zwracająca playerSpeed */
     public int getPlayerSpeed() {
-        return playerSpeed;
+        return Integer.parseInt(proper.getProperty("playerSpeed"));
     }
 
     /** Metoda zwracająca PlayerBulletSpeed */
     public int getPlayerBulletSpeed() {
-        return playerBulletSpeed;
+        return Integer.parseInt(proper.getProperty("playerBulletSpeed"));
     }
 
     /** Metoda zwracająca EnemyNumber */
-    public int getEnemyNumber() {
-        return enemyNumber;
-    }
+    public int getEnemyNumber() { return Integer.parseInt(proper.getProperty("enemyNumber"));}
 
     /**
      * Metoda do testowania klasy
