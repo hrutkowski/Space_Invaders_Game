@@ -22,16 +22,12 @@ public class Player implements Comparable<Player> {
     public int getPoints() {
         return points;
     }
-    /** Metoda ustawiająca nick */
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
     /** Metoda ustawiająca points */
     public void setPoints(int points) {
         this.points = points;
     }
 
-   /**  Metoda zwracajaca punkty danego gracza */
+   /**  Nadpisana metoda equals */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

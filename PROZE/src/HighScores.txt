@@ -1,0 +1,12 @@
+#Sat Dec 04 19:02:42 CET 2021
+wynik_0=700
+liczba_nickow=5
+nick_4=kim
+nick_3=lot
+wynik_4=600
+nick_2=maks
+wynik_3=650
+nick_1=maks
+wynik_2=700
+nick_0=maks
+wynik_1=700
