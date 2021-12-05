@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public class Configer {
     /** Klasa typu Properties do wyciągania wartości z pliku txt */
-    Properties proper = new Properties();
+    static Properties proper = new Properties();
     /** Metoda wczytująca dane z pliku konfiguracyjnego */
     public Configer(String pathToMainConfiguration) throws IOException {
         InputStream propertiesFile = new FileInputStream(pathToMainConfiguration);
@@ -33,22 +33,34 @@ public class Configer {
         return Integer.parseInt(proper.getProperty("maxHighScoreSize"));
     }
     /** Metoda zwracająca gameTitle */
-    public String getGameTitle() { return proper.getProperty("gameTitle"); }
+    public static String getGameTitle() { return proper.getProperty("gameTitle"); }
     /** Metoda zwracająca buttonStartText */
-    public String getButtonStartText() { return proper.getProperty("buttonStartText"); }
+    public static String getButtonStartText() { return proper.getProperty("buttonStartText"); }
     /** Metoda zwracająca buttonRankText */
     public String getButtonRankText() { return proper.getProperty("buttonRankText"); }
     /** Metoda zwracająca buttonSettingsText */
-    public String getButtonSettingsText() {
+    public static String getButtonSettingsText() {
         return proper.getProperty("buttonSettingsText");
     }
     /** Metoda zwracająca buttonInfoText */
-    public String getButtonInfoText() {
+    public static String getButtonInfoText() {
         return proper.getProperty("buttonInfoText");
     }
     /** Metoda zwracająca buttonEndText */
-    public String getButtonEndText() {
+    public static String getButtonEndText() {
         return proper.getProperty("buttonEndText");
+    }
+    /** Metoda zwracająca quitDialogText */
+    public static String getQuitDialogText() {
+        return proper.getProperty("quitDialogText");
+    }
+    /** Metoda zwracająca quitDialogYes */
+    public static String getQuitDialogYes() {
+        return proper.getProperty("quitDialogYes");
+    }
+    /** Metoda zwracająca quitDialogNo */
+    public static String getQuitDialogNo() {
+        return proper.getProperty("quitDialogNo");
     }
     /** Metoda zwracająca buttonBackToMenuText */
     public String getButtonBackToMenuText() {
@@ -151,6 +163,9 @@ public class Configer {
         System.out.println("Przycisk Ustawienia: " + conf.getButtonSettingsText());
         System.out.println("Przycisk Informacji: " + conf.getButtonInfoText());
         System.out.println("Przycisk Końca gry " + conf.getButtonEndText());
+        System.out.println("Komunikat o wyjsciu z gry " + conf.getQuitDialogText());
+        System.out.println("Komunikat o wyjsciu z gry - odpowiedz twoerdzaca " + conf.getQuitDialogYes());
+        System.out.println("Komunikat o wyjsciu z gry - odpowiedz przeczaca " + conf.getQuitDialogNo());
         System.out.println("Przycisk Powrotu do menu: " + conf.getButtonBackToMenuText());
         System.out.println("Przycisk akceptacji: " + conf.getButtonAcceptText());
         System.out.println("Przycisk pauzy: " + conf.getButtonPauseText());
