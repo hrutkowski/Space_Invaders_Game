@@ -21,11 +21,11 @@ public class Configer {
         propertiesFile.close();
     }
     /** Metoda zwracająca gameHeight */
-    public int getGameHeight() {
+    public static int getGameHeight() {
         return Integer.parseInt(proper.getProperty("gameHeight"));
     }
     /** Metoda zwracająca gameWidth */
-    public int getGameWidth() {
+    public static int getGameWidth() {
         return Integer.parseInt(proper.getProperty("gameWidth"));
     }
     /** Metoda zwracająca maxHighScoreSize */
@@ -49,6 +49,10 @@ public class Configer {
     /** Metoda zwracająca buttonEndText */
     public static String getButtonEndText() {
         return proper.getProperty("buttonEndText");
+    }
+    /** Metoda zwracająca quitDialogTitle */
+    public static String getQuitDialogTitle() {
+        return proper.getProperty("quitDialogTitle");
     }
     /** Metoda zwracająca quitDialogText */
     public static String getQuitDialogText() {
@@ -104,7 +108,7 @@ public class Configer {
         return Integer.parseInt(proper.getProperty("labelLifesLeft"));
     }
     /** Metoda zwracająca fps */
-    public int getFps() {
+    public static int getFps() {
         return Integer.parseInt(proper.getProperty("fps"));
     }
     /** Metoda zwracająca enemyLifes */
@@ -123,6 +127,18 @@ public class Configer {
     public int getEnemyGreenPoints() { return Integer.parseInt(proper.getProperty("enemyGreenPoints")); }
     /** Metoda zwracająca enemyYellowPoints */
     public int getEnemyYellowPoints() { return Integer.parseInt(proper.getProperty("enemyYellowPoints")); }
+    /** Metoda zwracająca enemyRedBulletSpeed */
+    public int getPlayerBulletSpeed() {
+        return Integer.parseInt(proper.getProperty("playerBulletSpeed"));
+    }
+    /** Metoda zwracająca enemyRedBulletSpeed */
+    public static int getPlayerMovingSpeed() {
+        return Integer.parseInt(proper.getProperty("playerMovingSpeed"));
+    }
+    /** Metoda zwracająca enemyRedBulletSpeed */
+    public int getEnemyMovingSpeed() {
+        return Integer.parseInt(proper.getProperty("enemyMovingSpeed"));
+    }
     /** Metoda zwracająca enemyRedBulletSpeed */
     public int getEnemyRedBulletSpeed() {
         return Integer.parseInt(proper.getProperty("enemyRedBulletSpeed"));
@@ -147,7 +163,12 @@ public class Configer {
     public float getPlayerYScreenPosition() {
         return Float.parseFloat(proper.getProperty("playerYScreenPosition"));
     }
-
+    /** Metoda zwracająca objectWidthRatio */
+    public static float getObjectWidthRatio() { return Float.parseFloat(proper.getProperty("objectWidthRatio")); }
+    /** Metoda zwracająca objectHeightRatio */
+    public static float getObjectHeightRatio() { return Float.parseFloat(proper.getProperty("objectHeightRatio")); }
+    /** Metoda zwracająca stroke */
+    public static float getStroke() { return Float.parseFloat(proper.getProperty("stroke"); }
 
     /** Metoda do testowania klasy */
     public static void main(String[] args) throws IOException {
@@ -163,6 +184,7 @@ public class Configer {
         System.out.println("Przycisk Ustawienia: " + conf.getButtonSettingsText());
         System.out.println("Przycisk Informacji: " + conf.getButtonInfoText());
         System.out.println("Przycisk Końca gry " + conf.getButtonEndText());
+        System.out.println("Komunikat o wyjsciu z gry " + conf.getQuitDialogTitle());
         System.out.println("Komunikat o wyjsciu z gry " + conf.getQuitDialogText());
         System.out.println("Komunikat o wyjsciu z gry - odpowiedz twoerdzaca " + conf.getQuitDialogYes());
         System.out.println("Komunikat o wyjsciu z gry - odpowiedz przeczaca " + conf.getQuitDialogNo());

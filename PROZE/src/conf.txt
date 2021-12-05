@@ -1,6 +1,6 @@
 #Parameters Boi
 #Fri Nov 12 23:01:25 CET 2021
-gameHeight=500
+gameHeight=1000
 gameWidth=1000
 maxHighScoreSize=10
 gameTitle=Space Invaders
@@ -9,6 +9,7 @@ buttonRankText=RANKING
 buttonSettingsText=SETTINGS
 buttonInfoText=INFO
 buttonEndText=EXIT
+quitDialogTitle=Wyjscie z gry
 quitDialogText=Czy na pewno chcesz wyjsc z gry?
 quitDialogYes=Tak
 quitDialogNo=Nie
@@ -30,6 +31,9 @@ enemyRedPoints=10
 enemyBluePoints=20
 enemyGreenPoints=30
 enemyYellowPoints=40
+playerBulletSpeed=2
+playerMovingSpeed=2
+enemyMovingSpeed=2
 enemyRedBulletSpeed=1
 enemyBlueBulletSpeed=2
 enemyGreenBulletSpeed=3
@@ -37,3 +41,6 @@ enemyYellowBulletSpeed=4
 playerXScreenPosition=40
 playerYScreenPosition=1
 finalPoints=0
+objectWidthRatio=0.1
+objectHeightRatio=0.1
+stroke=5
