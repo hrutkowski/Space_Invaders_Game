@@ -29,25 +29,48 @@ public class Player1 extends Character implements KeyListener {
         playerRect=new Rectangle(xPosition,yPosition,width,height);
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        System.out.println("keyTyped");
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        System.out.println("keyTyped");
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
 
     private enum typeOfMove {
         LEFT,
         RIGHT,
         STOPPED
+    }
+
+    /**
+     * Metoda ustawiajaca stan dziala gracza
+     * @param state stan w zaleznosci od tego jaki przycisk zostal wcisniety
+     */
+    private void setMovementState(typeOfMove state){
+        playerState=state;
+    }
+
+    /**
+     * Metoda do pobrania szybkosci ruchu dziala gracza
+     * @return szybkosc poruszania sie dziala gracza
+     */
+    private double GetPlayerMovingSpeed(){
+        return Configer.getPlayerMovingSpeed();
+    }
+
+    /**
+     * Metoda do poruszania dzialem gracza
+     */
+    public void MovePlayer() {
+        if (playerState == typeOfMove.LEFT) {
+            if (normalizedXPosition*screenWidth > screenStroke)
+                normalizedXPosition -= speed / FPS;
+            else
+                normalizedXPosition = 1.0*screenStroke/screenWidth;
+
+        }
+
+        if (playerState == typeOfMove.RIGHT) {
+            if ((normalizedXPosition + normalizedWidth)*screenWidth < screenWidth - screenStroke)
+                normalizedXPosition += speed / FPS;
+            else
+                normalizedXPosition = 1.0*(screenWidth - screenStroke)/screenWidth - normalizedWidth;
+
+        }
     }
 
     /**
@@ -62,4 +85,86 @@ public class Player1 extends Character implements KeyListener {
         playerRect.setLocation((int)Math.round(normalizedXPosition*screenWidth),(int)Math.round(normalizedYPosition*screenHeight));
 
     }
+
+    /**
+     * Metoda zwracajaca prostokat opisujacy paletke
+     * @return prostokat opisujacy rozmiar i polozenie dziala gracza
+     */
+    public Rectangle getPlayerRect(){
+        return playerRect;
+    }
+
+    /**
+     * Metoda zmieniajaca rozmiary dziala i jego polozenie gdy okno gry zmienia rozmiar
+     * @param screenWidth szerokosc ekrany
+     * @param screenHeight wysokosc ekranu
+     */
+    public void resize(int screenWidth, int screenHeight) {
+        this.screenWidth=screenWidth;
+        this.screenHeight=screenHeight;
+        playerRect.setLocation((int)Math.round(normalizedXPosition*screenWidth),(int)Math.round(normalizedYPosition*screenHeight));
+        playerRect.setSize((int)Math.round(normalizedWidth*screenWidth),(int)Math.round(normalizedHeight*screenHeight));
+    }
+
+    /**
+     * Aktualizacja polozeenia paletki
+     */
+
+    public  void update(){
+        playerRect.setLocation((int)Math.round(normalizedXPosition*screenWidth),(int)Math.round(normalizedYPosition*screenHeight));
+        playerRect.setSize((int)Math.round(normalizedWidth*screenWidth),(int)Math.round(normalizedHeight*screenHeight));
+    }
+
+
+    /**
+     * Metoda opisujaca co ma sie stac z dzialem gdy nacisnie sie przycisk
+     * @param keyEvent obiekt zdarzenia zwiazanego z nacisnieciem przycisku
+     */
+    @Override
+    public void keyTyped(KeyEvent keyEvent) {
+        System.out.println("keyTyped");
+    }
+
+    /**
+     * Metoda opisujaca co ma sie stac z dzialem gdy nacisnie sie przycisk
+     * @param keyEvent obiekt zdarzenia zwiazanego z wcisnieciem przycisku
+     */
+    @Override
+    public void keyPressed(KeyEvent keyEvent) {
+        int keyCode = keyEvent.getKeyCode();
+        if(keyCode==keyEvent.VK_LEFT)
+        {
+            setMovementState(typeOfMove.LEFT);
+            MovePlayer();
+        }
+        if(keyCode==keyEvent.VK_RIGHT)
+        {
+            setMovementState(typeOfMove.RIGHT);
+            MovePlayer();
+        }
+        System.out.println("keyTyped");
+    }
+
+    /**
+     * Metoda opisujaca co ma sie stac gdy zwolniony zostanie przycisk
+     * @param keyEvent obiekt zdarzenia zwianzaego ze zwolnieniem przycisku
+     */
+
+
+    @Override
+    public void keyReleased(KeyEvent keyEvent) {
+        int keyCode = keyEvent.getKeyCode();
+        if(keyCode==keyEvent.VK_LEFT)
+        {
+
+            setMovementState(typeOfMove.STOPPED);
+        }
+        if(keyCode==keyEvent.VK_RIGHT)
+        {
+            setMovementState(typeOfMove.STOPPED);
+        }
+        System.out.println("keyReleased");
+    }
+
+
 }

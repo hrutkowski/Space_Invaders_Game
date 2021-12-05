@@ -49,7 +49,7 @@ public class Character extends MovingObject {
     /**
      * Zmienna okreslajaca ramke ekranu
      */
-    private float screenStroke;
+    public float screenStroke;
 
     /** Metoda zwracajaca poczatkowa pozycje */
     public void setStartPosition() {

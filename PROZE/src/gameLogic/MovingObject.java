@@ -32,11 +32,11 @@ public class MovingObject {
     /**
      * Zmienna okreslajaca liczbe klatek w grze
      */
-    private int FPS;
+    public int FPS;
     /**
      * Zmienna okreslajaca szybkosc poruszania sie obiektu
      */
-    private int speed;
+    public int speed;
 
     /**
      * Funkcja do rysowania obiektow
