@@ -43,4 +43,6 @@ playerYScreenPosition=1
 finalPoints=0
 objectWidthRatio=0.1
 objectHeightRatio=0.1
+objectXScreenRatio=0.5
+objectYScreenRatio=0.15
 stroke=5

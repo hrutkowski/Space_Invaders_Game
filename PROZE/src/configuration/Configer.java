@@ -1,6 +1,5 @@
 package configuration;
 
-import javax.imageio.metadata.IIOMetadataNode;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -167,8 +166,12 @@ public class Configer {
     public static float getObjectWidthRatio() { return Float.parseFloat(proper.getProperty("objectWidthRatio")); }
     /** Metoda zwracająca objectHeightRatio */
     public static float getObjectHeightRatio() { return Float.parseFloat(proper.getProperty("objectHeightRatio")); }
+    /** Metoda zwracająca objectXScreenRatio */
+    public static float getObjectXScreenRatio() { return Float.parseFloat(proper.getProperty("objectXScreenRatio")); }
+    /** Metoda zwracająca objectYScreenRatio */
+    public static float getObjectYScreenRatio() { return Float.parseFloat(proper.getProperty("objectYScreenRatio")); }
     /** Metoda zwracająca stroke */
-    public static float getStroke() { return Float.parseFloat(proper.getProperty("stroke"); }
+    public static float getStroke() { return Float.parseFloat(proper.getProperty("stroke")); }
 
     /** Metoda do testowania klasy */
     public static void main(String[] args) throws IOException {
