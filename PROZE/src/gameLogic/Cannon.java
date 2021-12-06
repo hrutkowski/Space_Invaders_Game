@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-public class Player1 extends Character implements KeyListener {
+public class Cannon extends Character implements KeyListener {
 
     /**
      * Zmienna okreslajaca stan w ktorym znajduje sie dzialo gracza - ruch w prawo i w lewo
@@ -18,13 +18,13 @@ public class Player1 extends Character implements KeyListener {
 
 
     /**
-     * Konstrutor klasy Player1
+     * Konstrutor klasy Cannon
      *
      * @param speed szybkosc poruszania sie gracza
      */
-    public Player1(int speed) {
+    public Cannon(int speed) {
         super(speed);
-        speed = Configer.getPlayerMovingSpeed();
+        speed = Configer.getPlayerMovementSpeed();
         playerState=typeOfMove.STOPPED;
         playerRect=new Rectangle(xPosition,yPosition,width,height);
     }
@@ -49,7 +49,7 @@ public class Player1 extends Character implements KeyListener {
      * @return szybkosc poruszania sie dziala gracza
      */
     private double GetPlayerMovingSpeed(){
-        return Configer.getPlayerMovingSpeed();
+        return Configer.getPlayerMovementSpeed();
     }
 
     /**

@@ -93,7 +93,6 @@ public class Configer {
     public String getPathInfo() {
         return proper.getProperty("pathInfo");
     }
-    //pathSettings=
     /** Metoda zwracająca initialPoints */
     public int getInitialPoints() {
         return Integer.parseInt(proper.getProperty("initialPoints"));
@@ -131,12 +130,12 @@ public class Configer {
         return Integer.parseInt(proper.getProperty("playerBulletSpeed"));
     }
     /** Metoda zwracająca enemyRedBulletSpeed */
-    public static int getPlayerMovingSpeed() {
-        return Integer.parseInt(proper.getProperty("playerMovingSpeed"));
+    public static int getPlayerMovementSpeed() {
+        return Integer.parseInt(proper.getProperty("playerMovementSpeed"));
     }
     /** Metoda zwracająca enemyRedBulletSpeed */
-    public int getEnemyMovingSpeed() {
-        return Integer.parseInt(proper.getProperty("enemyMovingSpeed"));
+    public int getEnemyMovementSpeed() {
+        return Integer.parseInt(proper.getProperty("enemyMovementSpeed"));
     }
     /** Metoda zwracająca enemyRedBulletSpeed */
     public int getEnemyRedBulletSpeed() {
@@ -172,11 +171,16 @@ public class Configer {
     public static float getObjectYScreenRatio() { return Float.parseFloat(proper.getProperty("objectYScreenRatio")); }
     /** Metoda zwracająca stroke */
     public static float getStroke() { return Float.parseFloat(proper.getProperty("stroke")); }
+    /** Metoda zwracająca pathHighScores */
+    public static String getPathHighScores() {
+        return proper.getProperty("pathHighScores");
+    }
+
 
     /** Metoda do testowania klasy */
     public static void main(String[] args) throws IOException {
 
-        Configer conf = new Configer("./PROZE/src/conf.txt");
+        Configer conf = new Configer("./src/conf.txt");
 
         System.out.println("Wysokość okna = " + conf.getGameHeight());
         System.out.println("Szerokość okna = " + conf.getGameWidth());
@@ -189,7 +193,7 @@ public class Configer {
         System.out.println("Przycisk Końca gry " + conf.getButtonEndText());
         System.out.println("Komunikat o wyjsciu z gry " + conf.getQuitDialogTitle());
         System.out.println("Komunikat o wyjsciu z gry " + conf.getQuitDialogText());
-        System.out.println("Komunikat o wyjsciu z gry - odpowiedz twoerdzaca " + conf.getQuitDialogYes());
+        System.out.println("Komunikat o wyjsciu z gry - odpowiedz twierdzaca " + conf.getQuitDialogYes());
         System.out.println("Komunikat o wyjsciu z gry - odpowiedz przeczaca " + conf.getQuitDialogNo());
         System.out.println("Przycisk Powrotu do menu: " + conf.getButtonBackToMenuText());
         System.out.println("Przycisk akceptacji: " + conf.getButtonAcceptText());
@@ -198,10 +202,7 @@ public class Configer {
         System.out.println("Tekst gameover: " + conf.getGameOverText());
         System.out.println("Tekst przy nicku: " + conf.getNickText());
         System.out.println("Intrukcja gry: " + conf.getPathInfo());
-
-
-        //pathSettings=
-
+        System.out.println("Ścieżka do HighScores = " + conf.getPathHighScores());
         System.out.println("Początkowa liczba pkt = " + conf.getInitialPoints());
         System.out.println("Zdobyta liczba pkt = " + conf.getLabelPoints());
         System.out.println("Pozostała liczba żyć = " + conf.getLabelLifesLeft());
@@ -217,6 +218,9 @@ public class Configer {
         System.out.println("Prędkość pocisku żółtego przeciwnika = " + conf.getEnemyYellowBulletSpeed());
         System.out.println("Położenie działa na osi X = " + conf.getPlayerXScreenPosition());
         System.out.println("Położenie działa na osi Y = " + conf.getPlayerYScreenPosition());
+        System.out.println("Prędkość poruszania się pocisku działa = " + conf.getPlayerBulletSpeed());
+        System.out.println("Prędkośc poruszania się działa = " + conf.getPlayerMovementSpeed());
+        System.out.println("Prędkośc poruszania się przeciwnika = " + conf.getEnemyMovementSpeed());
 
     }
 }

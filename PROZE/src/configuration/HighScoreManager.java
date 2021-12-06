@@ -36,7 +36,7 @@ public class HighScoreManager {
      private void saveScores() throws IOException {
 
         Properties playersProperties = new Properties();
-        String filename = "./PROZE/src/HighScores.txt";
+        String filename = "./src/HighScores.txt";
 
         Collections.sort(highScoreTable);
         playersProperties.setProperty("liczba_nickow", properties.getProperty("liczba_nickow"));
@@ -50,8 +50,8 @@ public class HighScoreManager {
     }
 /** Metoda testujaca dzialanie klasy */
     public static void main(String... args) throws IOException {
-        HighScoreManager Manager1 = new HighScoreManager("./PROZE/src/HighScores.txt");
-        Player a = new Player("maks",700); // tu można sobie dodawać i się bawić
+        HighScoreManager Manager1 = new HighScoreManager("./src/HighScores.txt");
+        Player a = new Player("skibi",750); // tu można sobie dodawać i się bawić
         Manager1.addPlayer(a);
         Manager1.saveScores();
     }
