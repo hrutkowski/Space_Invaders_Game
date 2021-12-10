@@ -51,7 +51,7 @@ public class HighScoreManager {
 /** Metoda testujaca dzialanie klasy */
     public static void main(String... args) throws IOException {
         HighScoreManager Manager1 = new HighScoreManager("./src/HighScores.txt");
-        Player a = new Player("skibi",750); // tu można sobie dodawać i się bawić
+        Player a = new Player("tobiasz",800); // tu można sobie dodawać i się bawić
         Manager1.addPlayer(a);
         Manager1.saveScores();
     }
