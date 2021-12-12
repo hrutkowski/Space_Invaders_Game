@@ -32,6 +32,7 @@ enemyRedPoints=10
 enemyBluePoints=20
 enemyGreenPoints=30
 enemyYellowPoints=40
+enemyDeadPoints=10
 playerBulletSpeed=2
 playerMovementSpeed=2
 enemyMovementSpeed=2

@@ -19,7 +19,8 @@ public class Configer {
 
         propertiesFile.close();
     }
-    /** Metoda zwracająca gameHeight */
+    /** Metoda zwracająca gameHeight
+     * @return*/
     public static int getGameHeight() {
         return Integer.parseInt(proper.getProperty("gameHeight"));
     }
@@ -110,21 +111,23 @@ public class Configer {
         return Integer.parseInt(proper.getProperty("fps"));
     }
     /** Metoda zwracająca enemyLifes */
-    public int getEnemyLifes() {
+    public static int getEnemyLifes() {
         return Integer.parseInt(proper.getProperty("enemyLifes"));
     }
     /** Metoda zwracająca enemyRedPoints */
-    public int getEnemyRedPoints() {
+    public static int getEnemyRedPoints() {
         return Integer.parseInt(proper.getProperty("enemyRedPoints"));
     }
     /** Metoda zwracająca enemyBluePoints */
-    public int getEnemyBluePoints() {
+    public static int getEnemyBluePoints() {
         return Integer.parseInt(proper.getProperty("enemyBluePoints"));
     }
     /** Metoda zwracająca enemyGreenPoints */
-    public int getEnemyGreenPoints() { return Integer.parseInt(proper.getProperty("enemyGreenPoints")); }
+    public static int getEnemyGreenPoints() { return Integer.parseInt(proper.getProperty("enemyGreenPoints")); }
     /** Metoda zwracająca enemyYellowPoints */
-    public int getEnemyYellowPoints() { return Integer.parseInt(proper.getProperty("enemyYellowPoints")); }
+    public static int getEnemyYellowPoints() { return Integer.parseInt(proper.getProperty("enemyYellowPoints")); }
+    /** Metoda zwracająca enemyYellowPoints */
+    public static int getEnemyDeadPoints() { return Integer.parseInt(proper.getProperty("enemyDeadPoints")); }
     /** Metoda zwracająca enemyRedBulletSpeed */
     public int getPlayerBulletSpeed() {
         return Integer.parseInt(proper.getProperty("playerBulletSpeed"));
@@ -134,7 +137,7 @@ public class Configer {
         return Integer.parseInt(proper.getProperty("playerMovementSpeed"));
     }
     /** Metoda zwracająca enemyRedBulletSpeed */
-    public int getEnemyMovementSpeed() {
+    public static int getEnemyMovementSpeed() {
         return Integer.parseInt(proper.getProperty("enemyMovementSpeed"));
     }
     /** Metoda zwracająca enemyRedBulletSpeed */
@@ -180,7 +183,7 @@ public class Configer {
     /** Metoda do testowania klasy */
     public static void main(String[] args) throws IOException {
 
-        Configer conf = new Configer("./src/conf.txt");
+        Configer conf = new Configer("./PROZE/src/conf.txt");
 
         System.out.println("Wysokość okna = " + conf.getGameHeight());
         System.out.println("Szerokość okna = " + conf.getGameWidth());

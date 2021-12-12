@@ -36,7 +36,7 @@ public class MovingObject {
     /**
      * Zmienna okreslajaca szybkosc poruszania sie obiektu
      */
-    public int speed;
+    public static int speed;
 
     /**
      * Funkcja do rysowania obiektow

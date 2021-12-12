@@ -1,10 +1,13 @@
 package gameLogic;
 
 import configuration.Configer;
+import configuration.Leveler;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 public class Cannon extends Character implements KeyListener {
@@ -24,7 +27,7 @@ public class Cannon extends Character implements KeyListener {
      */
     public Cannon(int speed) {
         super(speed);
-        speed = Configer.getPlayerMovementSpeed();
+        speed = Leveler.getPlayerSpeed();
         playerState=typeOfMove.STOPPED;
         playerRect=new Rectangle(xPosition,yPosition,width,height);
     }
@@ -87,7 +90,7 @@ public class Cannon extends Character implements KeyListener {
     }
 
     /**
-     * Metoda zwracajaca prostokat opisujacy paletke
+     * Metoda zwracajaca prostokat opisujacy dzialo
      * @return prostokat opisujacy rozmiar i polozenie dziala gracza
      */
     public Rectangle getPlayerRect(){
@@ -147,7 +150,7 @@ public class Cannon extends Character implements KeyListener {
 
     /**
      * Metoda opisujaca co ma sie stac gdy zwolniony zostanie przycisk
-     * @param keyEvent obiekt zdarzenia zwianzaego ze zwolnieniem przycisku
+     * @param keyEvent obiekt zdarzenia zwiazanego ze zwolnieniem przycisku
      */
 
 
@@ -165,6 +168,5 @@ public class Cannon extends Character implements KeyListener {
         }
         System.out.println("keyReleased");
     }
-
 
 }

@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class Leveler {
     /** Klasa typu Properties do wyciągania wartości z pliku txt */
-    Properties proper = new Properties();
+    static Properties proper = new Properties();
 
     /**
      * Metoda wczytująca dane z pliku level1
@@ -20,7 +20,7 @@ public class Leveler {
 
     }
     /** Metoda zwracająca playerSpeed */
-    public int getPlayerSpeed() {
+    public static int getPlayerSpeed() {
         return Integer.parseInt(proper.getProperty("playerSpeed"));
     }
 
