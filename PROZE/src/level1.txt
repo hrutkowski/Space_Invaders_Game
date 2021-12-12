@@ -1,3 +1,5 @@
 playerSpeed=3
 playerBulletSpeed=5
 enemyNumber=10
+enemyColumns=5
+enemyRows=2

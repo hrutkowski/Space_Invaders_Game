@@ -31,7 +31,10 @@ public class Leveler {
 
     /** Metoda zwracająca EnemyNumber */
     public int getEnemyNumber() { return Integer.parseInt(proper.getProperty("enemyNumber"));}
-
+    /** Metoda zwracająca EnemyColumns */
+    public static int getEnemyColumns() { return Integer.parseInt(proper.getProperty("enemyColumns"));}
+    /** Metoda zwracająca EnemyRows */
+    public static int getEnemyRows() { return Integer.parseInt(proper.getProperty("enemyRows"));}
     /**
      * Metoda do testowania klasy
      */
