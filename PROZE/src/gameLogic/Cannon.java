@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 
 public class Cannon extends Character implements KeyListener {
@@ -15,21 +16,16 @@ public class Cannon extends Character implements KeyListener {
     /**
      * Zmienna okreslajaca stan w ktorym znajduje sie dzialo gracza - ruch w prawo i w lewo
      */
-    private typeOfMove playerState;
+    private typeOfMove cannonState;
 
-    private Rectangle playerRect;
-
-
+    private Rectangle cannonRect;
     /**
      * Konstrutor klasy Cannon
-     *
-     * @param speed szybkosc poruszania sie gracza
      */
-    public Cannon(int speed) {
-        super(speed);
-        speed = Leveler.getPlayerSpeed();
-        playerState=typeOfMove.STOPPED;
-        playerRect=new Rectangle(xPosition,yPosition,width,height);
+    public Cannon() {
+        FPS = Configer.getFps();
+        cannonState=typeOfMove.STOPPED;
+        cannonRect=new Rectangle(xPosition,yPosition,width,height);
     }
 
 
@@ -44,22 +40,23 @@ public class Cannon extends Character implements KeyListener {
      * @param state stan w zaleznosci od tego jaki przycisk zostal wcisniety
      */
     private void setMovementState(typeOfMove state){
-        playerState=state;
+        cannonState=state;
     }
 
     /**
      * Metoda do pobrania szybkosci ruchu dziala gracza
      * @return szybkosc poruszania sie dziala gracza
      */
-    private double GetPlayerMovingSpeed(){
+    private double getPlayerMovingSpeed(){
         return Configer.getPlayerMovementSpeed();
     }
 
     /**
      * Metoda do poruszania dzialem gracza
      */
-    public void MovePlayer() {
-        if (playerState == typeOfMove.LEFT) {
+    public void moveCannon() {
+        if (cannonState == typeOfMove.LEFT) {
+            System.out.println("LEWO");
             if (normalizedXPosition*screenWidth > screenStroke)
                 normalizedXPosition -= speed / FPS;
             else
@@ -67,7 +64,8 @@ public class Cannon extends Character implements KeyListener {
 
         }
 
-        if (playerState == typeOfMove.RIGHT) {
+        if (cannonState == typeOfMove.RIGHT) {
+            System.out.println("PRAWO");
             if ((normalizedXPosition + normalizedWidth)*screenWidth < screenWidth - screenStroke)
                 normalizedXPosition += speed / FPS;
             else
@@ -84,8 +82,8 @@ public class Cannon extends Character implements KeyListener {
         normalizedXPosition=1.0*Configer.getObjectXScreenRatio()-0.5*normalizedWidth;
         normalizedYPosition=1-1.0*Configer.getObjectYScreenRatio()*normalizedHeight;
         normalizedYPosition=1-Configer.getObjectYScreenRatio()+normalizedHeight;
-        playerRect.setSize((int)Math.round(normalizedWidth*screenWidth),(int)Math.round(normalizedHeight*screenHeight));
-        playerRect.setLocation((int)Math.round(normalizedXPosition*screenWidth),(int)Math.round(normalizedYPosition*screenHeight));
+        cannonRect.setSize((int)Math.round(normalizedWidth*screenWidth),(int)Math.round(normalizedHeight*screenHeight));
+        cannonRect.setLocation((int)Math.round(normalizedXPosition*screenWidth),(int)Math.round(normalizedYPosition*screenHeight));
 
     }
 
@@ -94,7 +92,7 @@ public class Cannon extends Character implements KeyListener {
      * @return prostokat opisujacy rozmiar i polozenie dziala gracza
      */
     public Rectangle getPlayerRect(){
-        return playerRect;
+        return cannonRect;
     }
 
     /**
@@ -105,8 +103,8 @@ public class Cannon extends Character implements KeyListener {
     public void resize(int screenWidth, int screenHeight) {
         this.screenWidth=screenWidth;
         this.screenHeight=screenHeight;
-        playerRect.setLocation((int)Math.round(normalizedXPosition*screenWidth),(int)Math.round(normalizedYPosition*screenHeight));
-        playerRect.setSize((int)Math.round(normalizedWidth*screenWidth),(int)Math.round(normalizedHeight*screenHeight));
+        cannonRect.setLocation((int)Math.round(normalizedXPosition*screenWidth),(int)Math.round(normalizedYPosition*screenHeight));
+        cannonRect.setSize((int)Math.round(normalizedWidth*screenWidth),(int)Math.round(normalizedHeight*screenHeight));
     }
 
     /**
@@ -114,8 +112,8 @@ public class Cannon extends Character implements KeyListener {
      */
 
     public  void update(){
-        playerRect.setLocation((int)Math.round(normalizedXPosition*screenWidth),(int)Math.round(normalizedYPosition*screenHeight));
-        playerRect.setSize((int)Math.round(normalizedWidth*screenWidth),(int)Math.round(normalizedHeight*screenHeight));
+        cannonRect.setLocation((int)Math.round(normalizedXPosition*screenWidth),(int)Math.round(normalizedYPosition*screenHeight));
+        cannonRect.setSize((int)Math.round(normalizedWidth*screenWidth),(int)Math.round(normalizedHeight*screenHeight));
     }
 
 
@@ -138,12 +136,12 @@ public class Cannon extends Character implements KeyListener {
         if(keyCode==keyEvent.VK_LEFT)
         {
             setMovementState(typeOfMove.LEFT);
-            MovePlayer();
+            moveCannon();
         }
         if(keyCode==keyEvent.VK_RIGHT)
         {
             setMovementState(typeOfMove.RIGHT);
-            MovePlayer();
+            moveCannon();
         }
         System.out.println("keyTyped");
     }
@@ -167,6 +165,15 @@ public class Cannon extends Character implements KeyListener {
             setMovementState(typeOfMove.STOPPED);
         }
         System.out.println("keyReleased");
+    }
+
+    public static void main(String[] args) throws IOException {
+        Configer conf = new Configer("./src/conf.txt");
+        Cannon can = new Cannon();
+        can.setMovementState(typeOfMove.LEFT);
+        can.moveCannon();
+        can.setMovementState(typeOfMove.RIGHT);
+        can.moveCannon();
     }
 
 }

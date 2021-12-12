@@ -19,8 +19,7 @@ public class Configer {
 
         propertiesFile.close();
     }
-    /** Metoda zwracająca gameHeight
-     * @return*/
+    /** Metoda zwracająca gameHeight */
     public static int getGameHeight() {
         return Integer.parseInt(proper.getProperty("gameHeight"));
     }
@@ -183,7 +182,7 @@ public class Configer {
     /** Metoda do testowania klasy */
     public static void main(String[] args) throws IOException {
 
-        Configer conf = new Configer("./PROZE/src/conf.txt");
+        Configer conf = new Configer("./src/conf.txt");
 
         System.out.println("Wysokość okna = " + conf.getGameHeight());
         System.out.println("Szerokość okna = " + conf.getGameWidth());

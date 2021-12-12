@@ -50,6 +50,5 @@ public class MovingObject {
      */
 
     public MovingObject() {
-        FPS = Configer.getFps();
     }
 }

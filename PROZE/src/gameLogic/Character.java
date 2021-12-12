@@ -82,16 +82,15 @@ public class Character extends MovingObject {
 
     /**
      * Konstrutor klasy Character
-     * @param speed szybkosc poruszania sie obiektu
      */
-    public Character(int speed){
-        super();
+    public Character(){
+
         screenWidth=Configer.getGameHeight();
         screenHeight=Configer.getGameWidth();
         screenStroke=Configer.getStroke();
         normalizedWidth= Configer.getObjectWidthRatio();
         normalizedHeight=Configer.getObjectHeightRatio();
-            }
+    }
 
 }
 

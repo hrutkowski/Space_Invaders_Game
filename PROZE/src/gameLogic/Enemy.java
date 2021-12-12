@@ -128,9 +128,8 @@ public class Enemy extends Character {
      * @param screenHeight wysokosc ekranu
      */
 
-    public Enemy(double x, double y, double width, double height, int type, int screenWidth, int screenHeight, int speed) {
-        super(speed);
-        speed=Configer.getEnemyMovementSpeed();
+    public Enemy(double x, double y, double width, double height, int type, int screenWidth, int screenHeight) {
+
         this.screenHeight=screenHeight;
         this.screenWidth=screenWidth;
         normalizedXPosition = 1.0 * x;
