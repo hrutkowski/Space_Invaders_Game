@@ -80,18 +80,18 @@ public class Cannon extends Character implements KeyListener {
     public void setStartPosition(){
 
         normalizedXPosition=1.0*Configer.getObjectXScreenRatio()-0.5*normalizedWidth;
-        normalizedYPosition=1-1.0*Configer.getObjectYScreenRatio()*normalizedHeight;
         normalizedYPosition=1-Configer.getObjectYScreenRatio()+normalizedHeight;
         cannonRect.setSize((int)Math.round(normalizedWidth*screenWidth),(int)Math.round(normalizedHeight*screenHeight));
         cannonRect.setLocation((int)Math.round(normalizedXPosition*screenWidth),(int)Math.round(normalizedYPosition*screenHeight));
-
+        System.out.println("Position: " + normalizedXPosition + "," + normalizedYPosition);
     }
 
     /**
      * Metoda zwracajaca prostokat opisujacy dzialo
      * @return prostokat opisujacy rozmiar i polozenie dziala gracza
      */
-    public Rectangle getPlayerRect(){
+    public Rectangle getCannonRect(){
+        System.out.println("cannonRectangle");
         return cannonRect;
     }
 
@@ -105,15 +105,17 @@ public class Cannon extends Character implements KeyListener {
         this.screenHeight=screenHeight;
         cannonRect.setLocation((int)Math.round(normalizedXPosition*screenWidth),(int)Math.round(normalizedYPosition*screenHeight));
         cannonRect.setSize((int)Math.round(normalizedWidth*screenWidth),(int)Math.round(normalizedHeight*screenHeight));
+        System.out.println("Resized");
     }
 
     /**
-     * Aktualizacja polozeenia paletki
+     * Aktualizacja polozeenia dziala
      */
 
     public  void update(){
         cannonRect.setLocation((int)Math.round(normalizedXPosition*screenWidth),(int)Math.round(normalizedYPosition*screenHeight));
         cannonRect.setSize((int)Math.round(normalizedWidth*screenWidth),(int)Math.round(normalizedHeight*screenHeight));
+        System.out.println("Updated");
     }
 
 
@@ -137,13 +139,15 @@ public class Cannon extends Character implements KeyListener {
         {
             setMovementState(typeOfMove.LEFT);
             moveCannon();
+            System.out.println("VK_LEFT");
         }
         if(keyCode==keyEvent.VK_RIGHT)
         {
             setMovementState(typeOfMove.RIGHT);
             moveCannon();
+            System.out.println("VK_RIGHT");
         }
-        System.out.println("keyTyped");
+        System.out.println("Key Pressed");
     }
 
     /**
@@ -159,21 +163,30 @@ public class Cannon extends Character implements KeyListener {
         {
 
             setMovementState(typeOfMove.STOPPED);
+            System.out.println("VK_LEFT");
         }
         if(keyCode==keyEvent.VK_RIGHT)
         {
             setMovementState(typeOfMove.STOPPED);
+            System.out.println("VK_RIGHT");
         }
         System.out.println("keyReleased");
     }
 
     public static void main(String[] args) throws IOException {
-        Configer conf = new Configer("./src/conf.txt");
+        Configer conf = new Configer("./PROZE/src/conf.txt");
         Cannon can = new Cannon();
         can.setMovementState(typeOfMove.LEFT);
         can.moveCannon();
         can.setMovementState(typeOfMove.RIGHT);
         can.moveCannon();
+        can.getCannonRect();
+        can.setStartPosition();
+        can.resize(can.screenWidth, can.screenHeight);
+        can.update();
+        /*can.keyTyped();*/
+        /*can.keyPressed(KeyEvent.VK_LEFT);*/
+        /*can.keyReleased(KeyEvent.VK_LEFT);*/
     }
 
 }
