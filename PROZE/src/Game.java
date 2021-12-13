@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.io.IOException;
 
-import gui.MainFrame;
+import gui.GameFrame;
 import configuration.Configer;
 
 public class Game {
@@ -13,8 +13,8 @@ public class Game {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            MainFrame mainFrame = new MainFrame();
-            mainFrame.setVisible(true);
+            GameFrame gameFrame = new GameFrame();
+            gameFrame.setVisible(true);
         });
     }
 }
