@@ -1,15 +1,42 @@
 package gui;
+import gameLogic.GameObjectList;
+import spaceInvaders.Game;
+
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-
+/** Klasa odpowiadajaca za okno gry */
 public class GameFrame extends Frame {
 
-    public GameFrame() {
+    private final Game game;
+    private final GameObjectList gameObjectList;
+    private final GameCanvas gameCanvas;
+
+    /**
+     * Metoda zaracająca obiekt klasy GameCanvas
+     */
+    public GameCanvas getGameCanvas() {
+        return gameCanvas;
+    }
+
+    /**
+     * Konstruktor klasy GameFrame
+     */
+    public GameFrame(Game game) {
         super("Space Invaders");
+        this.game = game;
+        gameObjectList = new GameObjectList();
+
+        gameObjectList.add(new MyShape(0.05f, 0.1f, 0.05f, 0.05f, Color.green));
+        gameObjectList.add(new MyShape(0.1f, 0.1f, 0.05f, 0.05f, Color.red));
+        gameObjectList.add(new MyShape(0.15f, 0.1f, 0.05f, 0.05f, Color.blue));
 
         setLayout(new BorderLayout());
+
+        final int[] points = {0};
 
         Panel panelTop = new Panel(new BorderLayout());
         Panel panelButton = new Panel(new FlowLayout());
@@ -18,30 +45,28 @@ public class GameFrame extends Frame {
         Panel panelPoints = new Panel(new FlowLayout());
         Panel panelLives = new Panel(new FlowLayout());
 
-        TextArea pointsLabel = new TextArea(1,7);
-        pointsLabel.setText("Points:");
-        pointsLabel.setEditable(false);
+        Label pointsLabel = new Label("Points:");
+        Label pointsAmount = new Label(Integer.toString(points[0]));
+        Label livesLabel = new Label("Lives left:");
+        Label livesAmount = new Label("0");
 
-        TextArea pointsAmount = new TextArea(1,3);
-        pointsAmount.setText("000");
-        pointsAmount.setEditable(false);
+        Button pauseButton = new Button("Start");
+        Button exitButton = new Button("Exit");
 
-        TextArea livesLabel = new TextArea(1,11);
-        livesLabel.setText("Lives left:");
-        livesLabel.setEditable(false);
+        exitButton.addActionListener(e -> System.exit(1));
+        pauseButton.addActionListener(e -> {
+            if (game.getAnimation() == null) {
+                game.startAnimation();
+                pauseButton.setLabel("Pause");
+            } else {
+                game.stopAnimation();
+                pauseButton.setLabel("Start");
+            }
+            pack();
+        });
 
-        TextArea livesAmount = new TextArea(1,1);
-        livesAmount.setText("0");
-        livesAmount.setEditable(false);
-
-        Button buttonPause = new Button("PAUSE");
-        Button buttonExit = new Button("EXIT");
-
-        buttonExit.addActionListener(e -> System.exit(1));
-        buttonPause.addActionListener(e -> System.out.println("PAUSE pressed"));
-
-        panelButton.add(buttonPause);
-        panelButton.add(buttonExit);
+        panelButton.add(pauseButton);
+        panelButton.add(exitButton);
 
         panelPoints.add(pointsLabel);
         panelPoints.add(pointsAmount);
@@ -52,7 +77,7 @@ public class GameFrame extends Frame {
         panelTop.add(panelButton, BorderLayout.EAST);
         panelTop.add(panelPoints, BorderLayout.WEST);
 
-        panelCanvas.add(new GameCanvas(Color.blue), BorderLayout.CENTER);
+        panelCanvas.add(gameCanvas = new GameCanvas(Color.blue, gameObjectList), BorderLayout.CENTER);
 
         panelBottom.add(panelLives, BorderLayout.WEST);
 
@@ -67,11 +92,16 @@ public class GameFrame extends Frame {
             }
         });
 
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                gameCanvas.setPreferredSize(gameCanvas.getSize());
+                System.out.println("componentResized");
+            }
+        });
+
         pack();
     }
-
-    public static void main(String... args) {
-        GameFrame guiWindow = new GameFrame();
-        EventQueue.invokeLater(() -> guiWindow.setVisible(true));
-    }
+/** Metoda zwracajaca obiekt klasy GameObjectList */
+    public GameObjectList getGameObjectList() { return gameObjectList; }
 }

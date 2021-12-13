@@ -9,7 +9,7 @@ import java.util.*;
 public class HighScoreManager {
 
     private String outputPath;
-    private Properties properties = new Properties();
+    final private Properties properties = new Properties();
     List<Player> highScoreTable = new Vector<>();
 /** Konstruktor tworzący listę obiektów typu Player na podstawie pliku HighScore.txt */
     HighScoreManager(String pathHighScores) {
@@ -50,7 +50,7 @@ public class HighScoreManager {
     }
 /** Metoda testujaca dzialanie klasy */
     public static void main(String... args) throws IOException {
-        HighScoreManager Manager1 = new HighScoreManager("./PROZE/src/HighScores.txt");
+        HighScoreManager Manager1 = new HighScoreManager("./dataFiles/HighScores.txt");
         Player a = new Player("tobiasz",800); // tu można sobie dodawać i się bawić
         Manager1.addPlayer(a);
         Manager1.saveScores();

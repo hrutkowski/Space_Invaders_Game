@@ -23,7 +23,7 @@ public class Cannon extends Character implements KeyListener {
      * Konstrutor klasy Cannon
      */
     public Cannon() {
-        FPS = Configer.getFps();
+        //FPS = Configer.getFps();
         cannonState=typeOfMove.STOPPED;
         cannonRect=new Rectangle(xPosition,yPosition,width,height);
     }

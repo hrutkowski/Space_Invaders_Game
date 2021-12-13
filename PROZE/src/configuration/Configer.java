@@ -106,7 +106,7 @@ public class Configer {
         return Integer.parseInt(proper.getProperty("labelLifesLeft"));
     }
     /** Metoda zwracająca fps */
-    public static int getFps() {
+    public int getFps() {
         return Integer.parseInt(proper.getProperty("fps"));
     }
     /** Metoda zwracająca enemyLifes */
@@ -182,7 +182,7 @@ public class Configer {
     /** Metoda do testowania klasy */
     public static void main(String[] args) throws IOException {
 
-        Configer conf = new Configer("./src/conf.txt");
+        Configer conf = new Configer("./dataFiles/conf.txt");
 
         System.out.println("Wysokość okna = " + conf.getGameHeight());
         System.out.println("Szerokość okna = " + conf.getGameWidth());

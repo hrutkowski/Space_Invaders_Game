@@ -83,7 +83,7 @@ public class Character extends MovingObject {
     /**
      * Konstrutor klasy Character
      */
-    public Character(){
+    public Character(){ // To raczej bez sensu, bo po co tej klasie te informacje?
 
         screenWidth=Configer.getGameHeight();
         screenHeight=Configer.getGameWidth();

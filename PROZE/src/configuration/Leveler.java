@@ -20,7 +20,7 @@ public class Leveler {
 
     }
     /** Metoda zwracająca playerSpeed */
-    public static int getPlayerSpeed() {
+    public int getPlayerSpeed() {
         return Integer.parseInt(proper.getProperty("playerSpeed"));
     }
 
@@ -32,15 +32,15 @@ public class Leveler {
     /** Metoda zwracająca EnemyNumber */
     public int getEnemyNumber() { return Integer.parseInt(proper.getProperty("enemyNumber"));}
     /** Metoda zwracająca EnemyColumns */
-    public static int getEnemyColumns() { return Integer.parseInt(proper.getProperty("enemyColumns"));}
+    public int getEnemyColumns() { return Integer.parseInt(proper.getProperty("enemyColumns"));}
     /** Metoda zwracająca EnemyRows */
-    public static int getEnemyRows() { return Integer.parseInt(proper.getProperty("enemyRows"));}
+    public int getEnemyRows() { return Integer.parseInt(proper.getProperty("enemyRows"));}
     /**
      * Metoda do testowania klasy
      */
     public static void main(String[] args) throws IOException {
 
-        Leveler level1 = new Leveler("./PROZE/src/level1.txt");
+        Leveler level1 = new Leveler("./dataFiles/level1.txt");
 
         System.out.println("PlayerSpeed = " + level1.getPlayerSpeed());
         System.out.println("PlayerBulletSpeed = " + level1.getPlayerBulletSpeed());

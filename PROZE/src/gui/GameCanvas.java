@@ -1,29 +1,29 @@
 package gui;
 
+import gameLogic.GameObjectList;
 import java.awt.*;
-
+/** Klasa odpowiadajaca za plotno do wyswietlania gry */
 public class GameCanvas extends Canvas {
 
-    public GameCanvas(Color colorBackground){
+    private final GameObjectList gameObjectList;
+    /** Konstruktor klasy GameCanvas */
+    public GameCanvas(Color colorBackground, GameObjectList gameObjectList){
         setForeground(colorBackground);
+        this.gameObjectList = gameObjectList;
     }
-
-    public Dimension getPreferredSize(){
-        return new Dimension(500,300);
-    }
-
+    /** Metoda laczaca z zasobami ekranu */
     public void addNotify(){
         super.addNotify();
-    }
-
+            setPreferredSize(new Dimension(500, 300));
+        }
+    /** Metoda rysujaca po plotnie */
     public void paint(Graphics g){
         Dimension size = getSize();
 
-        g.fillRect(0,0, size.width, size.height);
-
-        g.setColor(Color.green);
-        g.fillRect(250,200,50,50);
-        g.setColor(Color.black);
-        g.drawRect(250,200,50,50);
+        for (MyShape shape: gameObjectList) {
+            g.setColor(shape.getColor());
+            g.fillRect((int) (shape.getX() * size.getWidth()), (int) (shape.getY() * size.getHeight()),
+                    (int) (shape.getWidth() * size.getWidth()), (int) (shape.getHeight() * size.getHeight()));
+        }
     }
 }
