@@ -22,8 +22,8 @@ public class GameCanvas extends Canvas {
         g.fillRect(0,0, size.width, size.height);
 
         g.setColor(Color.green);
-        g.fillRect(200,200,50,50);
+        g.fillRect(250,200,50,50);
         g.setColor(Color.black);
-        g.drawRect(200,200,50,50);
+        g.drawRect(250,200,50,50);
     }
 }

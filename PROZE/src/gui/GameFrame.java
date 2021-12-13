@@ -27,7 +27,7 @@ public class GameFrame extends Frame {
         pointsAmount.setEditable(false);
 
         TextArea livesLabel = new TextArea(1,11);
-        livesLabel.setText("Lifes left:");
+        livesLabel.setText("Lives left:");
         livesLabel.setEditable(false);
 
         TextArea livesAmount = new TextArea(1,1);
