@@ -1,16 +1,16 @@
 package gameLogic;
 
 import gui.GameFrame;
+import gui.GameCanvas;
 
 /** Klasa odpowiadajaca za animacje */
 public class Animation implements Runnable {
 
     final private GameFrame gameFrame;
+
     private Thread kicker;
     /** Konstruktor klasy Animation */
-    public Animation(GameFrame gameFrame) {
-        this.gameFrame = gameFrame;
-    }
+    public Animation(GameFrame gameFrame) {this.gameFrame = gameFrame;}
     /** Metoda ustawiajaca watek */
     public void setKicker(Thread kicker) {
         this.kicker = kicker;
@@ -19,6 +19,7 @@ public class Animation implements Runnable {
     @Override
     public void run() {
         GameObjectList gameObjectList = gameFrame.getGameObjectList();
+
         while (kicker == Thread.currentThread()) {
 
             try {

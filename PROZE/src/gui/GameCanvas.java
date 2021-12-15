@@ -1,25 +1,18 @@
 package gui;
 
-import configuration.Configer;
 import gameLogic.Cannon;
 import gameLogic.GameObjectList;
 import gameLogic.MovingObject;
-import spaceInvaders.Game;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-import static java.awt.Color.blue;
-import static java.awt.Color.yellow;
 
 /** Klasa odpowiadajaca za plotno do wyswietlania gry */
 public class GameCanvas extends Canvas implements KeyListener {
 
     private final GameObjectList gameObjectList;
     private final Cannon cannon;
-
-
     /**
      * Zmienna okreslajaca stan w ktorym znajduje sie dzialo gracza - ruch w prawo i w lewo
      */
@@ -28,7 +21,7 @@ public class GameCanvas extends Canvas implements KeyListener {
     /**
      * Konstruktor klasy GameCanvas
      */
-    public GameCanvas(Color colorBackground, GameObjectList gameObjectList, Cannon cannon) {
+    public GameCanvas(Color colorBackground, GameObjectList gameObjectList, Cannon cannon, String center) {
         setForeground(colorBackground);
         this.gameObjectList = gameObjectList;
         this.cannon = cannon;
@@ -55,7 +48,6 @@ public class GameCanvas extends Canvas implements KeyListener {
             g.fillRect((int) (shape.getX() * size.getWidth()), (int) (shape.getY() * size.getHeight()),
                     (int) (shape.getWidth() * size.getWidth()), (int) (shape.getHeight() * size.getHeight()));
         }
-
         drawCannon(g);
     }
 
@@ -83,19 +75,21 @@ public class GameCanvas extends Canvas implements KeyListener {
 
     /**
      * Metoda do poruszania dzialem gracza
+     * @return
      */
-    public void moveCannon() {
+    public Cannon moveCannon() {
         float newX = getX();
         if (cannonState == typeOfMove.LEFT) {
-            if (Float.compare(cannon.getX() * cannon.getWidth(), 1f) >= 0) {
+            if (Float.compare(cannon.getX() + cannon.getWidth(), 1f) >= 0) {
                 cannon.setX(newX-1);
             } else cannon.setX(newX);
             if (cannonState == typeOfMove.RIGHT) {
-                if (Float.compare(cannon.getX() * cannon.getWidth(), 0f) <= 0) {
+                if (Float.compare(cannon.getX() , 0f) <= 0) {
                     cannon.setX(newX+1);
                 } else cannon.setX(newX);
             }
         }
+        return null;
     }
 
 /**

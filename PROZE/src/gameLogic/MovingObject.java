@@ -7,6 +7,7 @@ public class MovingObject { // To ma być w MovingObject
     private float x, y;
     private final float width, height;
     private final Color color;
+    boolean dead=false;
 
     public MovingObject(float x, float y, float width, float height, Color color) {
         this.x = x;

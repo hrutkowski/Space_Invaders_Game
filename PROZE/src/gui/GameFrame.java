@@ -13,7 +13,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 /** Klasa odpowiadajaca za okno gry */
-public class GameFrame extends Frame {
+public class GameFrame extends Frame  {
 
     private final Game game;
     private final GameObjectList gameObjectList;
@@ -93,7 +93,7 @@ public class GameFrame extends Frame {
         panelTop.add(panelButton, BorderLayout.EAST);
         panelTop.add(panelPoints, BorderLayout.WEST);
 
-        panelCanvas.add(gameCanvas = new GameCanvas(Color.getColor(lvl1.getColorBackground()), gameObjectList, cannon), BorderLayout.CENTER);
+        panelCanvas.add(gameCanvas = new GameCanvas(Color.getColor(lvl1.getColorBackground()), gameObjectList, cannon, BorderLayout.CENTER));
 
         panelBottom.add(panelLives, BorderLayout.WEST);
 
@@ -121,5 +121,8 @@ public class GameFrame extends Frame {
     /** Metoda zwracajaca obiekt klasy GameObjectList */
     public GameObjectList getGameObjectList() { return gameObjectList; }
 
+    /**
+     * Zmienna okreslajaca stan w ktorym znajduje sie dzialo gracza - ruch w prawo i w lewo
+     */
 
 }
