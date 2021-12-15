@@ -17,6 +17,7 @@ public class GameFrame extends Frame  {
 
     private final Game game;
     private final GameObjectList gameObjectList;
+    private final Cannon cannon;
     private final GameCanvas gameCanvas;
 
 
@@ -36,10 +37,8 @@ public class GameFrame extends Frame  {
         gameObjectList = new GameObjectList();
         Configer confer = game.getConfiger();
         Leveler lvl1 = game.getLeveler();
+        cannon = new Cannon(confer.getCannonXScreenPosition(), confer.getCannonYScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(confer.getColorCannon()));
 
-        Cannon cannon = new Cannon(confer.getCannonXScreenPosition(), confer.getCannonYScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(confer.getColorCannon()) );
-
-        //object.setX(getX()+0.01f); /// x=0.05f -> jaka wartosc? (0.05f), dodaj 0.01f, nadaj nowa wartosc (0.06f) do obiektu
         Enemy enemy1 = new Enemy(confer.getEnemy1XScreenPosition(), confer.getEnemy1YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
         gameObjectList.add(enemy1);
         Enemy enemy2 = new Enemy(confer.getEnemy2XScreenPosition(), confer.getEnemy2YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
@@ -120,6 +119,9 @@ public class GameFrame extends Frame  {
     }
     /** Metoda zwracajaca obiekt klasy GameObjectList */
     public GameObjectList getGameObjectList() { return gameObjectList; }
+
+    /** Metoda zwracajaca obiekt klasy Cannon */
+    public Cannon getCannon() { return cannon; }
 
     /**
      * Zmienna okreslajaca stan w ktorym znajduje sie dzialo gracza - ruch w prawo i w lewo

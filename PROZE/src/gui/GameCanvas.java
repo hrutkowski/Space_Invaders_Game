@@ -25,7 +25,7 @@ public class GameCanvas extends Canvas implements KeyListener {
         setForeground(colorBackground);
         this.gameObjectList = gameObjectList;
         this.cannon = cannon;
-        cannonState = typeOfMove.STOPPED;
+        //cannonState = typeOfMove.STOPPED;
 
     }
 
