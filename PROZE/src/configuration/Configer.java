@@ -1,5 +1,6 @@
 package configuration;
 
+import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -155,34 +156,53 @@ public class Configer {
     public int getEnemyYellowBulletSpeed() {
         return Integer.parseInt(proper.getProperty("enemyYellowBulletSpeed"));
     }
-    /** Metoda zwracająca playerXScreenPosition */
-    public float getPlayerXScreenPosition() {
-        return Float.parseFloat(proper.getProperty("playerXScreenPosition"));
+    /** Metoda zwracająca cannonXScreenPosition */
+    public float getCannonXScreenPosition() {
+        return Float.parseFloat(proper.getProperty("cannonXScreenPosition"));
     }
-    /** Metoda zwracająca playerYScreenPosition */
-    public float getPlayerYScreenPosition() {
-        return Float.parseFloat(proper.getProperty("playerYScreenPosition"));
+    /** Metoda zwracająca cannonYScreenPosition */
+    public float getCannonYScreenPosition() {
+        return Float.parseFloat(proper.getProperty("cannonYScreenPosition"));
     }
     /** Metoda zwracająca objectWidthRatio */
-    public static float getObjectWidthRatio() { return Float.parseFloat(proper.getProperty("objectWidthRatio")); }
+    public float getObjectWidth() { return Float.parseFloat(proper.getProperty("objectWidth")); }
     /** Metoda zwracająca objectHeightRatio */
-    public static float getObjectHeightRatio() { return Float.parseFloat(proper.getProperty("objectHeightRatio")); }
-    /** Metoda zwracająca objectXScreenRatio */
-    public static float getObjectXScreenRatio() { return Float.parseFloat(proper.getProperty("objectXScreenRatio")); }
-    /** Metoda zwracająca objectYScreenRatio */
-    public static float getObjectYScreenRatio() { return Float.parseFloat(proper.getProperty("objectYScreenRatio")); }
-    /** Metoda zwracająca stroke */
-    public static float getStroke() { return Float.parseFloat(proper.getProperty("stroke")); }
+    public float getObjectHeight() { return Float.parseFloat(proper.getProperty("objectHeight")); }
     /** Metoda zwracająca pathHighScores */
-    public static String getPathHighScores() {
+    public String getPathHighScores() {
         return proper.getProperty("pathHighScores");
     }
-
+    /** Metoda zwracająca colorCannon */
+    public String getColorCannon() { return proper.getProperty("colorCannon"); }
+    /** Metoda zwracająca enemy1XScreenPosition */
+    public float getEnemy1XScreenPosition() {return Float.parseFloat(proper.getProperty("enemy1XScreenPosition"));}
+    /** Metoda zwracająca enemy1YScreenPosition */
+    public float getEnemy1YScreenPosition() {
+        return Float.parseFloat(proper.getProperty("enemy1YScreenPosition"));
+    }
+    /** Metoda zwracająca enemy2XScreenPosition */
+    public float getEnemy2XScreenPosition() {return Float.parseFloat(proper.getProperty("enemy2XScreenPosition"));}
+    /** Metoda zwracająca enemy2YScreenPosition */
+    public float getEnemy2YScreenPosition() {
+        return Float.parseFloat(proper.getProperty("enemy2YScreenPosition"));
+    }
+    /** Metoda zwracająca enemy3XScreenPosition */
+    public float getEnemy3XScreenPosition() {return Float.parseFloat(proper.getProperty("enemy3XScreenPosition"));}
+    /** Metoda zwracająca enemy3YScreenPosition */
+    public float getEnemy3YScreenPosition() {
+        return Float.parseFloat(proper.getProperty("enemy3YScreenPosition"));
+    }
+    /** Metoda zwracająca enemy4XScreenPosition */
+    public float getEnemy4XScreenPosition() {return Float.parseFloat(proper.getProperty("enemy4XScreenPosition"));}
+    /** Metoda zwracająca enemy4YScreenPosition */
+    public float getEnemy4YScreenPosition() {
+        return Float.parseFloat(proper.getProperty("enemy4YScreenPosition"));
+    }
 
     /** Metoda do testowania klasy */
     public static void main(String[] args) throws IOException {
 
-        Configer conf = new Configer("./dataFiles/conf.txt");
+        Configer conf = new Configer("./PROZE/dataFiles/conf.txt");
 
         System.out.println("Wysokość okna = " + conf.getGameHeight());
         System.out.println("Szerokość okna = " + conf.getGameWidth());
@@ -218,8 +238,8 @@ public class Configer {
         System.out.println("Prędkość pocisku niebieskiego przeciwnika = " + conf.getEnemyBlueBulletSpeed());
         System.out.println("Prędkość pocisku zielonego przeciwnika = " + conf.getEnemyGreenBulletSpeed());
         System.out.println("Prędkość pocisku żółtego przeciwnika = " + conf.getEnemyYellowBulletSpeed());
-        System.out.println("Położenie działa na osi X = " + conf.getPlayerXScreenPosition());
-        System.out.println("Położenie działa na osi Y = " + conf.getPlayerYScreenPosition());
+        System.out.println("Położenie działa na osi X = " + conf.getCannonXScreenPosition());
+        System.out.println("Położenie działa na osi Y = " + conf.getCannonYScreenPosition());
         System.out.println("Prędkość poruszania się pocisku działa = " + conf.getPlayerBulletSpeed());
         System.out.println("Prędkośc poruszania się działa = " + conf.getPlayerMovementSpeed());
         System.out.println("Prędkośc poruszania się przeciwnika = " + conf.getEnemyMovementSpeed());

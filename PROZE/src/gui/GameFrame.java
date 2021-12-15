@@ -1,4 +1,8 @@
 package gui;
+import configuration.Configer;
+import configuration.Leveler;
+import gameLogic.Cannon;
+import gameLogic.Enemy;
 import gameLogic.GameObjectList;
 import spaceInvaders.Game;
 
@@ -15,6 +19,7 @@ public class GameFrame extends Frame {
     private final GameObjectList gameObjectList;
     private final GameCanvas gameCanvas;
 
+
     /**
      * Metoda zaracająca obiekt klasy GameCanvas
      */
@@ -29,10 +34,21 @@ public class GameFrame extends Frame {
         super("Space Invaders");
         this.game = game;
         gameObjectList = new GameObjectList();
+        Configer confer = game.getConfiger();
+        Leveler lvl1 = game.getLeveler();
 
-        gameObjectList.add(new MyShape(0.05f, 0.1f, 0.05f, 0.05f, Color.green));
-        gameObjectList.add(new MyShape(0.1f, 0.1f, 0.05f, 0.05f, Color.red));
-        gameObjectList.add(new MyShape(0.15f, 0.1f, 0.05f, 0.05f, Color.blue));
+        Cannon cannon = new Cannon(confer.getCannonXScreenPosition(), confer.getCannonYScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(confer.getColorCannon()) );
+
+        //object.setX(getX()+0.01f); /// x=0.05f -> jaka wartosc? (0.05f), dodaj 0.01f, nadaj nowa wartosc (0.06f) do obiektu
+        Enemy enemy1 = new Enemy(confer.getEnemy1XScreenPosition(), confer.getEnemy1YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
+        gameObjectList.add(enemy1);
+        Enemy enemy2 = new Enemy(confer.getEnemy2XScreenPosition(), confer.getEnemy2YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
+        gameObjectList.add(enemy2);
+        Enemy enemy3 = new Enemy(confer.getEnemy3XScreenPosition(), confer.getEnemy3YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
+        gameObjectList.add(enemy3);
+        Enemy enemy4 = new Enemy(confer.getEnemy4XScreenPosition(), confer.getEnemy4YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
+        gameObjectList.add(enemy4);
+        //gameObjectList.add(new MovingObject(0.15f, 0.1f, 0.05f, 0.05f, Color.blue));
 
         setLayout(new BorderLayout());
 
@@ -77,7 +93,7 @@ public class GameFrame extends Frame {
         panelTop.add(panelButton, BorderLayout.EAST);
         panelTop.add(panelPoints, BorderLayout.WEST);
 
-        panelCanvas.add(gameCanvas = new GameCanvas(Color.blue, gameObjectList), BorderLayout.CENTER);
+        panelCanvas.add(gameCanvas = new GameCanvas(Color.getColor(lvl1.getColorBackground()), gameObjectList, cannon), BorderLayout.CENTER);
 
         panelBottom.add(panelLives, BorderLayout.WEST);
 
@@ -102,6 +118,8 @@ public class GameFrame extends Frame {
 
         pack();
     }
-/** Metoda zwracajaca obiekt klasy GameObjectList */
+    /** Metoda zwracajaca obiekt klasy GameObjectList */
     public GameObjectList getGameObjectList() { return gameObjectList; }
+
+
 }

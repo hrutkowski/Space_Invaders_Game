@@ -1,31 +1,53 @@
 package gameLogic;
 
+import java.awt.*;
 
-import configuration.Configer;
+public class MovingObject { // To ma być w MovingObject
 
-/**
- * Klasa opisujaca MovingObject i jego zachowanie
- */
+    private float x, y;
+    private final float width, height;
+    private final Color color;
 
-
-public class MovingObject {
-    /** Konstrutor klasy MovingObject */
-    public MovingObject() {
-    }
-    /** Zmienna okreslajaca polozenie w X */
-    public int xPosition;
-    /** Zmienna okreslajaca polozenie w Y */
-    public int yPosition;
-    /** Znormalizowana pozycja Y */
-    private double normalizedYPosition;
-    /** Znormalizowana pozycja X */
-    private double normalizedXPosition;
-    /** Zmienna okreslajaca liczbe klatek w grze */
-    public int FPS; // DO USUNIĘCIA
-    /** Zmienna okreslajaca szybkosc poruszania sie obiektu */
-    public static int speed; // DO USUNIĘCIA
-    /** Funkcja do rysowania obiektow */
-    public void paint() { // CHYBA DO USUNIĘCIA
+    public MovingObject(float x, float y, float width, float height, Color color) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.color = color;
     }
 
+
+    public String toString() {
+        return String.format("(%.4f,%.4f,%.4f,%.4f,%s)", x, y, width, height, color);
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public float getWidth() {
+        return width;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setX(float x) { this.x = x;}
+
+    public void setY(float y) { this.y = y;}
+
+    public void addX(float deltaX) {
+        x += deltaX;
+    }
+
+    public void addY(float deltaY) { y += deltaY;}
 }

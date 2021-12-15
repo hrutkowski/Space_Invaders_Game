@@ -35,15 +35,19 @@ public class Leveler {
     public int getEnemyColumns() { return Integer.parseInt(proper.getProperty("enemyColumns"));}
     /** Metoda zwracająca EnemyRows */
     public int getEnemyRows() { return Integer.parseInt(proper.getProperty("enemyRows"));}
+    public String getColorEnemy() {return proper.getProperty("colorEnemy");}
+    public String getColorBackground() {return proper.getProperty("colorBackground");}
     /**
      * Metoda do testowania klasy
      */
     public static void main(String[] args) throws IOException {
 
-        Leveler level1 = new Leveler("./dataFiles/level1.txt");
+        Leveler level1 = new Leveler("./PROZE/dataFiles/level1.txt");
 
         System.out.println("PlayerSpeed = " + level1.getPlayerSpeed());
         System.out.println("PlayerBulletSpeed = " + level1.getPlayerBulletSpeed());
         System.out.println("EnemyNumber = " + level1.getEnemyNumber());
+        System.out.println("BackGroundColor = " + level1.getColorEnemy());
+        System.out.println("BackGroundColor = " + level1.getColorBackground());
     }
 }

@@ -3,3 +3,5 @@ playerBulletSpeed=5
 enemyNumber=10
 enemyColumns=5
 enemyRows=2
+colorEnemy=red
+colorBackground=pink
