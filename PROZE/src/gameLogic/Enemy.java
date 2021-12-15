@@ -3,7 +3,7 @@ package gameLogic;
 
 import java.awt.*;
 
-public class Enemy extends MovingObject{
+public class Enemy extends Character{
 
     /**
      * Konstrutor klasy Enemy

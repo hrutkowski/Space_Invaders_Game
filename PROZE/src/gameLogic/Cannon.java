@@ -2,7 +2,7 @@ package gameLogic;
 
 import java.awt.*;
 
-public class Cannon extends MovingObject {
+public class Cannon extends Character {
     /**
      * Konstrutor klasy Cannon
      */

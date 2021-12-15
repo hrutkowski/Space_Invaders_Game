@@ -26,14 +26,14 @@ public class Game {
     Game() {
         Configer conf;
         try {
-            conf = new Configer("./PROZE/dataFiles/conf.txt");
+            conf = new Configer("./dataFiles/conf.txt");
         } catch (IOException e) {
             e.printStackTrace();
             conf = null;
         }
         Leveler lev1;
         try {
-            lev1 = new Leveler("./PROZE/dataFiles/level1.txt");
+            lev1 = new Leveler("./dataFiles/level1.txt");
         } catch (IOException e) {
             e.printStackTrace();
             lev1 = null;
