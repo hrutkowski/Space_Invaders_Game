@@ -50,7 +50,7 @@ public class Animation implements Runnable, KeyListener {
     }
 
 
-    public Cannon moveCannon() {
+    public void moveCannon() {
         Cannon cannon = gameFrame.getCannon();
         float newMove = cannon.getX();
         if (cannonState == Animation.typeOfMove.LEFT) {
@@ -63,7 +63,6 @@ public class Animation implements Runnable, KeyListener {
                 } else cannon.setX(newMove);
             }
         }
-        return null;
     }
     /**
      * Metoda odpowiadajaca za wykonywanie sie animacji
@@ -88,7 +87,7 @@ public class Animation implements Runnable, KeyListener {
                // }
                 // !!!!!!!!!!!!! NIE USUWAĆ TEGO POWYŻEJ !!!!!!!!!!!!!!!!!!!!
                 for (Enemy shape : gameObjectList) {
-                    if ((shape.getX() + dX) > (1f - shape.getWidth()) || shape.getX() + dX <= 0f) {
+                    if ((shape.getX() + dX) >= (1f - shape.getWidth()) || shape.getX() + dX <= 0f) {
                         dX = -dX;
                     }
                     shape.setX(shape.getX() + dX);
