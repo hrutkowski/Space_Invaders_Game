@@ -20,22 +20,22 @@ public class Leveler {
 
     }
     /** Metoda zwracająca playerSpeed */
-    public int getPlayerSpeed() {
-        return Integer.parseInt(proper.getProperty("playerSpeed"));
+    public float getPlayerSpeed() {
+        return Float.parseFloat(proper.getProperty("playerSpeed"));
     }
-
     /** Metoda zwracająca PlayerBulletSpeed */
-    public int getPlayerBulletSpeed() {
-        return Integer.parseInt(proper.getProperty("playerBulletSpeed"));
+    public float getPlayerBulletSpeed() {
+        return Float.parseFloat(proper.getProperty("playerBulletSpeed"));
     }
-
     /** Metoda zwracająca EnemyNumber */
     public int getEnemyNumber() { return Integer.parseInt(proper.getProperty("enemyNumber"));}
-    /** Metoda zwracająca EnemyColumns */
-    public int getEnemyColumns() { return Integer.parseInt(proper.getProperty("enemyColumns"));}
-    /** Metoda zwracająca EnemyRows */
-    public int getEnemyRows() { return Integer.parseInt(proper.getProperty("enemyRows"));}
+    /** Metoda zwracająca ColorEnemy */
     public String getColorEnemy() {return proper.getProperty("colorEnemy");}
+    /** Metoda zwracająca bulletSpeedEnemy */
+    public float getBulletSpeedEnemy() {return Float.parseFloat(proper.getProperty("bulletSpeedEnemy"));}
+    /** Metoda zwracająca enemyPoints */
+    public int getEnemyPoints() { return Integer.parseInt(proper.getProperty("enemyPoints")); }
+    /** Metoda zwracająca ColorBackground */
     public String getColorBackground() {return proper.getProperty("colorBackground");}
     /** Metoda zwracająca enemy1XScreenPosition */
     public float getEnemy1XScreenPosition() {return Float.parseFloat(proper.getProperty("enemy1XScreenPosition"));}
@@ -63,7 +63,9 @@ public class Leveler {
         System.out.println("PlayerSpeed = " + level1.getPlayerSpeed());
         System.out.println("PlayerBulletSpeed = " + level1.getPlayerBulletSpeed());
         System.out.println("EnemyNumber = " + level1.getEnemyNumber());
-        System.out.println("BackGroundColor = " + level1.getColorEnemy());
+        System.out.println("EnemyColor = " + level1.getColorEnemy());
+        System.out.println("BulletSpeedEnemy = " + level1.getBulletSpeedEnemy());
+        System.out.println("EnemyPoints = " + level1.getEnemyPoints());
         System.out.println("BackGroundColor = " + level1.getColorBackground());
     }
 }

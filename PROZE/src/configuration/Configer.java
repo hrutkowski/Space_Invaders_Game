@@ -115,59 +115,21 @@ public class Configer {
         return Integer.parseInt(proper.getProperty("fps"));
     }
     /** Metoda zwracająca enemyLifes */
-    public static int getEnemyLifes() {
+    public int getEnemyLifes() {
         return Integer.parseInt(proper.getProperty("enemyLifes"));
     }
-    /** Metoda zwracająca enemyRedPoints */
-    public static int getEnemyRedPoints() {
-        return Integer.parseInt(proper.getProperty("enemyRedPoints"));
-    }
-    /** Metoda zwracająca enemyBluePoints */
-    public static int getEnemyBluePoints() {
-        return Integer.parseInt(proper.getProperty("enemyBluePoints"));
-    }
-    /** Metoda zwracająca enemyGreenPoints */
-    public static int getEnemyGreenPoints() { return Integer.parseInt(proper.getProperty("enemyGreenPoints")); }
-    /** Metoda zwracająca enemyYellowPoints */
-    public static int getEnemyYellowPoints() { return Integer.parseInt(proper.getProperty("enemyYellowPoints")); }
-    /** Metoda zwracająca enemyYellowPoints */
-    public static int getEnemyDeadPoints() { return Integer.parseInt(proper.getProperty("enemyDeadPoints")); }
+    /** Metoda zwracająca enemyDeadPoints */
+    public int getEnemyDeadPoints() { return Integer.parseInt(proper.getProperty("enemyDeadPoints")); }
     /** Metoda zwracająca enemyRedBulletSpeed */
     public int getPlayerBulletSpeed() {
         return Integer.parseInt(proper.getProperty("playerBulletSpeed"));
     }
-    /** Metoda zwracająca enemyRedBulletSpeed */
-    public static int getPlayerMovementSpeed() {
-        return Integer.parseInt(proper.getProperty("playerMovementSpeed"));
-    }
-    /** Metoda zwracająca enemyRedBulletSpeed */
-    public static int getEnemyMovementSpeed() {
-        return Integer.parseInt(proper.getProperty("enemyMovementSpeed"));
-    }
-    /** Metoda zwracająca enemyRedBulletSpeed */
-    public int getEnemyRedBulletSpeed() {
-        return Integer.parseInt(proper.getProperty("enemyRedBulletSpeed"));
-    }
-    /** Metoda zwracająca blueBulletSpeed */
-    public int getEnemyBlueBulletSpeed() {
-        return Integer.parseInt(proper.getProperty("enemyBlueBulletSpeed"));
-    }
-    /** Metoda zwracająca enemyGreenBulletSpeed */
-    public int getEnemyGreenBulletSpeed() {
-        return Integer.parseInt(proper.getProperty("enemyGreenBulletSpeed"));
-    }
-    /** Metoda zwracająca enemyYellowBulletSpeed */
-    public int getEnemyYellowBulletSpeed() {
-        return Integer.parseInt(proper.getProperty("enemyYellowBulletSpeed"));
-    }
-    /** Metoda zwracająca cannonXScreenPosition */
-    public float getCannonXScreenPosition() {
-        return Float.parseFloat(proper.getProperty("cannonXScreenPosition"));
-    }
+    /** Metoda zwracająca enemyMovementSpeed */
+    public float getEnemyMovementSpeed() {return Float.parseFloat(proper.getProperty("enemyMovementSpeed"));}
+     /** Metoda zwracająca cannonXScreenPosition */
+    public float getCannonXScreenPosition() {return Float.parseFloat(proper.getProperty("cannonXScreenPosition"));}
     /** Metoda zwracająca cannonYScreenPosition */
-    public float getCannonYScreenPosition() {
-        return Float.parseFloat(proper.getProperty("cannonYScreenPosition"));
-    }
+    public float getCannonYScreenPosition() {return Float.parseFloat(proper.getProperty("cannonYScreenPosition"));}
     /** Metoda zwracająca objectWidthRatio */
     public float getObjectWidth() { return Float.parseFloat(proper.getProperty("objectWidth")); }
     /** Metoda zwracająca objectHeightRatio */
@@ -208,18 +170,9 @@ public class Configer {
         System.out.println("Pozostała liczba żyć = " + conf.getLabelLifesLeft());
         System.out.println("FPS = " + conf.getFps());
         System.out.println("Pozostała liczba żyć przeciwnika = " + conf.getEnemyLifes());
-        System.out.println("Pkt za zniszczenie czerwonego przeciwnika = " + conf.getEnemyRedPoints());
-        System.out.println("Pkt za zniszczenie niebieskiego przeciwnika = " + conf.getEnemyBluePoints());
-        System.out.println("Pkt za zniszczenie zielonego przeciwnika = " + conf.getEnemyGreenPoints());
-        System.out.println("Pkt za zniszczenie żółtego przeciwnika = " + conf.getEnemyYellowPoints());
-        System.out.println("Prędkość pocisku czerwonego przeciwnika = " + conf.getEnemyRedBulletSpeed());
-        System.out.println("Prędkość pocisku niebieskiego przeciwnika = " + conf.getEnemyBlueBulletSpeed());
-        System.out.println("Prędkość pocisku zielonego przeciwnika = " + conf.getEnemyGreenBulletSpeed());
-        System.out.println("Prędkość pocisku żółtego przeciwnika = " + conf.getEnemyYellowBulletSpeed());
         System.out.println("Położenie działa na osi X = " + conf.getCannonXScreenPosition());
         System.out.println("Położenie działa na osi Y = " + conf.getCannonYScreenPosition());
         System.out.println("Prędkość poruszania się pocisku działa = " + conf.getPlayerBulletSpeed());
-        System.out.println("Prędkośc poruszania się działa = " + conf.getPlayerMovementSpeed());
         System.out.println("Prędkośc poruszania się przeciwnika = " + conf.getEnemyMovementSpeed());
 
     }

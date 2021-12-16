@@ -1,9 +1,10 @@
-playerSpeed=3
+playerSpeed=0.1
 playerBulletSpeed=5
 enemyNumber=10
-enemyColumns=5
-enemyRows=2
 colorEnemy=red
+bulletSpeedEnemy=0.1
+enemyMovementSpeed=0.1
+enemyPoints=10
 colorBackground=pink
 enemy1XScreenPosition=0.1
 enemy1YScreenPosition=0.1
