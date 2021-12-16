@@ -6,6 +6,7 @@ bulletSpeedEnemy=0.1
 enemyMovementSpeed=0.1
 enemyPoints=10
 colorBackground=pink
+
 enemy1XScreenPosition=0.1
 enemy1YScreenPosition=0.1
 enemy2XScreenPosition=0.3

@@ -4,11 +4,10 @@ import gui.GameFrame;
 import gui.GameCanvas;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+
 
 /** Klasa odpowiadajaca za animacje */
-public class Animation implements Runnable, KeyListener {
+public class Animation implements Runnable {
 
     final private GameFrame gameFrame;
 
@@ -16,7 +15,7 @@ public class Animation implements Runnable, KeyListener {
     /**
      * Zmienna okreslajaca stan w ktorym znajduje sie dzialo gracza - ruch w prawo i w lewo
      */
-    private Animation.typeOfMove cannonState;
+
     private Thread kicker;
 
     /**
@@ -24,17 +23,11 @@ public class Animation implements Runnable, KeyListener {
      */
     public Animation(GameFrame gameFrame) {
         this.gameFrame = gameFrame;
-        cannonState = Animation.typeOfMove.STOPPED;
+        this.gameFrame.setFocusable(true);
+        this.gameFrame.setFocusTraversalKeysEnabled(false);
     }
 
-    /**
-     * Metoda ustawiajaca stan dziala gracza
-     *
-     * @param state stan w zaleznosci od tego jaki przycisk zostal wcisniety
-     */
-    private void setMovementState(Animation.typeOfMove state) {
-        cannonState = state;
-    }
+
 
     /**
      * Metoda ustawiajaca watek
@@ -43,41 +36,19 @@ public class Animation implements Runnable, KeyListener {
         this.kicker = kicker;
     }
 
-    private enum typeOfMove {
-        LEFT,
-        RIGHT,
-        STOPPED
-    }
 
-
-    public void moveCannon() {
-        Cannon cannon = gameFrame.getCannon();
-        float newMove = cannon.getX();
-        if (cannonState == Animation.typeOfMove.LEFT) {
-            if (Float.compare(cannon.getX() + cannon.getWidth(), 1f) >= 0) {
-                cannon.setX(newMove - 0.01f);
-            } else cannon.setX(newMove);
-            if (cannonState == Animation.typeOfMove.RIGHT) {
-                if (Float.compare(cannon.getX(), 0f) <= 0) {
-                    cannon.setX(newMove + 0.01f);
-                } else cannon.setX(newMove);
-            }
-        }
-    }
     /**
      * Metoda odpowiadajaca za wykonywanie sie animacji
      */
     @Override
     public void run() {
+
         GameObjectList gameObjectList = gameFrame.getGameObjectList();
         float dX = 0.015f;
+        float dY = 0.015f;
         while (kicker == Thread.currentThread()) {
-            try {
-                Thread.sleep(50);
-                gameFrame.getGameCanvas().repaint();}
-            catch (InterruptedException ignore) {
-            }
-            moveCannon();
+            try {Thread.sleep(50);}
+            catch (InterruptedException ignore) {}
             //for (Enemy shape : gameObjectList) {      // Petla po wszystkich obiektach gameObjectList
                 //float newX = shape.getX() + 0.015f;
                 //if (Float.compare(newX + shape.getWidth(), 1f) >= 0) {
@@ -86,63 +57,28 @@ public class Animation implements Runnable, KeyListener {
                    // shape.setX(newX);
                // }
                 // !!!!!!!!!!!!! NIE USUWAĆ TEGO POWYŻEJ !!!!!!!!!!!!!!!!!!!!
-                for (Enemy shape : gameObjectList) {
-                    if ((shape.getX() + dX) >= (1f - shape.getWidth()) || shape.getX() + dX <= 0f) {
-                        dX = -dX;
-                    }
-                    shape.setX(shape.getX() + dX);
-                //float newY = shape.getY() + 0.02f * ThreadLocalRandom.current().nextFloat();
-                //shape.setY(Float.compare(shape.getY() + shape.getHeight(), 1f) >= 0 ? 0f : newY);
+            float wartoscXprzeciwnikaPoPrawejStronie = 0;
+            float wartoscXprzeciwnikaPoLewejStronie = 1;
+            float szerokoscPrzeciwnikaPoPrawej = 0;
+            float pomocniczyY = 0;
+            for (Enemy shape : gameObjectList) {
+                if(shape.getX() > wartoscXprzeciwnikaPoPrawejStronie) {wartoscXprzeciwnikaPoPrawejStronie = shape.getX();
+                    szerokoscPrzeciwnikaPoPrawej = shape.getWidth();}
+                if(shape.getX() < wartoscXprzeciwnikaPoLewejStronie) {wartoscXprzeciwnikaPoLewejStronie = shape.getX();}
+                }
+            if ((wartoscXprzeciwnikaPoPrawejStronie + dX) >= (1f - szerokoscPrzeciwnikaPoPrawej) || wartoscXprzeciwnikaPoLewejStronie + dX <= 0f)
+            {dX = -dX;
+            pomocniczyY = dY;
             }
+            for (Enemy shape : gameObjectList) {
+                shape.setX(shape.getX() + dX);
+                shape.setY(shape.getY() + pomocniczyY);}
+
+            gameFrame.getGameCanvas().repaint();
         }
 
 
     }
 
-    /**
-     * Metoda opisujaca co ma sie stac z dzialem gdy nacisnie sie przycisk
-     * @param keyEvent obiekt zdarzenia zwiazanego z nacisnieciem przycisku
-     */
-    @Override
-    public void keyTyped (KeyEvent keyEvent){
-        System.out.println("keyTyped");
-    }
 
-    /**
-     * Metoda opisujaca co ma sie stac z dzialem gdy nacisnie sie przycisk
-     * @param keyEvent obiekt zdarzenia zwiazanego z wcisnieciem przycisku
-     */
-    @Override
-    public void keyPressed (KeyEvent keyEvent){
-        int keyCode = keyEvent.getKeyCode();
-        if (keyCode == KeyEvent.VK_LEFT) {
-            setMovementState(Animation.typeOfMove.LEFT);
-            moveCannon();
-        }
-        if (keyCode == KeyEvent.VK_RIGHT) {
-            setMovementState(Animation.typeOfMove.RIGHT);
-            moveCannon();
-        }
-    }
-
-    /**
-     * Metoda opisujaca co ma sie stac gdy zwolniony zostanie przycisk
-     * @param keyEvent obiekt zdarzenia zwiazanego ze zwolnieniem przycisku
-     */
-
-
-    @Override
-    public void keyReleased (KeyEvent keyEvent){
-        int keyCode = keyEvent.getKeyCode();
-        if (keyCode == KeyEvent.VK_LEFT) {
-
-            setMovementState(Animation.typeOfMove.STOPPED);
-            System.out.println("VK_LEFT");
-        }
-        if (keyCode == KeyEvent.VK_RIGHT) {
-            setMovementState(Animation.typeOfMove.STOPPED);
-            System.out.println("VK_RIGHT");
-        }
-        System.out.println("keyReleased");
-    }
 }

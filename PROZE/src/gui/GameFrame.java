@@ -7,13 +7,14 @@ import gameLogic.GameObjectList;
 import spaceInvaders.Game;
 
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.*;
 
 /** Klasa odpowiadajaca za okno gry */
-public class GameFrame extends Frame  {
+public class GameFrame extends JFrame implements  KeyListener{
 
     private final Game game;
     private final GameObjectList gameObjectList;
@@ -32,11 +33,16 @@ public class GameFrame extends Frame  {
      * Konstruktor klasy GameFrame
      */
     public GameFrame(Game game) {
+
         super("Space Invaders");
         this.game = game;
         gameObjectList = new GameObjectList();
         Configer confer = game.getConfiger();
         Leveler lvl1 = game.getLeveler();
+        setFocusable(true);
+        addKeyListener(this);
+        setFocusTraversalKeysEnabled(false);
+        requestFocusInWindow();
         cannon = new Cannon(confer.getCannonXScreenPosition(), confer.getCannonYScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(confer.getColorCannon()));
 
         Enemy enemy1 = new Enemy(lvl1.getEnemy1XScreenPosition(),lvl1.getEnemy1YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
@@ -47,7 +53,6 @@ public class GameFrame extends Frame  {
         gameObjectList.add(enemy3);
         Enemy enemy4 = new Enemy(lvl1.getEnemy4XScreenPosition(), lvl1.getEnemy4YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
         gameObjectList.add(enemy4);
-        //gameObjectList.add(new MovingObject(0.15f, 0.1f, 0.05f, 0.05f, Color.blue));
 
         setLayout(new BorderLayout());
 
@@ -67,6 +72,7 @@ public class GameFrame extends Frame  {
 
         Button pauseButton = new Button(confer.getButtonStartText());
         Button exitButton = new Button(confer.getButtonEndText());
+
 
         exitButton.addActionListener(e -> System.exit(1));
         pauseButton.addActionListener(e -> {
@@ -93,10 +99,35 @@ public class GameFrame extends Frame  {
         panelTop.add(panelPoints, BorderLayout.WEST);
 
         panelCanvas.add(gameCanvas = new GameCanvas(Color.getColor(lvl1.getColorBackground()), gameObjectList, cannon, BorderLayout.CENTER));
+        panelCanvas.addKeyListener(this);
+        panelCanvas.setFocusable(true);
+        panelCanvas.requestFocusInWindow();
+        panelCanvas.setFocusTraversalKeysEnabled(false);
 
         panelBottom.add(panelLives, BorderLayout.WEST);
 
         add(panelTop, BorderLayout.NORTH);
+        //https://stackoverflow.com/questions/8498147/addkeylistener-doesnt-work-for-jpanel
+        /*JPanel panel = new JPanel();
+        panel.add(panelCanvas);
+        add(panel, BorderLayout.CENTER);
+
+        panelCanvas.addKeyListener(new KeyListener() {
+
+            @Override
+           public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyReleased(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                System.out.println("Pressed " + e.getKeyChar());
+            }
+        });
+
+        panel.setFocusable(true);
+        panel.requestFocusInWindow();*/
         add(panelCanvas, BorderLayout.CENTER);
         add(panelBottom, BorderLayout.SOUTH);
 
@@ -123,8 +154,22 @@ public class GameFrame extends Frame  {
     /** Metoda zwracajaca obiekt klasy Cannon */
     public Cannon getCannon() { return cannon; }
 
-    /**
-     * Zmienna okreslajaca stan w ktorym znajduje sie dzialo gracza - ruch w prawo i w lewo
-     */
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int keyCode = e.getKeyCode();
+
+        if (e.getKeyCode() == 'W' ) {System.out.println("elo");
+    }
+}
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
 
 }

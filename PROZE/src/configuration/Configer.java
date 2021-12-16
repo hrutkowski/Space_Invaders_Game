@@ -1,6 +1,6 @@
 package configuration;
 
-import java.awt.*;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,11 +21,11 @@ public class Configer {
         propertiesFile.close();
     }
     /** Metoda zwracająca gameHeight */
-    public static int getGameHeight() {
+    public int getGameHeight() {
         return Integer.parseInt(proper.getProperty("gameHeight"));
     }
     /** Metoda zwracająca gameWidth */
-    public static int getGameWidth() {
+    public int getGameWidth() {
         return Integer.parseInt(proper.getProperty("gameWidth"));
     }
     /** Metoda zwracająca maxHighScoreSize */
@@ -33,9 +33,9 @@ public class Configer {
         return Integer.parseInt(proper.getProperty("maxHighScoreSize"));
     }
     /** Metoda zwracająca gameTitle */
-    public static String getGameTitle() { return proper.getProperty("gameTitle"); }
+    public String getGameTitle() { return proper.getProperty("gameTitle"); }
     /** Metoda zwracająca buttonStartText */
-    public static String getButtonStartText() { return proper.getProperty("buttonStartText"); }
+    public String getButtonStartText() { return proper.getProperty("buttonStartText"); }
     /** Metoda zwracająca buttonRankText */
     public String getButtonRankText() { return proper.getProperty("buttonRankText"); }
     /** Metoda zwracająca buttonSettingsText */
@@ -104,8 +104,7 @@ public class Configer {
     }
     /** Metoda zwracająca labelPoints */
     public String getLabelPoints() {
-        return (proper.getProperty("labelPoints"));
-    }
+        return (proper.getProperty("labelPoints"));}
     /** Metoda zwracająca labelLifesLeft */
     public String getLabelLifesLeft() {
         return (proper.getProperty("labelLifesLeft"));

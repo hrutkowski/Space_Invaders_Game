@@ -8,6 +8,7 @@ import gui.GameFrame;
 import configuration.Configer;
 import configuration.Leveler;
 
+
 /** Glowna klasa gry */
 public class Game {
     final private Configer configer;

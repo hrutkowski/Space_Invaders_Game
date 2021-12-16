@@ -1,5 +1,4 @@
 package configuration;
-
 import gameLogic.Player;
 
 import java.io.*;
