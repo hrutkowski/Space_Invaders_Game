@@ -39,13 +39,13 @@ public class GameFrame extends Frame  {
         Leveler lvl1 = game.getLeveler();
         cannon = new Cannon(confer.getCannonXScreenPosition(), confer.getCannonYScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(confer.getColorCannon()));
 
-        Enemy enemy1 = new Enemy(confer.getEnemy1XScreenPosition(), confer.getEnemy1YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
+        Enemy enemy1 = new Enemy(lvl1.getEnemy1XScreenPosition(),lvl1.getEnemy1YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
         gameObjectList.add(enemy1);
-        Enemy enemy2 = new Enemy(confer.getEnemy2XScreenPosition(), confer.getEnemy2YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
+        Enemy enemy2 = new Enemy(lvl1.getEnemy2XScreenPosition(), lvl1.getEnemy2YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
         gameObjectList.add(enemy2);
-        Enemy enemy3 = new Enemy(confer.getEnemy3XScreenPosition(), confer.getEnemy3YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
+        Enemy enemy3 = new Enemy(lvl1.getEnemy3XScreenPosition(), lvl1.getEnemy3YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
         gameObjectList.add(enemy3);
-        Enemy enemy4 = new Enemy(confer.getEnemy4XScreenPosition(), confer.getEnemy4YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
+        Enemy enemy4 = new Enemy(lvl1.getEnemy4XScreenPosition(), lvl1.getEnemy4YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
         gameObjectList.add(enemy4);
         //gameObjectList.add(new MovingObject(0.15f, 0.1f, 0.05f, 0.05f, Color.blue));
 
@@ -60,22 +60,22 @@ public class GameFrame extends Frame  {
         Panel panelPoints = new Panel(new FlowLayout());
         Panel panelLives = new Panel(new FlowLayout());
 
-        Label pointsLabel = new Label("Points:");
-        Label pointsAmount = new Label(Integer.toString(points[0]));
-        Label livesLabel = new Label("Lives left:");
-        Label livesAmount = new Label("0");
+        Label pointsLabel = new Label(confer.getLabelPoints());
+        Label pointsAmount = new Label(Integer.toString(confer.getInitialPoints()));
+        Label livesLabel = new Label(confer.getLabelLifesLeft());
+        Label livesAmount = new Label(Integer.toString(confer.getInitialLives()));
 
-        Button pauseButton = new Button("Start");
-        Button exitButton = new Button("Exit");
+        Button pauseButton = new Button(confer.getButtonStartText());
+        Button exitButton = new Button(confer.getButtonEndText());
 
         exitButton.addActionListener(e -> System.exit(1));
         pauseButton.addActionListener(e -> {
             if (game.getAnimation() == null) {
                 game.startAnimation();
-                pauseButton.setLabel("Pause");
+                pauseButton.setLabel(confer.getButtonPauseText());
             } else {
                 game.stopAnimation();
-                pauseButton.setLabel("Start");
+                pauseButton.setLabel(confer.getButtonStartText());
             }
             pack();
         });

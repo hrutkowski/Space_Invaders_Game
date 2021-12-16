@@ -55,11 +55,11 @@ public class Animation implements Runnable, KeyListener {
         float newMove = cannon.getX();
         if (cannonState == Animation.typeOfMove.LEFT) {
             if (Float.compare(cannon.getX() + cannon.getWidth(), 1f) >= 0) {
-                cannon.setX(newMove - 1);
+                cannon.setX(newMove - 0.01f);
             } else cannon.setX(newMove);
             if (cannonState == Animation.typeOfMove.RIGHT) {
                 if (Float.compare(cannon.getX(), 0f) <= 0) {
-                    cannon.setX(newMove + 1);
+                    cannon.setX(newMove + 0.01f);
                 } else cannon.setX(newMove);
             }
         }
@@ -71,7 +71,7 @@ public class Animation implements Runnable, KeyListener {
     @Override
     public void run() {
         GameObjectList gameObjectList = gameFrame.getGameObjectList();
-
+        float dX = 0.015f;
         while (kicker == Thread.currentThread()) {
             try {
                 Thread.sleep(50);
@@ -79,13 +79,19 @@ public class Animation implements Runnable, KeyListener {
             catch (InterruptedException ignore) {
             }
             moveCannon();
-            for (Enemy shape : gameObjectList) {      // Petla po wszystkich obiektach gameObjectList
-                float newX = shape.getX() + 0.015f;
-                if (Float.compare(newX + shape.getWidth(), 1f) >= 0) {
-                    shape.setX(newX - 1);
-                } else {
-                    shape.setX(newX);
-                }
+            //for (Enemy shape : gameObjectList) {      // Petla po wszystkich obiektach gameObjectList
+                //float newX = shape.getX() + 0.015f;
+                //if (Float.compare(newX + shape.getWidth(), 1f) >= 0) {
+                    //shape.setX(newX - 1);
+                //} else {
+                   // shape.setX(newX);
+               // }
+                // !!!!!!!!!!!!! NIE USUWAĆ TEGO POWYŻEJ !!!!!!!!!!!!!!!!!!!!
+                for (Enemy shape : gameObjectList) {
+                    if ((shape.getX() + dX) > (1f - shape.getWidth()) || shape.getX() + dX <= 0f) {
+                        dX = -dX;
+                    }
+                    shape.setX(shape.getX() + dX);
                 //float newY = shape.getY() + 0.02f * ThreadLocalRandom.current().nextFloat();
                 //shape.setY(Float.compare(shape.getY() + shape.getHeight(), 1f) >= 0 ? 0f : newY);
             }
@@ -93,7 +99,6 @@ public class Animation implements Runnable, KeyListener {
 
 
     }
-
 
     /**
      * Metoda opisujaca co ma sie stac z dzialem gdy nacisnie sie przycisk

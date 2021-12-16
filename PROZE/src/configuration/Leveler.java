@@ -37,6 +37,22 @@ public class Leveler {
     public int getEnemyRows() { return Integer.parseInt(proper.getProperty("enemyRows"));}
     public String getColorEnemy() {return proper.getProperty("colorEnemy");}
     public String getColorBackground() {return proper.getProperty("colorBackground");}
+    /** Metoda zwracająca enemy1XScreenPosition */
+    public float getEnemy1XScreenPosition() {return Float.parseFloat(proper.getProperty("enemy1XScreenPosition"));}
+    /** Metoda zwracająca enemy1YScreenPosition */
+    public float getEnemy1YScreenPosition() {return Float.parseFloat(proper.getProperty("enemy1YScreenPosition"));}
+    /** Metoda zwracająca enemy2XScreenPosition */
+    public float getEnemy2XScreenPosition() {return Float.parseFloat(proper.getProperty("enemy2XScreenPosition"));}
+    /** Metoda zwracająca enemy2YScreenPosition */
+    public float getEnemy2YScreenPosition() {return Float.parseFloat(proper.getProperty("enemy2YScreenPosition"));}
+    /** Metoda zwracająca enemy3XScreenPosition */
+    public float getEnemy3XScreenPosition() {return Float.parseFloat(proper.getProperty("enemy3XScreenPosition"));}
+    /** Metoda zwracająca enemy3YScreenPosition */
+    public float getEnemy3YScreenPosition() {return Float.parseFloat(proper.getProperty("enemy3YScreenPosition"));}
+    /** Metoda zwracająca enemy4XScreenPosition */
+    public float getEnemy4XScreenPosition() {return Float.parseFloat(proper.getProperty("enemy4XScreenPosition"));}
+    /** Metoda zwracająca enemy4YScreenPosition */
+    public float getEnemy4YScreenPosition() {return Float.parseFloat(proper.getProperty("enemy4YScreenPosition"));}
     /**
      * Metoda do testowania klasy
      */

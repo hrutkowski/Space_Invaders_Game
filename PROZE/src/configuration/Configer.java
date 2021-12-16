@@ -98,13 +98,17 @@ public class Configer {
     public int getInitialPoints() {
         return Integer.parseInt(proper.getProperty("initialPoints"));
     }
+    /** Metoda zwracająca initialLives */
+    public int getInitialLives() {
+        return Integer.parseInt(proper.getProperty("initialLives"));
+    }
     /** Metoda zwracająca labelPoints */
-    public int getLabelPoints() {
-        return Integer.parseInt(proper.getProperty("labelPoints"));
+    public String getLabelPoints() {
+        return (proper.getProperty("labelPoints"));
     }
     /** Metoda zwracająca labelLifesLeft */
-    public int getLabelLifesLeft() {
-        return Integer.parseInt(proper.getProperty("labelLifesLeft"));
+    public String getLabelLifesLeft() {
+        return (proper.getProperty("labelLifesLeft"));
     }
     /** Metoda zwracająca fps */
     public int getFps() {
@@ -169,35 +173,9 @@ public class Configer {
     /** Metoda zwracająca objectHeightRatio */
     public float getObjectHeight() { return Float.parseFloat(proper.getProperty("objectHeight")); }
     /** Metoda zwracająca pathHighScores */
-    public String getPathHighScores() {
-        return proper.getProperty("pathHighScores");
-    }
+    public String getPathHighScores() {return proper.getProperty("pathHighScores");}
     /** Metoda zwracająca colorCannon */
-    public String getColorCannon() { return proper.getProperty("colorCannon"); }
-    /** Metoda zwracająca enemy1XScreenPosition */
-    public float getEnemy1XScreenPosition() {return Float.parseFloat(proper.getProperty("enemy1XScreenPosition"));}
-    /** Metoda zwracająca enemy1YScreenPosition */
-    public float getEnemy1YScreenPosition() {
-        return Float.parseFloat(proper.getProperty("enemy1YScreenPosition"));
-    }
-    /** Metoda zwracająca enemy2XScreenPosition */
-    public float getEnemy2XScreenPosition() {return Float.parseFloat(proper.getProperty("enemy2XScreenPosition"));}
-    /** Metoda zwracająca enemy2YScreenPosition */
-    public float getEnemy2YScreenPosition() {
-        return Float.parseFloat(proper.getProperty("enemy2YScreenPosition"));
-    }
-    /** Metoda zwracająca enemy3XScreenPosition */
-    public float getEnemy3XScreenPosition() {return Float.parseFloat(proper.getProperty("enemy3XScreenPosition"));}
-    /** Metoda zwracająca enemy3YScreenPosition */
-    public float getEnemy3YScreenPosition() {
-        return Float.parseFloat(proper.getProperty("enemy3YScreenPosition"));
-    }
-    /** Metoda zwracająca enemy4XScreenPosition */
-    public float getEnemy4XScreenPosition() {return Float.parseFloat(proper.getProperty("enemy4XScreenPosition"));}
-    /** Metoda zwracająca enemy4YScreenPosition */
-    public float getEnemy4YScreenPosition() {
-        return Float.parseFloat(proper.getProperty("enemy4YScreenPosition"));
-    }
+    public String getColorCannon() { return proper.getProperty("colorCannon");}
 
     /** Metoda do testowania klasy */
     public static void main(String[] args) throws IOException {
