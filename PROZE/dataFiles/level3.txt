@@ -1,11 +1,11 @@
-playerSpeed=0.1
+playerSpeed=0.2
 playerBulletSpeed=0.15
 enemyNumber=4
-colorEnemy=red
-bulletSpeedEnemy=0.1
-enemyMovementSpeed=0.1
-enemyPoints=10
-colorBackground=pink
+colorEnemy=green
+bulletSpeedEnemy=0.15
+enemyMovementSpeed=0.15
+enemyPoints=30
+colorBackground=yellow
 enemy1XScreenPosition=0.1
 enemy1YScreenPosition=0.1
 enemy2XScreenPosition=0.3

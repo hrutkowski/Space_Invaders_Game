@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ba062ecb-c1a4-46ba-941b-f9565655c5bd" name="Changes" comment="przeniesienie plikow txt do src">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/PROZE/README.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="AnnotationType" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="20u1Ue1VWmd1sgD4GDON29pBBM1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/PROZE/src" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="java.lang" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Karolina\Desktop\skul\PROZE\Space_Invaders\PROZE\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Karolina\Desktop\skul\PROZE\Space_Invaders\PROZE" />
+      <recent name="C:\Users\Karolina\Desktop\skul\PROZE\Space_Invaders\PROZE\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Configer">
+    <configuration name="Configer" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../../../Program Files/Java/jdk-17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="configuration.Configer" />
+      <module name="PROZE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="configuration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HighScoreManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="configuration.HighScoreManager" />
+      <module name="PROZE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="configuration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Leveler" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="configuration.Leveler" />
+      <module name="PROZE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="configuration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Saver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="configuration.Saver" />
+      <module name="PROZE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="configuration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.HighScoreManager" />
+        <item itemvalue="Application.Saver" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ba062ecb-c1a4-46ba-941b-f9565655c5bd" name="Changes" comment="" />
+      <created>1636879696857</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1636879696857</updated>
+    </task>
+    <task id="LOCAL-00001" summary="uzupełnienie klasy Configer o potrzebne parametry odczytywane z pliku konfiguracyjnego (bez settings i rankingu). Ranking proponuje zrobic jako osobna klasę. Nad setings trzeba pomyslec.">
+      <created>1636935616982</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1636935616982</updated>
+    </task>
+    <task id="LOCAL-00002" summary="uzupełnienie komentarzy przy zmiennych i metodach do wygenerowania JavaDoc">
+      <created>1637091500392</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1637091500392</updated>
+    </task>
+    <task id="LOCAL-00003" summary="uzupełnienie komentarzy przy zmiennych i metodach do wygenerowania JavaDoc">
+      <created>1637869272520</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1637869272520</updated>
+    </task>
+    <task id="LOCAL-00004" summary="dodanie klasy Leveler i pliku txt leve1">
+      <created>1637870850584</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1637870850584</updated>
+    </task>
+    <task id="LOCAL-00005" summary="dodanie diagramu klas">
+      <created>1637872502570</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1637872502570</updated>
+    </task>
+    <task id="LOCAL-00006" summary="dodanie opisu gry - 1 etapu">
+      <created>1637876931371</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1637876931371</updated>
+    </task>
+    <task id="LOCAL-00007" summary="dodanie komunikatu o wyjsciu z gry">
+      <created>1638669453605</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1638669453605</updated>
+    </task>
+    <task id="LOCAL-00008" summary="dadanie klas">
+      <created>1638709924645</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1638709924645</updated>
+    </task>
+    <task id="LOCAL-00009" summary="dadanie klas">
+      <created>1638725758193</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1638725758193</updated>
+    </task>
+    <task id="LOCAL-00010" summary="dadanie metod klasy Player1">
+      <created>1638728266364</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1638728266364</updated>
+    </task>
+    <task id="LOCAL-00011" summary="dodanie main w MainWindow + &quot;naprawa&quot;">
+      <created>1639147409783</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1639147409783</updated>
+    </task>
+    <task id="LOCAL-00012" summary="przeniesienie plikow txt do src">
+      <created>1639148407809</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1639148407809</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="uzupełnienie klasy Configer o potrzebne parametry odczytywane z pliku konfiguracyjnego (bez settings i rankingu). Ranking proponuje zrobic jako osobna klasę. Nad setings trzeba pomyslec." />
+    <MESSAGE value="uzupełnienie komentarzy przy zmiennych i metodach do wygenerowania JavaDoc" />
+    <MESSAGE value="dodanie klasy Leveler i pliku txt leve1" />
+    <MESSAGE value="dodanie diagramu klas" />
+    <MESSAGE value="dodanie opisu gry - 1 etapu" />
+    <MESSAGE value="dodanie komunikatu o wyjsciu z gry" />
+    <MESSAGE value="dadanie klas" />
+    <MESSAGE value="dadanie metod klasy Player1" />
+    <MESSAGE value="dodanie main w MainWindow + &quot;naprawa&quot;" />
+    <MESSAGE value="przeniesienie plikow txt do src" />
+    <option name="LAST_COMMIT_MESSAGE" value="przeniesienie plikow txt do src" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Space_Invaders$Configer.ic" NAME="Configer Coverage Results" MODIFIED="1636913961004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>configuration.*</FILTER>
+    </SUITE>
+  </component>
+</project>

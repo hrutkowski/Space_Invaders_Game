@@ -59,6 +59,8 @@ public class Leveler {
     public static void main(String[] args) throws IOException {
 
         Leveler level1 = new Leveler("./PROZE/dataFiles/level1.txt");
+        Leveler level2 = new Leveler("./PROZE/dataFiles/level2.txt");
+        Leveler level3 = new Leveler("./PROZE/dataFiles/level3.txt");
 
         System.out.println("PlayerSpeed = " + level1.getPlayerSpeed());
         System.out.println("PlayerBulletSpeed = " + level1.getPlayerBulletSpeed());
