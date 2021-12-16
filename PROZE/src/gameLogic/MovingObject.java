@@ -1,7 +1,7 @@
 package gameLogic;
 
 import java.awt.*;
-
+//kaczka
 public class MovingObject { // To ma być w MovingObject
 
     private float x, y;
