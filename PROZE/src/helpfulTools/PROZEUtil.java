@@ -1,3 +1,5 @@
+package helpfulTools;
+
 /**
  * Some common utilities for PRM2T lectures.
  * @author kmi

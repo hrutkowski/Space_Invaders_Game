@@ -39,31 +39,31 @@ public class Configer {
     /** Metoda zwracająca buttonRankText */
     public String getButtonRankText() { return proper.getProperty("buttonRankText"); }
     /** Metoda zwracająca buttonSettingsText */
-    public static String getButtonSettingsText() {
+    public String getButtonSettingsText() {
         return proper.getProperty("buttonSettingsText");
     }
     /** Metoda zwracająca buttonInfoText */
-    public static String getButtonInfoText() {
+    public String getButtonInfoText() {
         return proper.getProperty("buttonInfoText");
     }
     /** Metoda zwracająca buttonEndText */
-    public static String getButtonEndText() {
+    public String getButtonEndText() {
         return proper.getProperty("buttonEndText");
     }
     /** Metoda zwracająca quitDialogTitle */
-    public static String getQuitDialogTitle() {
+    public String getQuitDialogTitle() {
         return proper.getProperty("quitDialogTitle");
     }
     /** Metoda zwracająca quitDialogText */
-    public static String getQuitDialogText() {
+    public String getQuitDialogText() {
         return proper.getProperty("quitDialogText");
     }
     /** Metoda zwracająca quitDialogYes */
-    public static String getQuitDialogYes() {
+    public  String getQuitDialogYes() {
         return proper.getProperty("quitDialogYes");
     }
     /** Metoda zwracająca quitDialogNo */
-    public static String getQuitDialogNo() {
+    public String getQuitDialogNo() {
         return proper.getProperty("quitDialogNo");
     }
     /** Metoda zwracająca buttonBackToMenuText */

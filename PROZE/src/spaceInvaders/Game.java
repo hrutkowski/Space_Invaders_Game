@@ -17,6 +17,8 @@ public class Game {
     private Thread animationThread;
     private Animation animation;
     final private GameFrame gameFrame;
+    /** Metoda zwracajaca obiekt klasy Animation */
+    public Animation getAnimation() { return animation; }
     /** Metoda zwracajaca obiekt klasy Configer */
     public Configer getConfiger() {return configer;}
     /** Metoda zwracajaca obiekt klasy Leveler */
@@ -63,8 +65,6 @@ public class Game {
         animation.setKicker(null);
         animation = null;
     }
-    /** Metoda zwracajaca obiekt klasy Animation */
-    public Animation getAnimation() { return animation; }
     /** metoda uruchamiajaca cala gre */
     public static void main(String[] args) {new Game();
     }

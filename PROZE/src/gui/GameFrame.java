@@ -1,4 +1,5 @@
 package gui;
+import helpfulTools.ColorTranslator;
 import configuration.Configer;
 import configuration.Leveler;
 import gameLogic.Cannon;
@@ -14,16 +15,15 @@ import java.awt.event.KeyListener;
 import javax.swing.*;
 
 /** Klasa odpowiadajaca za okno gry */
-public class GameFrame extends JFrame implements  KeyListener{
+public class GameFrame extends JFrame implements KeyListener{
 
     private final Game game;
     private final GameObjectList gameObjectList;
     private final Cannon cannon;
     private final GameCanvas gameCanvas;
 
-
     /**
-     * Metoda zaracająca obiekt klasy GameCanvas
+     * Metoda zwracająca obiekt klasy GameCanvas
      */
     public GameCanvas getGameCanvas() {
         return gameCanvas;
@@ -38,25 +38,21 @@ public class GameFrame extends JFrame implements  KeyListener{
         this.game = game;
         gameObjectList = new GameObjectList();
         Configer confer = game.getConfiger();
+        ColorTranslator color = new ColorTranslator();
         Leveler lvl1 = game.getLeveler();
-        setFocusable(true);
-        addKeyListener(this);
-        setFocusTraversalKeysEnabled(false);
-        requestFocusInWindow();
-        cannon = new Cannon(confer.getCannonXScreenPosition(), confer.getCannonYScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(confer.getColorCannon()));
 
-        Enemy enemy1 = new Enemy(lvl1.getEnemy1XScreenPosition(),lvl1.getEnemy1YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
+        cannon = new Cannon(confer.getCannonXScreenPosition(), confer.getCannonYScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), color.translateColor(confer.getColorCannon()));
+
+        Enemy enemy1 = new Enemy(lvl1.getEnemy1XScreenPosition(), lvl1.getEnemy1YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), color.translateColor(lvl1.getColorEnemy()));
+        Enemy enemy2 = new Enemy(lvl1.getEnemy2XScreenPosition(), lvl1.getEnemy2YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), color.translateColor(lvl1.getColorEnemy()));
+        Enemy enemy3 = new Enemy(lvl1.getEnemy3XScreenPosition(), lvl1.getEnemy3YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), color.translateColor(lvl1.getColorEnemy()));
+        Enemy enemy4 = new Enemy(lvl1.getEnemy4XScreenPosition(), lvl1.getEnemy4YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), color.translateColor(lvl1.getColorEnemy()));
         gameObjectList.add(enemy1);
-        Enemy enemy2 = new Enemy(lvl1.getEnemy2XScreenPosition(), lvl1.getEnemy2YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
         gameObjectList.add(enemy2);
-        Enemy enemy3 = new Enemy(lvl1.getEnemy3XScreenPosition(), lvl1.getEnemy3YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
         gameObjectList.add(enemy3);
-        Enemy enemy4 = new Enemy(lvl1.getEnemy4XScreenPosition(), lvl1.getEnemy4YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), Color.getColor(lvl1.getColorEnemy()));
         gameObjectList.add(enemy4);
 
         setLayout(new BorderLayout());
-
-        final int[] points = {0};
 
         Panel panelTop = new Panel(new BorderLayout());
         Panel panelButton = new Panel(new FlowLayout());
@@ -73,19 +69,18 @@ public class GameFrame extends JFrame implements  KeyListener{
         Button pauseButton = new Button(confer.getButtonStartText());
         Button exitButton = new Button(confer.getButtonEndText());
 
-
         exitButton.addActionListener(e -> System.exit(1));
         pauseButton.addActionListener(e -> {
             if (game.getAnimation() == null) {
                 game.startAnimation();
                 pauseButton.setLabel(confer.getButtonPauseText());
+                panelCanvas.requestFocus();
             } else {
                 game.stopAnimation();
                 pauseButton.setLabel(confer.getButtonStartText());
             }
             pack();
         });
-
         panelButton.add(pauseButton);
         panelButton.add(exitButton);
 
@@ -98,36 +93,11 @@ public class GameFrame extends JFrame implements  KeyListener{
         panelTop.add(panelButton, BorderLayout.EAST);
         panelTop.add(panelPoints, BorderLayout.WEST);
 
-        panelCanvas.add(gameCanvas = new GameCanvas(Color.getColor(lvl1.getColorBackground()), gameObjectList, cannon, BorderLayout.CENTER));
+        panelCanvas.add(gameCanvas = new GameCanvas(color.translateColor(lvl1.getColorBackground()), gameObjectList, cannon), BorderLayout.CENTER);
         panelCanvas.addKeyListener(this);
-        panelCanvas.setFocusable(true);
-        panelCanvas.requestFocusInWindow();
-        panelCanvas.setFocusTraversalKeysEnabled(false);
-
         panelBottom.add(panelLives, BorderLayout.WEST);
 
         add(panelTop, BorderLayout.NORTH);
-        //https://stackoverflow.com/questions/8498147/addkeylistener-doesnt-work-for-jpanel
-        /*JPanel panel = new JPanel();
-        panel.add(panelCanvas);
-        add(panel, BorderLayout.CENTER);
-
-        panelCanvas.addKeyListener(new KeyListener() {
-
-            @Override
-           public void keyTyped(KeyEvent e) {}
-
-            @Override
-            public void keyReleased(KeyEvent e) {}
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                System.out.println("Pressed " + e.getKeyChar());
-            }
-        });
-
-        panel.setFocusable(true);
-        panel.requestFocusInWindow();*/
         add(panelCanvas, BorderLayout.CENTER);
         add(panelBottom, BorderLayout.SOUTH);
 
@@ -142,34 +112,79 @@ public class GameFrame extends JFrame implements  KeyListener{
             @Override
             public void componentResized(ComponentEvent e) {
                 gameCanvas.setPreferredSize(gameCanvas.getSize());
-                System.out.println("componentResized");
             }
         });
 
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(true);
+        addKeyListener(this);
+
         pack();
     }
-    /** Metoda zwracajaca obiekt klasy GameObjectList */
-    public GameObjectList getGameObjectList() { return gameObjectList; }
 
-    /** Metoda zwracajaca obiekt klasy Cannon */
-    public Cannon getCannon() { return cannon; }
+    /**
+     * Metoda zwracajaca obiekt klasy GameObjectList
+     */
+    public GameObjectList getGameObjectList() {
+        return gameObjectList;
+    }
+
+    /**
+     * Metoda zwracajaca obiekt klasy Cannon
+     */
+    public Cannon getCannon() {
+        return cannon;
+    }
+
+    private typeOfMove cannonState;
+
+
+    private enum typeOfMove {
+        LEFT,
+        RIGHT,
+        STOPPED
+    }
+
+    private void setMovementState(typeOfMove state) {
+        cannonState = state;
+    }
+
+    /**
+     * Metoda do poruszania dzialem gracza
+     */
+    public void moveCannon() {
+        float stepX = 0.01f;
+        if (cannonState == typeOfMove.LEFT) {
+            if (Float.compare(cannon.getX(), 0f) > 0) {
+                cannon.setX(cannon.getX() - stepX);
+            }
+        } else if (cannonState == typeOfMove.RIGHT) {
+            if (Float.compare(cannon.getX() + stepX + cannon.getWidth(), 1f) < 0) {
+                cannon.setX(cannon.getX() + stepX);
+            }
+        }
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
-        int keyCode = e.getKeyCode();
-
-        if (e.getKeyCode() == 'W' ) {System.out.println("elo");
+    public void keyPressed(KeyEvent keyEvent) {
+        switch (keyEvent.getKeyCode()) {
+            case KeyEvent.VK_LEFT -> {
+                setMovementState(typeOfMove.LEFT);
+                moveCannon();
+            }
+            case KeyEvent.VK_RIGHT -> {
+                setMovementState(typeOfMove.RIGHT);
+                moveCannon();
+            }
+        }
     }
-}
+
     @Override
     public void keyReleased(KeyEvent e) {
-
+        setMovementState(typeOfMove.STOPPED);
     }
-
-
 }

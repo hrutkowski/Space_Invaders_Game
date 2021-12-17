@@ -37,5 +37,5 @@ cannonYScreenPosition=0.9
 finalPoints=0
 objectWidth=0.1
 objectHeight=0.05
-colorCannon=blue
+colorCannon=black
 
