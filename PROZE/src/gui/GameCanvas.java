@@ -34,6 +34,7 @@ public class GameCanvas extends Canvas implements KeyListener {
      */
     public void addNotify() {
         super.addNotify();
+        addKeyListener(this);
         setPreferredSize(new Dimension(500, 300));
     }
 
