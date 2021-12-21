@@ -1,13 +1,12 @@
 package gameLogic;
 
 import java.awt.*;
-//kaczka
-public class MovingObject { // To ma być w MovingObject
+
+public class MovingObject {
 
     private float x, y;
     private final float width, height;
-    private final Color color;
-    boolean dead=false;
+    private Color color;
 
     public MovingObject(float x, float y, float width, float height, Color color) {
         this.x = x;
@@ -40,6 +39,9 @@ public class MovingObject { // To ma być w MovingObject
 
     public Color getColor() {
         return color;
+    }
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     public void setX(float x) { this.x = x;}

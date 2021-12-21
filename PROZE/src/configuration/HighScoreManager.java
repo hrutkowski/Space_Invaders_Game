@@ -11,7 +11,7 @@ public class HighScoreManager {
     final private Properties properties = new Properties();
     List<Player> highScoreTable = new Vector<>();
 /** Konstruktor tworzący listę obiektów typu Player na podstawie pliku HighScore.txt */
-    HighScoreManager(String pathHighScores) {
+    public HighScoreManager(String pathHighScores) {
         try (FileReader fr = new FileReader(pathHighScores)) {
             properties.load(fr);
         } catch (IOException ioe) {
@@ -23,9 +23,7 @@ public class HighScoreManager {
             int points = Integer.parseInt(properties.getProperty("wynik_" + i));
             highScoreTable.add(new Player(nick, points));
         }
-         System.out.println(highScoreTable);
          Collections.sort(highScoreTable);
-         System.out.println(highScoreTable);
     }
 /** Metoda dodająca obiekt Player do listy wewnątrz Managera */
     private void addPlayer(Player plr) {
@@ -47,12 +45,11 @@ public class HighScoreManager {
         }
         playersProperties.store(new FileOutputStream(filename), null);
     }
-/** Metoda testujaca dzialanie klasy */
-    public static void main(String... args) throws IOException {
-        HighScoreManager Manager1 = new HighScoreManager("./dataFiles/HighScores.txt");
-        Player a = new Player("tobiasz",800); // tu można sobie dodawać i się bawić
-        Manager1.addPlayer(a);
-        Manager1.saveScores();
+    public String showHighScore(){
+        String textHighScore="";
+        for (int i = 0; i < Integer.parseInt(properties.getProperty("liczba_nickow")); i++) {
+        textHighScore += i+1 + ". " + highScoreTable.get(i).getNick() + " = " + highScoreTable.get(i).getPoints() + " points" +"\n";
+        }
+        return textHighScore;
     }
-
 }

@@ -2,6 +2,7 @@ package configuration;
 
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -15,9 +16,6 @@ public class Configer {
     public Configer(String pathToMainConfiguration) throws IOException {
         InputStream propertiesFile = new FileInputStream(pathToMainConfiguration);
         proper.load(propertiesFile);
-
-        //Settings
-
         propertiesFile.close();
     }
     /** Metoda zwracająca gameHeight */
@@ -27,10 +25,6 @@ public class Configer {
     /** Metoda zwracająca gameWidth */
     public int getGameWidth() {
         return Integer.parseInt(proper.getProperty("gameWidth"));
-    }
-    /** Metoda zwracająca maxHighScoreSize */
-    public int getMaxHighScoreSize() {
-        return Integer.parseInt(proper.getProperty("maxHighScoreSize"));
     }
     /** Metoda zwracająca gameTitle */
     public String getGameTitle() { return proper.getProperty("gameTitle"); }
@@ -90,10 +84,6 @@ public class Configer {
     public String getNickText() {
         return proper.getProperty("nickText");
     }
-    /** Metoda zwracająca pathInfo */
-    public String getPathInfo() {
-        return proper.getProperty("pathInfo");
-    }
     /** Metoda zwracająca initialPoints */
     public int getInitialPoints() {
         return Integer.parseInt(proper.getProperty("initialPoints"));
@@ -103,76 +93,59 @@ public class Configer {
         return Integer.parseInt(proper.getProperty("initialLives"));
     }
     /** Metoda zwracająca labelPoints */
-    public String getLabelPoints() {
-        return (proper.getProperty("labelPoints"));}
+    public String getLabelPoints() { return (proper.getProperty("labelPoints"));}
+    /** Metoda zwracająca labelColorCannon */
+    public String getLabelColorCannon() { return (proper.getProperty("labelColorCannon"));}
     /** Metoda zwracająca labelLifesLeft */
-    public String getLabelLifesLeft() {
-        return (proper.getProperty("labelLifesLeft"));
+    public String getLabelLivesLeft() {
+        return (proper.getProperty("labelLivesLeft"));
     }
     /** Metoda zwracająca fps */
     public int getFps() {
         return Integer.parseInt(proper.getProperty("fps"));
     }
     /** Metoda zwracająca enemyLifes */
-    public int getEnemyLifes() {
-        return Integer.parseInt(proper.getProperty("enemyLifes"));
-    }
+    public int getEnemyLives() { return Integer.parseInt(proper.getProperty("enemyLives")); }
+    /** Metoda zwracająca cannonLifes */
+    public int getCannonLives() { return Integer.parseInt(proper.getProperty("cannonLives")); }
     /** Metoda zwracająca enemyDeadPoints */
     public int getEnemyDeadPoints() { return Integer.parseInt(proper.getProperty("enemyDeadPoints")); }
-    /** Metoda zwracająca enemyRedBulletSpeed */
-    public int getPlayerBulletSpeed() {
-        return Integer.parseInt(proper.getProperty("playerBulletSpeed"));
-    }
-    /** Metoda zwracająca enemyMovementSpeed */
-    public float getEnemyMovementSpeed() {return Float.parseFloat(proper.getProperty("enemyMovementSpeed"));}
      /** Metoda zwracająca cannonXScreenPosition */
     public float getCannonXScreenPosition() {return Float.parseFloat(proper.getProperty("cannonXScreenPosition"));}
     /** Metoda zwracająca cannonYScreenPosition */
     public float getCannonYScreenPosition() {return Float.parseFloat(proper.getProperty("cannonYScreenPosition"));}
-    /** Metoda zwracająca objectWidthRatio */
-    public float getObjectWidth() { return Float.parseFloat(proper.getProperty("objectWidth")); }
-    /** Metoda zwracająca objectHeightRatio */
-    public float getObjectHeight() { return Float.parseFloat(proper.getProperty("objectHeight")); }
     /** Metoda zwracająca pathHighScores */
     public String getPathHighScores() {return proper.getProperty("pathHighScores");}
     /** Metoda zwracająca colorCannon */
     public String getColorCannon() { return proper.getProperty("colorCannon");}
-
-    /** Metoda do testowania klasy */
-    public static void main(String[] args) throws IOException {
-
-        Configer conf = new Configer("./PROZE/dataFiles/conf.txt");
-
-        System.out.println("Wysokość okna = " + conf.getGameHeight());
-        System.out.println("Szerokość okna = " + conf.getGameWidth());
-        System.out.println("Maks graczy = " + conf.getMaxHighScoreSize());
-        System.out.println("Nazwa gry = " + conf.getGameTitle());
-        System.out.println("Przycisk Startu: " + conf.getButtonStartText());
-        System.out.println("Przycisk Ranking: " + conf.getButtonRankText());
-        System.out.println("Przycisk Ustawienia: " + conf.getButtonSettingsText());
-        System.out.println("Przycisk Informacji: " + conf.getButtonInfoText());
-        System.out.println("Przycisk Końca gry " + conf.getButtonEndText());
-        System.out.println("Komunikat o wyjsciu z gry " + conf.getQuitDialogTitle());
-        System.out.println("Komunikat o wyjsciu z gry " + conf.getQuitDialogText());
-        System.out.println("Komunikat o wyjsciu z gry - odpowiedz twierdzaca " + conf.getQuitDialogYes());
-        System.out.println("Komunikat o wyjsciu z gry - odpowiedz przeczaca " + conf.getQuitDialogNo());
-        System.out.println("Przycisk Powrotu do menu: " + conf.getButtonBackToMenuText());
-        System.out.println("Przycisk akceptacji: " + conf.getButtonAcceptText());
-        System.out.println("Przycisk pauzy: " + conf.getButtonPauseText());
-        System.out.println("Przycisk by zagrac jeszcze raz: " + conf.getButtonPlayAgainText());
-        System.out.println("Tekst gameover: " + conf.getGameOverText());
-        System.out.println("Tekst przy nicku: " + conf.getNickText());
-        System.out.println("Intrukcja gry: " + conf.getPathInfo());
-        System.out.println("Ścieżka do HighScores = " + conf.getPathHighScores());
-        System.out.println("Początkowa liczba pkt = " + conf.getInitialPoints());
-        System.out.println("Zdobyta liczba pkt = " + conf.getLabelPoints());
-        System.out.println("Pozostała liczba żyć = " + conf.getLabelLifesLeft());
-        System.out.println("FPS = " + conf.getFps());
-        System.out.println("Pozostała liczba żyć przeciwnika = " + conf.getEnemyLifes());
-        System.out.println("Położenie działa na osi X = " + conf.getCannonXScreenPosition());
-        System.out.println("Położenie działa na osi Y = " + conf.getCannonYScreenPosition());
-        System.out.println("Prędkość poruszania się pocisku działa = " + conf.getPlayerBulletSpeed());
-        System.out.println("Prędkośc poruszania się przeciwnika = " + conf.getEnemyMovementSpeed());
-
-    }
+    /** Metoda zwracająca cannonWeight */
+    public float getCannonWidth() { return Float.parseFloat(proper.getProperty("cannonWidth"));}
+    /** Metoda zwracająca cannonHeigh */
+    public float getCannonHeight() { return Float.parseFloat(proper.getProperty("cannonHeight"));}
+    /** Metoda zwracająca cannonWeight */
+    public float getEnemyWidth() { return Float.parseFloat(proper.getProperty("enemyWidth"));}
+    /** Metoda zwracająca cannonHeight */
+    public float getEnemyHeight() { return Float.parseFloat(proper.getProperty("enemyHeight"));}
+    /** Metoda zwracająca preferredScreenWidth */
+    public int getPreferredScreenWidth() { return Integer.parseInt(proper.getProperty("preferredScreenWidth"));}
+    /** Metoda zwracająca preferredScreenHeight */
+    public int getPreferredScreenHeight() { return Integer.parseInt(proper.getProperty("preferredScreenHeight"));}
+    /** Metoda zwracająca backToMenuText */
+    public String getBackToMenuText() { return (proper.getProperty("backToMenuText")); }
+    /** Metoda zwracająca infoText */
+    public String getInfoText() { return (proper.getProperty("infoText")); }
+    /** Metoda zwracająca infoTitle */
+    public String getInfoTitle() { return (proper.getProperty("infoTitle")); }
+    /** Metoda zwracająca highScoreTitle */
+    public String getHighScoreTitle() { return (proper.getProperty("highScoreTitle")); }
+    /** Metoda zwracająca settingsTitle */
+    public String getSettingsTitle() { return (proper.getProperty("settingsTitle")); }
+    /** Metoda zwracająca menuTitle */
+    public String getMenuTitle() { return (proper.getProperty("menuTitle")); }
+    /** Metoda zwracająca pathLevel1*/
+    public String getPathLevel1() { return (proper.getProperty("pathLevel1")); }
+    /** Metoda zwracająca pathLevel2*/
+    public String getPathLevel2() { return (proper.getProperty("pathLevel2")); }
+    /** Metoda zwracająca pathLevel3*/
+    public String getPathLevel3() { return (proper.getProperty("pathLevel3")); }
 }

@@ -53,21 +53,4 @@ public class Leveler {
     public float getEnemy4XScreenPosition() {return Float.parseFloat(proper.getProperty("enemy4XScreenPosition"));}
     /** Metoda zwracająca enemy4YScreenPosition */
     public float getEnemy4YScreenPosition() {return Float.parseFloat(proper.getProperty("enemy4YScreenPosition"));}
-    /**
-     * Metoda do testowania klasy
-     */
-    public static void main(String[] args) throws IOException {
-
-        Leveler level1 = new Leveler("./PROZE/dataFiles/level1.txt");
-        Leveler level2 = new Leveler("./PROZE/dataFiles/level2.txt");
-        Leveler level3 = new Leveler("./PROZE/dataFiles/level3.txt");
-
-        System.out.println("PlayerSpeed = " + level1.getPlayerSpeed());
-        System.out.println("PlayerBulletSpeed = " + level1.getPlayerBulletSpeed());
-        System.out.println("EnemyNumber = " + level1.getEnemyNumber());
-        System.out.println("EnemyColor = " + level1.getColorEnemy());
-        System.out.println("BulletSpeedEnemy = " + level1.getBulletSpeedEnemy());
-        System.out.println("EnemyPoints = " + level1.getEnemyPoints());
-        System.out.println("BackGroundColor = " + level1.getColorBackground());
-    }
 }

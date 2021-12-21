@@ -76,9 +76,5 @@ public class Animation implements Runnable {
 
             gameFrame.getGameCanvas().repaint();
         }
-
-
     }
-
-
 }

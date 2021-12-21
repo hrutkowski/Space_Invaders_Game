@@ -10,7 +10,7 @@ public class PROZEUtil {
     /**
      * No instances for this class!
      */
-    private PROZEUtil() {
+    public PROZEUtil() {
     }
 
     /**

@@ -3,20 +3,25 @@ package spaceInvaders;
 import java.awt.*;
 import java.io.IOException;
 
+import configuration.HighScoreManager;
 import gameLogic.Animation;
+import gameLogic.Cannon;
 import gui.GameFrame;
 import configuration.Configer;
 import configuration.Leveler;
+import gui.MenuFrame;
+import helpfulTools.ColorTranslator;
 
 
 /** Glowna klasa gry */
 public class Game {
     final private Configer configer;
     final private Leveler leveler;
-    final private Thread repaintThread;
-    private Thread animationThread;
+    final private HighScoreManager highScoreManager;
     private Animation animation;
     final private GameFrame gameFrame;
+    final private MenuFrame menuFrame;
+    final private Cannon cannon;
     /** Metoda zwracajaca obiekt klasy Animation */
     public Animation getAnimation() { return animation; }
     /** Metoda zwracajaca obiekt klasy Configer */
@@ -24,6 +29,16 @@ public class Game {
     /** Metoda zwracajaca obiekt klasy Leveler */
     public Leveler getLeveler() {
         return leveler;
+    }
+    /** Metoda zwracajaca obiekt klasy Cannon */
+    public Cannon getCannon() { return cannon; }
+    /** Metoda zwracajaca obiekt klasy MenuFrame */
+    public MenuFrame getMenuFrame() { return menuFrame; }
+    /** Metoda zwracajaca obiekt klasy GameFrame */
+    public GameFrame getGameFrame() { return gameFrame; }
+    /** Metoda zwracajaca obiekt klasy HighScoreManager */
+    public HighScoreManager getHighScoreManager() {
+        return highScoreManager;
     }
     /** Konstruktor klasy Game */
     Game() {
@@ -36,16 +51,21 @@ public class Game {
         }
         Leveler lev1;
         try {
-            lev1 = new Leveler("./PROZE/dataFiles/level1.txt");
+            lev1 = new Leveler(conf.getPathLevel1());
         } catch (IOException e) {
             e.printStackTrace();
             lev1 = null;
         }
         leveler = lev1;
         configer = conf;
+        highScoreManager= new HighScoreManager(conf.getPathHighScores());
+        ColorTranslator col = new ColorTranslator();
+        cannon = new Cannon(conf.getCannonXScreenPosition(), conf.getCannonYScreenPosition(), conf.getCannonWidth(), conf.getCannonHeight(), col.translateColor(conf.getColorCannon()), conf.getCannonLives());
         gameFrame = new GameFrame(this);
-        EventQueue.invokeLater(() -> gameFrame.setVisible(true));
-        repaintThread = new Thread(() -> {
+        menuFrame = new MenuFrame(this);
+        EventQueue.invokeLater(() -> menuFrame.setVisible(true));
+        // FPS
+        Thread repaintThread = new Thread(() -> {
             try {
                 Thread.sleep(configer.getFps()); // FPS
                 gameFrame.repaint();
@@ -54,9 +74,9 @@ public class Game {
         });
         repaintThread.start();
     }
-/** Metoda rozpoczynajaca animacje */
+    /** Metoda rozpoczynajaca animacje */
     public void startAnimation() {
-        animationThread = new Thread(animation = new Animation(gameFrame));
+        Thread animationThread = new Thread(animation = new Animation(gameFrame));
         animation.setKicker(animationThread);
         animationThread.start();
     }
@@ -66,6 +86,5 @@ public class Game {
         animation = null;
     }
     /** metoda uruchamiajaca cala gre */
-    public static void main(String[] args) {new Game();
-    }
+    public static void main(String[] args) { new Game(); }
 }

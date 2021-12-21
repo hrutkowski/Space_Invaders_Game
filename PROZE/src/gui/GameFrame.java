@@ -17,36 +17,29 @@ import javax.swing.*;
 /** Klasa odpowiadajaca za okno gry */
 public class GameFrame extends JFrame implements KeyListener{
 
-    private final Game game;
     private final GameObjectList gameObjectList;
-    private final Cannon cannon;
     private final GameCanvas gameCanvas;
+    private final Cannon cannon;
 
-    /**
-     * Metoda zwracająca obiekt klasy GameCanvas
-     */
+    /** Metoda zwracająca obiekt klasy GameCanvas */
     public GameCanvas getGameCanvas() {
         return gameCanvas;
     }
 
-    /**
-     * Konstruktor klasy GameFrame
-     */
+    /** Konstruktor klasy GameFrame */
     public GameFrame(Game game) {
-
-        super("Space Invaders");
-        this.game = game;
         gameObjectList = new GameObjectList();
         Configer confer = game.getConfiger();
+        setTitle(confer.getGameTitle());
         ColorTranslator color = new ColorTranslator();
         Leveler lvl1 = game.getLeveler();
 
-        cannon = new Cannon(confer.getCannonXScreenPosition(), confer.getCannonYScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), color.translateColor(confer.getColorCannon()));
+        cannon = game.getCannon();
 
-        Enemy enemy1 = new Enemy(lvl1.getEnemy1XScreenPosition(), lvl1.getEnemy1YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), color.translateColor(lvl1.getColorEnemy()));
-        Enemy enemy2 = new Enemy(lvl1.getEnemy2XScreenPosition(), lvl1.getEnemy2YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), color.translateColor(lvl1.getColorEnemy()));
-        Enemy enemy3 = new Enemy(lvl1.getEnemy3XScreenPosition(), lvl1.getEnemy3YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), color.translateColor(lvl1.getColorEnemy()));
-        Enemy enemy4 = new Enemy(lvl1.getEnemy4XScreenPosition(), lvl1.getEnemy4YScreenPosition(), confer.getObjectWidth(), confer.getObjectHeight(), color.translateColor(lvl1.getColorEnemy()));
+        Enemy enemy1 = new Enemy(lvl1.getEnemy1XScreenPosition(), lvl1.getEnemy1YScreenPosition(), confer.getEnemyWidth(), confer.getEnemyHeight(), color.translateColor(lvl1.getColorEnemy()), confer.getEnemyLives());
+        Enemy enemy2 = new Enemy(lvl1.getEnemy2XScreenPosition(), lvl1.getEnemy2YScreenPosition(), confer.getEnemyWidth(), confer.getEnemyHeight(), color.translateColor(lvl1.getColorEnemy()),  confer.getEnemyLives());
+        Enemy enemy3 = new Enemy(lvl1.getEnemy3XScreenPosition(), lvl1.getEnemy3YScreenPosition(), confer.getEnemyWidth(), confer.getEnemyHeight(), color.translateColor(lvl1.getColorEnemy()),  confer.getEnemyLives());
+        Enemy enemy4 = new Enemy(lvl1.getEnemy4XScreenPosition(), lvl1.getEnemy4YScreenPosition(), confer.getEnemyWidth(), confer.getEnemyHeight(), color.translateColor(lvl1.getColorEnemy()),  confer.getEnemyLives());
         gameObjectList.add(enemy1);
         gameObjectList.add(enemy2);
         gameObjectList.add(enemy3);
@@ -54,16 +47,16 @@ public class GameFrame extends JFrame implements KeyListener{
 
         setLayout(new BorderLayout());
 
-        Panel panelTop = new Panel(new BorderLayout());
-        Panel panelButton = new Panel(new FlowLayout());
-        Panel panelBottom = new Panel(new BorderLayout());
-        Panel panelCanvas = new Panel(new BorderLayout());
-        Panel panelPoints = new Panel(new FlowLayout());
-        Panel panelLives = new Panel(new FlowLayout());
+        Panel topPanel = new Panel(new BorderLayout());
+        Panel buttonPanel = new Panel(new FlowLayout());
+        Panel bottomPanel = new Panel(new BorderLayout());
+        Panel canvasPanel = new Panel(new BorderLayout());
+        Panel pointsPanel = new Panel(new FlowLayout());
+        Panel livesPanel = new Panel(new FlowLayout());
 
         Label pointsLabel = new Label(confer.getLabelPoints());
         Label pointsAmount = new Label(Integer.toString(confer.getInitialPoints()));
-        Label livesLabel = new Label(confer.getLabelLifesLeft());
+        Label livesLabel = new Label(confer.getLabelLivesLeft());
         Label livesAmount = new Label(Integer.toString(confer.getInitialLives()));
 
         Button pauseButton = new Button(confer.getButtonStartText());
@@ -74,46 +67,36 @@ public class GameFrame extends JFrame implements KeyListener{
             if (game.getAnimation() == null) {
                 game.startAnimation();
                 pauseButton.setLabel(confer.getButtonPauseText());
-                panelCanvas.requestFocus();
+                canvasPanel.requestFocus();
             } else {
                 game.stopAnimation();
                 pauseButton.setLabel(confer.getButtonStartText());
             }
             pack();
         });
-        panelButton.add(pauseButton);
-        panelButton.add(exitButton);
+        buttonPanel.add(pauseButton);
+        buttonPanel.add(exitButton);
 
-        panelPoints.add(pointsLabel);
-        panelPoints.add(pointsAmount);
+        pointsPanel.add(pointsLabel);
+        pointsPanel.add(pointsAmount);
 
-        panelLives.add(livesLabel);
-        panelLives.add(livesAmount);
+        livesPanel.add(livesLabel);
+        livesPanel.add(livesAmount);
 
-        panelTop.add(panelButton, BorderLayout.EAST);
-        panelTop.add(panelPoints, BorderLayout.WEST);
+        topPanel.add(buttonPanel, BorderLayout.EAST);
+        topPanel.add(pointsPanel, BorderLayout.WEST);
 
-        panelCanvas.add(gameCanvas = new GameCanvas(color.translateColor(lvl1.getColorBackground()), gameObjectList, cannon), BorderLayout.CENTER);
-        panelCanvas.addKeyListener(this);
-        panelBottom.add(panelLives, BorderLayout.WEST);
+        canvasPanel.add(gameCanvas = new GameCanvas(color.translateColor(lvl1.getColorBackground()), gameObjectList, cannon, game), BorderLayout.CENTER);
+        canvasPanel.addKeyListener(this);
+        bottomPanel.add(livesPanel, BorderLayout.WEST);
 
-        add(panelTop, BorderLayout.NORTH);
-        add(panelCanvas, BorderLayout.CENTER);
-        add(panelBottom, BorderLayout.SOUTH);
+        add(topPanel, BorderLayout.NORTH);
+        add(canvasPanel, BorderLayout.CENTER);
+        add(bottomPanel, BorderLayout.SOUTH);
 
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                dispose();
-            }
-        });
+        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) { System.exit(0);}});
 
-        addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                gameCanvas.setPreferredSize(gameCanvas.getSize());
-            }
-        });
+        addComponentListener(new ComponentAdapter() { @Override public void componentResized(ComponentEvent e) { gameCanvas.setPreferredSize(gameCanvas.getSize()); } });
 
         setFocusable(true);
         setFocusTraversalKeysEnabled(true);
@@ -122,22 +105,12 @@ public class GameFrame extends JFrame implements KeyListener{
         pack();
     }
 
-    /**
-     * Metoda zwracajaca obiekt klasy GameObjectList
-     */
+    /** Metoda zwracajaca obiekt klasy GameObjectList */
     public GameObjectList getGameObjectList() {
         return gameObjectList;
     }
 
-    /**
-     * Metoda zwracajaca obiekt klasy Cannon
-     */
-    public Cannon getCannon() {
-        return cannon;
-    }
-
     private typeOfMove cannonState;
-
 
     private enum typeOfMove {
         LEFT,
@@ -149,9 +122,7 @@ public class GameFrame extends JFrame implements KeyListener{
         cannonState = state;
     }
 
-    /**
-     * Metoda do poruszania dzialem gracza
-     */
+    /** Metoda do poruszania dzialem gracza */
     public void moveCannon() {
         float stepX = 0.01f;
         if (cannonState == typeOfMove.LEFT) {
@@ -187,4 +158,5 @@ public class GameFrame extends JFrame implements KeyListener{
     public void keyReleased(KeyEvent e) {
         setMovementState(typeOfMove.STOPPED);
     }
+
 }
