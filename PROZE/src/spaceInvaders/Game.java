@@ -6,6 +6,7 @@ import java.io.IOException;
 import configuration.HighScoreManager;
 import gameLogic.Animation;
 import gameLogic.Cannon;
+import gameLogic.Player;
 import gui.GameFrame;
 import configuration.Configer;
 import configuration.Leveler;
@@ -29,6 +30,8 @@ public class Game {
     final private MenuFrame menuFrame;
     /** Atrybut klasy Cannon */
     final private Cannon cannon;
+    /** Atrybut klasy Player */
+    final private Player player;
 
     /** Metoda zwracajaca obiekt klasy Animation */
     public Animation getAnimation() { return animation; }
@@ -48,6 +51,8 @@ public class Game {
     public HighScoreManager getHighScoreManager() {
         return highScoreManager;
     }
+    /** Metoda zwracajaca obiekt klasy Player */
+    public Player getPlayer() { return player; }
 
     /** Konstruktor klasy Game */
     Game() {
@@ -67,11 +72,14 @@ public class Game {
         }
         leveler = lev1;
         configer = conf;
-        highScoreManager= new HighScoreManager(conf.getPathHighScores());
+        player = new Player("",0);
+        highScoreManager = new HighScoreManager(configer.getPathHighScores());
         ColorTranslator col = new ColorTranslator();
-        cannon = new Cannon(conf.getCannonXScreenPosition(), conf.getCannonYScreenPosition(), conf.getCannonWidth(), conf.getCannonHeight(), col.translateColor(conf.getColorCannon()), conf.getCannonLives());
+        cannon = new Cannon(configer.getCannonXScreenPosition(), configer.getCannonYScreenPosition(), configer.getCannonWidth(), configer.getCannonHeight(), col.translateColor(configer.getColorCannon()), configer.getCannonLives());
         gameFrame = new GameFrame(this);
         menuFrame = new MenuFrame(this);
+        menuFrame.setPreferredSize(new Dimension(configer.getPreferredScreenWidth(), configer.getPreferredScreenHeight()));
+        menuFrame.setSize(new Dimension(configer.getPreferredScreenWidth(), configer.getPreferredScreenHeight()));
         EventQueue.invokeLater(() -> menuFrame.setVisible(true));
         Thread repaintThread = new Thread(() -> {
             try {

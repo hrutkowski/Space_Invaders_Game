@@ -35,7 +35,9 @@ public class InfoFrame extends JFrame {
 
         backToMenuButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
-            EventQueue.invokeLater(() -> menuFrame.setVisible(true));
+            EventQueue.invokeLater(() -> {
+                menuFrame.setVisible(true);
+                menuFrame.setSize(this.getSize());});
         });
 
         addWindowListener(new WindowAdapter() {public void windowClosing(WindowEvent e) { System.exit(0); } });

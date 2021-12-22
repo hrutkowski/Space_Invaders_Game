@@ -43,7 +43,9 @@ public class SettingsFrame extends JFrame {
 
         backToMenuButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
-            EventQueue.invokeLater(() -> menuFrame.setVisible(true));
+            EventQueue.invokeLater(() -> {
+                menuFrame.setVisible(true);
+                menuFrame.setSize(this.getSize());});
         });
         blueColorButton.addActionListener(e -> cannon.setColor("blue"));
         blackColorButton.addActionListener(e -> cannon.setColor("black"));

@@ -147,4 +147,10 @@ public class Configer {
     public String getPathLevel2() { return (proper.getProperty("pathLevel2")); }
     /** Metoda zwracająca pathLevel3*/
     public String getPathLevel3() { return (proper.getProperty("pathLevel3")); }
+    /** Metoda zwracająca loginTitle*/
+    public String getLoginTitle() { return (proper.getProperty("loginTitle")); }
+    /** Metoda zwracająca buttonLogin*/
+    public String getButtonLogin() { return (proper.getProperty("buttonLogin")); }
+    /** Metoda zwracająca labelLogin*/
+    public String getLabelLogin() { return (proper.getProperty("labelLogin")); }
 }

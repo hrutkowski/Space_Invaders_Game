@@ -48,4 +48,8 @@ public class HighScoreManager {
         }
         return textHighScore;
     }
+    /** Metoda dodająca gracza do wewnętrznej listy graczy */
+    public void addPlayer(String nick, int points) {
+        highScoreTable.add(new Player(nick, points));
+    }
 }

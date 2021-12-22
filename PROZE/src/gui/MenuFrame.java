@@ -1,6 +1,7 @@
 package gui;
 
 import configuration.Configer;
+import configuration.HighScoreManager;
 import spaceInvaders.Game;
 
 import javax.swing.*;
@@ -17,16 +18,19 @@ public class MenuFrame extends JFrame {
     private final InfoFrame infoFrame;
     /** Atrybut klasy SettingFrame */
     private final SettingsFrame settingsFrame;
+    /** Atrybut klasy LoginFrame */
+    private final LoginFrame loginFrame;
 
     /** Konstruktor klasy MenuFrame */
     public MenuFrame(Game game) {
         Configer confer = game.getConfiger();
-        GameFrame gameFrame = game.getGameFrame();
+        HighScoreManager highScoreManager = game.getHighScoreManager();
         setTitle(confer.getMenuTitle());
-        setPreferredSize(new Dimension(confer.getPreferredScreenWidth(), confer.getPreferredScreenHeight()));
+
         this.highScoreFrame = new HighScoreFrame(game, this);
         this.infoFrame = new InfoFrame(game, this);
         this.settingsFrame = new SettingsFrame(game, this);
+        this.loginFrame = new LoginFrame(game, this);
 
         setLayout(new BorderLayout());
 
@@ -53,8 +57,8 @@ public class MenuFrame extends JFrame {
         startButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
             EventQueue.invokeLater(() -> {
-                gameFrame.setVisible(true);
-                gameFrame.setSize(this.getSize());});
+                loginFrame.setVisible(true);
+                loginFrame.setSize(this.getSize());});
         });
         infoButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
