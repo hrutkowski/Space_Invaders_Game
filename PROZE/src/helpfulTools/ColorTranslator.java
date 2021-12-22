@@ -2,10 +2,12 @@ package helpfulTools;
 
 import java.awt.*;
 
+/** Klasa pomocnicza do zamiany nazwy koloru na obiekt klasy Color */
 public class ColorTranslator {
 
+    /** Konstruktor klasy ColorTranslator */
     public  ColorTranslator(){}
-
+    /** Metoda do zamiany nazwy koloru na obiekty klasy Color */
     public Color translateColor(String color)
     {
         return switch (color) {
@@ -18,6 +20,4 @@ public class ColorTranslator {
             default -> Color.black;
         };
     }
-
-
 }

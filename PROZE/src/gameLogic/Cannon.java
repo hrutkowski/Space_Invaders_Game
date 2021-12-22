@@ -1,13 +1,11 @@
 package gameLogic;
 
 import helpfulTools.ColorTranslator;
-import helpfulTools.PROZEUtil;
 
 import java.awt.*;
 
+/** Klasa odpwiadajaca za dzialo */
 public class Cannon extends Character {
-
-    //private Color color;
 
     /** Konstrutor klasy Cannon */
     public Cannon(float x, float y, float width, float height, Color color, int lives) {
@@ -18,10 +16,10 @@ public class Cannon extends Character {
         ColorTranslator colorTranslator = new ColorTranslator();
         super.setColor(colorTranslator.translateColor(col));
     }
-
+    /** Metoda rusyjaca dzialo */
     public void draw(Graphics g, Dimension size) {
         g.setColor(getColor());
         g.fillRect((int) (getX() * size.getWidth()), (int) (getY() * size.getHeight()),
-                (int) (getWidth() * size.getWidth()), (int) (getHeight() * size.getHeight()));
+                   (int) (getWidth() * size.getWidth()), (int) (getHeight() * size.getHeight()));
     }
 }

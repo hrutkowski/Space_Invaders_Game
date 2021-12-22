@@ -1,4 +1,5 @@
 package gui;
+
 import helpfulTools.ColorTranslator;
 import configuration.Configer;
 import configuration.Leveler;
@@ -11,19 +12,24 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.*;
 
 /** Klasa odpowiadajaca za okno gry */
 public class GameFrame extends JFrame implements KeyListener{
 
+    /** Atrybut klasy GameObjectList */
     private final GameObjectList gameObjectList;
+    /** Atrybut klasy GameCanvas */
     private final GameCanvas gameCanvas;
+    /** Atrybut klasy Cannon */
     private final Cannon cannon;
-
-    /** Metoda zwracająca obiekt klasy GameCanvas */
-    public GameCanvas getGameCanvas() {
-        return gameCanvas;
+    /** Atrybut klasy TypeOfMove */
+    private typeOfMove cannonState;
+    /** Prywatna enumeracja */
+    private enum typeOfMove {
+        LEFT,
+        RIGHT,
+        STOPPED
     }
 
     /** Konstruktor klasy GameFrame */
@@ -72,8 +78,8 @@ public class GameFrame extends JFrame implements KeyListener{
                 game.stopAnimation();
                 pauseButton.setLabel(confer.getButtonStartText());
             }
-            pack();
-        });
+            pack(); });
+
         buttonPanel.add(pauseButton);
         buttonPanel.add(exitButton);
 
@@ -104,25 +110,17 @@ public class GameFrame extends JFrame implements KeyListener{
 
         pack();
     }
-
     /** Metoda zwracajaca obiekt klasy GameObjectList */
     public GameObjectList getGameObjectList() {
         return gameObjectList;
     }
-
-    private typeOfMove cannonState;
-
-    private enum typeOfMove {
-        LEFT,
-        RIGHT,
-        STOPPED
+    /** Metoda zwracająca obiekt klasy GameCanvas */
+    public GameCanvas getGameCanvas() {
+        return gameCanvas;
     }
-
-    private void setMovementState(typeOfMove state) {
-        cannonState = state;
-    }
-
-    /** Metoda do poruszania dzialem gracza */
+    /** Metoda ustawiajaca stan dziala */
+    private void setMovementState(typeOfMove state) { cannonState = state; }
+    /** Metoda odpowiadajaca za poruszanie dzialem gracza */
     public void moveCannon() {
         float stepX = 0.01f;
         if (cannonState == typeOfMove.LEFT) {
@@ -135,11 +133,11 @@ public class GameFrame extends JFrame implements KeyListener{
             }
         }
     }
-
+    /** Metoda nadpisujaca keyTyped */
     @Override
     public void keyTyped(KeyEvent e) {
     }
-
+    /** Metoda nadpisujaca keyPressed */
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getKeyCode()) {
@@ -151,12 +149,12 @@ public class GameFrame extends JFrame implements KeyListener{
                 setMovementState(typeOfMove.RIGHT);
                 moveCannon();
             }
+            default -> setMovementState(typeOfMove.STOPPED);
         }
     }
-
+    /** Metoda nadpisujaca keyReleased */
     @Override
     public void keyReleased(KeyEvent e) {
         setMovementState(typeOfMove.STOPPED);
     }
-
 }

@@ -8,14 +8,19 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/** Klasa okna menu */
 public class MenuFrame extends JFrame {
+
+    /** Atrybut klasy HighScoreFrame */
     private final HighScoreFrame highScoreFrame;
+    /** Atrybut klasy InfoFrame */
     private final InfoFrame infoFrame;
+    /** Atrybut klasy SettingFrame */
     private final SettingsFrame settingsFrame;
 
+    /** Konstruktor klasy MenuFrame */
     public MenuFrame(Game game) {
         Configer confer = game.getConfiger();
-        MenuFrame menuFrame = game.getMenuFrame();
         GameFrame gameFrame = game.getGameFrame();
         setTitle(confer.getMenuTitle());
         setPreferredSize(new Dimension(confer.getPreferredScreenWidth(), confer.getPreferredScreenHeight()));
@@ -47,28 +52,31 @@ public class MenuFrame extends JFrame {
 
         startButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
-            EventQueue.invokeLater(() -> gameFrame.setVisible(true));
+            EventQueue.invokeLater(() -> {
+                gameFrame.setVisible(true);
+                gameFrame.setSize(this.getSize());});
         });
         infoButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
-            EventQueue.invokeLater(() -> infoFrame.setVisible(true));
+            EventQueue.invokeLater(() -> {
+                infoFrame.setVisible(true);
+                infoFrame.setSize(this.getSize());});
         });
         highScoreButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
-            EventQueue.invokeLater(() -> highScoreFrame.setVisible(true));
+            EventQueue.invokeLater(() -> {
+                highScoreFrame.setVisible(true);
+                highScoreFrame.setSize(this.getSize());});
         });
         settingsButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
-            EventQueue.invokeLater(() -> settingsFrame.setVisible(true));
+            EventQueue.invokeLater(() -> {
+                settingsFrame.setVisible(true);
+                settingsFrame.setSize(this.getSize());});
         });
         exitButton.addActionListener(e -> System.exit(1));
 
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-            }
-        });
+        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) { System.exit(0); } });
 
         pack();
     }

@@ -8,11 +8,12 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/** Klasa okna z infirmacjami */
 public class InfoFrame extends JFrame {
 
+    /** Konstruktor InfoFrame */
     InfoFrame(Game game, MenuFrame menuFrame) {
         Configer confer = game.getConfiger();
-        setPreferredSize(new Dimension(confer.getPreferredScreenWidth(), confer.getPreferredScreenHeight()));
         setTitle(confer.getInfoTitle());
 
         setLayout(new BorderLayout());
@@ -37,12 +38,7 @@ public class InfoFrame extends JFrame {
             EventQueue.invokeLater(() -> menuFrame.setVisible(true));
         });
 
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-            }
-        });
+        addWindowListener(new WindowAdapter() {public void windowClosing(WindowEvent e) { System.exit(0); } });
 
         pack();
     }

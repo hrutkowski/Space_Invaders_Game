@@ -7,43 +7,32 @@ import gameLogic.MovingObject;
 import spaceInvaders.Game;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-/**
- * Klasa odpowiadajaca za plotno do wyswietlania gry
- */
+/** Klasa odpowiadajaca za plotno do wyswietlania gry */
 public class GameCanvas extends Canvas {
 
+    /** Atrybut klasy GameObjectList */
     private final GameObjectList gameObjectList;
+    /** Atrybut klasy Cannon */
     private final Cannon cannon;
+    /** Atrybut klasy Configer */
     private final Configer confer;
 
-    /**
-     * Konstruktor klasy GameCanvas
-     */
+    /** Konstruktor klasy GameCanvas */
     public GameCanvas(Color colorBackground, GameObjectList gameObjectList, Cannon cannon, Game game) {
-        System.out.println("konstrukcja dziala");
         setBackground(colorBackground);
         this.gameObjectList = gameObjectList;
         this.cannon = cannon;
         this.confer = game.getConfiger();
     }
-
-    /**
-     * Metoda laczaca z zasobami ekranu
-     */
+    /** Metoda laczaca z zasobami ekranu */
     public void addNotify() {
         super.addNotify();
         setPreferredSize(new Dimension(confer.getPreferredScreenWidth(), confer.getPreferredScreenHeight()));
     }
-
-    /**
-     * Metoda rysujaca po plotnie
-     */
+    /** Metoda rysujaca po plotnie */
     public void paint(Graphics g) {
         Dimension size = getSize();
-
         for (MovingObject shape : gameObjectList) {
             g.setColor(shape.getColor());
             g.fillRect((int) (shape.getX() * size.getWidth()), (int) (shape.getY() * size.getHeight()),
@@ -51,5 +40,4 @@ public class GameCanvas extends Canvas {
         }
         cannon.draw(g, size);
     }
-
 }

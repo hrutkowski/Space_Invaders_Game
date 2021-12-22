@@ -1,18 +1,17 @@
 package configuration;
 
-
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 /** Klasa odpowiedzialna za wczytywanie danych z pliku konfiguracyjnego */
-
 public class Configer {
+
     /** Klasa typu Properties do wyciągania wartości z pliku txt */
     static Properties proper = new Properties();
     /** Metoda wczytująca dane z pliku konfiguracyjnego */
+
     public Configer(String pathToMainConfiguration) throws IOException {
         InputStream propertiesFile = new FileInputStream(pathToMainConfiguration);
         proper.load(propertiesFile);

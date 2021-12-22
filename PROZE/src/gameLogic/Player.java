@@ -5,7 +5,7 @@ import java.util.Objects;
 /** Klasa reprezentująca gracza */
 public class Player implements Comparable<Player> {
     /** Nick gracza */
-    private String nick;
+    private final String nick;
     /** Ilośc punktów gracza */
     private int points;
 
@@ -26,7 +26,6 @@ public class Player implements Comparable<Player> {
     public void setPoints(int points) {
         this.points = points;
     }
-
    /**  Nadpisana metoda equals */
     @Override
     public boolean equals(Object o) {
@@ -35,7 +34,7 @@ public class Player implements Comparable<Player> {
         Player player = (Player) o;
         return points == player.points && Objects.equals(nick, player.nick);
     }
-    /** Metoda hashująca */
+    /** Nadpisana metoda hashująca */
     @Override
     public int hashCode() {
         return Objects.hash(nick, points);
@@ -44,7 +43,7 @@ public class Player implements Comparable<Player> {
     public String toString() {
         return "[" + getClass().getSimpleName() + ":" + nick + ":" + points + "]";
     }
-    /** Metoda porównująca ilości punktów */
+    /** Nadpisana metoda porównująca ilości punktów */
     @Override
     public int compareTo(Player o) {
         return o.points - points;

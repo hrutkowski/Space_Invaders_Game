@@ -12,16 +12,24 @@ import configuration.Leveler;
 import gui.MenuFrame;
 import helpfulTools.ColorTranslator;
 
-
 /** Glowna klasa gry */
 public class Game {
+
+    /** Atrybut klasy Configer */
     final private Configer configer;
+    /** Atrybut klasy Leveler */
     final private Leveler leveler;
+    /** Atrybut klasy HighScoreManager */
     final private HighScoreManager highScoreManager;
+    /** Atrybut klasy Animation */
     private Animation animation;
+    /** Atrybut klasy GameFrame */
     final private GameFrame gameFrame;
+    /** Atrybut klasy MenuFrame */
     final private MenuFrame menuFrame;
+    /** Atrybut klasy Cannon */
     final private Cannon cannon;
+
     /** Metoda zwracajaca obiekt klasy Animation */
     public Animation getAnimation() { return animation; }
     /** Metoda zwracajaca obiekt klasy Configer */
@@ -40,6 +48,7 @@ public class Game {
     public HighScoreManager getHighScoreManager() {
         return highScoreManager;
     }
+
     /** Konstruktor klasy Game */
     Game() {
         Configer conf;
@@ -64,7 +73,6 @@ public class Game {
         gameFrame = new GameFrame(this);
         menuFrame = new MenuFrame(this);
         EventQueue.invokeLater(() -> menuFrame.setVisible(true));
-        // FPS
         Thread repaintThread = new Thread(() -> {
             try {
                 Thread.sleep(configer.getFps()); // FPS

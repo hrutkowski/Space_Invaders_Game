@@ -1,23 +1,21 @@
 package configuration;
 
-import javax.imageio.metadata.IIOMetadataNode;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/** Klasa odpowiedzialna za odczytywanie paramertów poziomów z pliku txt */
 public class Leveler {
+
     /** Klasa typu Properties do wyciągania wartości z pliku txt */
     static Properties proper = new Properties();
 
-    /**
-     * Metoda wczytująca dane z pliku level1
-     */
+    /** Metoda wczytująca dane z pliku txt */
     public Leveler(String pathToMainConfiguration) throws IOException {
         InputStream propertiesFile = new FileInputStream(pathToMainConfiguration);
         proper.load(propertiesFile);
         propertiesFile.close();
-
     }
     /** Metoda zwracająca playerSpeed */
     public float getPlayerSpeed() {

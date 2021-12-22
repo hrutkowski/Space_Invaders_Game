@@ -9,11 +9,12 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/** Klasa okna z ustawieniami */
 public class SettingsFrame extends JFrame {
 
+    /** Konstruktor klasy SettingsFrame */
     SettingsFrame(Game game, MenuFrame menuFrame){
         Configer confer = game.getConfiger();
-        setPreferredSize(new Dimension(confer.getPreferredScreenWidth(), confer.getPreferredScreenHeight()));
         setTitle(confer.getSettingsTitle());
 
         Cannon cannon = game.getCannon();
@@ -39,7 +40,6 @@ public class SettingsFrame extends JFrame {
         mainPanel.add(backToMenuButton, BorderLayout.SOUTH);
 
         add(mainPanel);
-
 
         backToMenuButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));

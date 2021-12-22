@@ -9,16 +9,17 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/** Klasa odpowiadajca za okno z rankingiem */
 public class HighScoreFrame extends JFrame {
 
+    /** Konstruktor klasy HighScoreFrame */
     public HighScoreFrame(Game game, MenuFrame menuFrame){
         Configer confer = game.getConfiger();
-        setPreferredSize(new Dimension(confer.getPreferredScreenWidth(), confer.getPreferredScreenHeight()));
         setTitle(confer.getHighScoreTitle());
 
         setLayout(new BorderLayout());
 
-        Panel mainPanel = new Panel();
+        Panel mainPanel = new Panel(new BorderLayout());
 
         Button backToMenuButton = new Button(confer.getBackToMenuText());
 
@@ -40,12 +41,7 @@ public class HighScoreFrame extends JFrame {
             EventQueue.invokeLater(() -> menuFrame.setVisible(true));
         });
 
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-            }
-        });
+        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) { System.exit(0); } });
 
         pack();
     }
