@@ -57,26 +57,31 @@ public class MenuFrame extends JFrame {
         startButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
             EventQueue.invokeLater(() -> {
-                loginFrame.setVisible(true);
-                loginFrame.setSize(this.getSize());});
+                loginFrame.setSize(this.getSize());
+                loginFrame.setLocation(this.getLocation()); });
+            EventQueue.invokeLater(() -> loginFrame.setVisible(true));
         });
         infoButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
             EventQueue.invokeLater(() -> {
-                infoFrame.setVisible(true);
-                infoFrame.setSize(this.getSize());});
+                infoFrame.setSize(this.getSize());
+                infoFrame.setLocation(this.getLocation()); });
+            EventQueue.invokeLater(() -> infoFrame.setVisible(true));
         });
         highScoreButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
             EventQueue.invokeLater(() -> {
-                highScoreFrame.setVisible(true);
-                highScoreFrame.setSize(this.getSize());});
+                highScoreFrame.setSize(this.getSize());
+                highScoreFrame.setLocation(this.getLocation()); });
+            EventQueue.invokeLater(() -> highScoreFrame.setVisible(true));
         });
         settingsButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
             EventQueue.invokeLater(() -> {
-                settingsFrame.setVisible(true);
-                settingsFrame.setSize(this.getSize());});
+                settingsFrame.setSize(this.getSize());
+                settingsFrame.setLocation(this.getLocation()); });
+            EventQueue.invokeLater(() -> settingsFrame.setVisible(true));
+
         });
         exitButton.addActionListener(e -> System.exit(1));
 

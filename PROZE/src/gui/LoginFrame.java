@@ -12,7 +12,7 @@ import java.awt.event.WindowEvent;
 
 public class LoginFrame extends JFrame {
 
-    public LoginFrame(Game game, MenuFrame menuFrame) {
+    LoginFrame(Game game, MenuFrame menuFrame) {
         Configer confer = game.getConfiger();
         GameFrame gameFrame = game.getGameFrame();
         Player player = game.getPlayer();
@@ -39,27 +39,25 @@ public class LoginFrame extends JFrame {
 
         loginButton.addActionListener(e -> {
             if (nickField.getText().isEmpty()) {
-                nickField.setText("name");
+                nickField.setText(confer.getDefaultNick());
             }
             else {
                 EventQueue.invokeLater(() -> player.setNick(nickField.getText()));
                 EventQueue.invokeLater(() -> this.setVisible(false));
                 EventQueue.invokeLater(() -> {
-                    gameFrame.setVisible(true);
                     gameFrame.setSize(this.getSize());
+                    gameFrame.setLocation(this.getLocation());
                 });
+                EventQueue.invokeLater(() -> gameFrame.setVisible(true) );
             }
         });
         backToMenuButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
             EventQueue.invokeLater(() -> {
-                menuFrame.setVisible(true);
-                menuFrame.setSize(this.getSize());});
+                menuFrame.setSize(this.getSize());
+                menuFrame.setLocation(this.getLocation()); });
+            EventQueue.invokeLater(() -> menuFrame.setVisible(true) );
         });
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-            }
-        });
+        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) { System.exit(0); } });
     }
 }

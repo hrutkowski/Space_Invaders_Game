@@ -77,6 +77,7 @@ public class GameFrame extends JFrame implements KeyListener{
             } else {
                 game.stopAnimation();
                 pauseButton.setLabel(confer.getButtonStartText());
+                canvasPanel.requestFocus();
             }
             pack(); });
 
@@ -100,7 +101,7 @@ public class GameFrame extends JFrame implements KeyListener{
         add(canvasPanel, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
 
-        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) { System.exit(0);}});
+        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) { System.exit(0); } });
 
         addComponentListener(new ComponentAdapter() { @Override public void componentResized(ComponentEvent e) { gameCanvas.setPreferredSize(gameCanvas.getSize()); } });
 
@@ -149,6 +150,7 @@ public class GameFrame extends JFrame implements KeyListener{
                 setMovementState(typeOfMove.RIGHT);
                 moveCannon();
             }
+            case KeyEvent.VK_SPACE -> System.out.println("PIF PAF");
             default -> setMovementState(typeOfMove.STOPPED);
         }
     }

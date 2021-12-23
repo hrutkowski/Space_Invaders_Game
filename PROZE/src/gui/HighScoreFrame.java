@@ -38,7 +38,10 @@ public class HighScoreFrame extends JFrame {
 
         backToMenuButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
-            EventQueue.invokeLater(() -> menuFrame.setVisible(true));
+            EventQueue.invokeLater(() -> {
+                menuFrame.setSize(this.getSize());
+                menuFrame.setLocation(this.getLocation()); });
+            EventQueue.invokeLater(() -> menuFrame.setVisible(true) );
         });
 
         addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) { System.exit(0); } });

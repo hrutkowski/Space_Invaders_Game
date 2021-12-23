@@ -130,27 +130,29 @@ public class Configer {
     /** Metoda zwracająca preferredScreenHeight */
     public int getPreferredScreenHeight() { return Integer.parseInt(proper.getProperty("preferredScreenHeight"));}
     /** Metoda zwracająca backToMenuText */
-    public String getBackToMenuText() { return (proper.getProperty("backToMenuText")); }
+    public String getBackToMenuText() { return proper.getProperty("backToMenuText"); }
     /** Metoda zwracająca infoText */
-    public String getInfoText() { return (proper.getProperty("infoText")); }
+    public String getInfoText() { return proper.getProperty("infoText"); }
     /** Metoda zwracająca infoTitle */
-    public String getInfoTitle() { return (proper.getProperty("infoTitle")); }
+    public String getInfoTitle() { return proper.getProperty("infoTitle"); }
     /** Metoda zwracająca highScoreTitle */
-    public String getHighScoreTitle() { return (proper.getProperty("highScoreTitle")); }
+    public String getHighScoreTitle() { return proper.getProperty("highScoreTitle"); }
     /** Metoda zwracająca settingsTitle */
-    public String getSettingsTitle() { return (proper.getProperty("settingsTitle")); }
+    public String getSettingsTitle() { return proper.getProperty("settingsTitle"); }
     /** Metoda zwracająca menuTitle */
-    public String getMenuTitle() { return (proper.getProperty("menuTitle")); }
+    public String getMenuTitle() { return proper.getProperty("menuTitle"); }
     /** Metoda zwracająca pathLevel1*/
-    public String getPathLevel1() { return (proper.getProperty("pathLevel1")); }
+    public String getPathLevel1() { return proper.getProperty("pathLevel1"); }
     /** Metoda zwracająca pathLevel2*/
-    public String getPathLevel2() { return (proper.getProperty("pathLevel2")); }
+    public String getPathLevel2() { return proper.getProperty("pathLevel2"); }
     /** Metoda zwracająca pathLevel3*/
-    public String getPathLevel3() { return (proper.getProperty("pathLevel3")); }
+    public String getPathLevel3() { return proper.getProperty("pathLevel3"); }
     /** Metoda zwracająca loginTitle*/
-    public String getLoginTitle() { return (proper.getProperty("loginTitle")); }
+    public String getLoginTitle() { return proper.getProperty("loginTitle"); }
     /** Metoda zwracająca buttonLogin*/
-    public String getButtonLogin() { return (proper.getProperty("buttonLogin")); }
+    public String getButtonLogin() { return proper.getProperty("buttonLogin"); }
     /** Metoda zwracająca labelLogin*/
-    public String getLabelLogin() { return (proper.getProperty("labelLogin")); }
+    public String getLabelLogin() { return proper.getProperty("labelLogin"); }
+    /** Metoda zwracająca defaultNick*/
+    public String getDefaultNick() { return proper.getProperty("defaultNick"); }
 }
