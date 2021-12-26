@@ -44,7 +44,13 @@ public class HighScoreFrame extends JFrame {
             EventQueue.invokeLater(() -> menuFrame.setVisible(true) );
         });
 
-        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) { System.exit(0); } });
+        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) {
+            EventQueue.invokeLater(() -> game.getMenuFrame().getHighScoreFrame().setVisible(false));
+            EventQueue.invokeLater(() -> {
+                ExitFrame exitFrame = new ExitFrame(game, game.getMenuFrame().getHighScoreFrame(), game.getMenuFrame().getHighScoreFrame().getSize(), game.getMenuFrame().getHighScoreFrame().getLocation());
+                exitFrame.setVisible(true);
+            });
+        }});
 
         pack();
     }

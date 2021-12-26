@@ -26,11 +26,7 @@ public class GameFrame extends JFrame implements KeyListener{
     /** Atrybut klasy TypeOfMove */
     private typeOfMove cannonState;
     /** Prywatna enumeracja */
-    private enum typeOfMove {
-        LEFT,
-        RIGHT,
-        STOPPED
-    }
+    private enum typeOfMove { LEFT, RIGHT, STOPPED}
 
     /** Konstruktor klasy GameFrame */
     public GameFrame(Game game) {
@@ -67,8 +63,20 @@ public class GameFrame extends JFrame implements KeyListener{
 
         Button pauseButton = new Button(confer.getButtonStartText());
         Button exitButton = new Button(confer.getButtonEndText());
+        Button backToMenuButton = new Button(confer.getButtonBackToMenuText());
 
-        exitButton.addActionListener(e -> System.exit(1));
+        exitButton.addActionListener(e -> {
+            EventQueue.invokeLater(() -> game.getGameFrame().setVisible(false));
+            EventQueue.invokeLater(() -> {ExitFrame exitFrame = new ExitFrame(game, game.getGameFrame(), game.getGameFrame().getSize(), game.getGameFrame().getLocation());
+                exitFrame.setVisible(true); });
+        });
+        backToMenuButton.addActionListener(e -> {
+            EventQueue.invokeLater(() -> this.setVisible(false));
+            EventQueue.invokeLater(() -> {
+                game.getMenuFrame().setSize(this.getSize());
+                game.getMenuFrame().setLocation(this.getLocation()); });
+            EventQueue.invokeLater(() -> game.getMenuFrame().setVisible(true) );
+        });
         pauseButton.addActionListener(e -> {
             if (game.getAnimation() == null) {
                 game.startAnimation();
@@ -82,6 +90,7 @@ public class GameFrame extends JFrame implements KeyListener{
             pack(); });
 
         buttonPanel.add(pauseButton);
+        buttonPanel.add(backToMenuButton);
         buttonPanel.add(exitButton);
 
         pointsPanel.add(pointsLabel);
@@ -101,13 +110,19 @@ public class GameFrame extends JFrame implements KeyListener{
         add(canvasPanel, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
 
-        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) { System.exit(0); } });
-
         addComponentListener(new ComponentAdapter() { @Override public void componentResized(ComponentEvent e) { gameCanvas.setPreferredSize(gameCanvas.getSize()); } });
 
         setFocusable(true);
         setFocusTraversalKeysEnabled(true);
         addKeyListener(this);
+
+        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) {
+            EventQueue.invokeLater(() -> game.getGameFrame().setVisible(false));
+            EventQueue.invokeLater(() -> {
+                ExitFrame exitFrame = new ExitFrame(game, game.getGameFrame(), game.getGameFrame().getSize(), game.getGameFrame().getLocation());
+                exitFrame.setVisible(true);
+            });
+        }});
 
         pack();
     }

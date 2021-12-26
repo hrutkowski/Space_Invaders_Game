@@ -21,6 +21,15 @@ public class MenuFrame extends JFrame {
     /** Atrybut klasy LoginFrame */
     private final LoginFrame loginFrame;
 
+    /** Metoda zwracajaca obiekt klasy InfoFrame */
+    public InfoFrame getInfoFrame() { return infoFrame; }
+    /** Metoda zwracajaca obiekt klasy SettingsFrame */
+    public SettingsFrame getSettingsFrame() { return settingsFrame; }
+    /** Metoda zwracajaca obiekt klasy HighScoreFrame */
+    public HighScoreFrame getHighScoreFrame() { return highScoreFrame; }
+    /** Metoda zwracajaca obiekt klasy LoginFrame */
+    public LoginFrame getLoginFrame() { return loginFrame; }
+
     /** Konstruktor klasy MenuFrame */
     public MenuFrame(Game game) {
         Configer confer = game.getConfiger();
@@ -58,21 +67,24 @@ public class MenuFrame extends JFrame {
             EventQueue.invokeLater(() -> this.setVisible(false));
             EventQueue.invokeLater(() -> {
                 loginFrame.setSize(this.getSize());
-                loginFrame.setLocation(this.getLocation()); });
+                loginFrame.setLocation(this.getLocation());
+            });
             EventQueue.invokeLater(() -> loginFrame.setVisible(true));
         });
         infoButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
             EventQueue.invokeLater(() -> {
                 infoFrame.setSize(this.getSize());
-                infoFrame.setLocation(this.getLocation()); });
+                infoFrame.setLocation(this.getLocation());
+            });
             EventQueue.invokeLater(() -> infoFrame.setVisible(true));
         });
         highScoreButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
             EventQueue.invokeLater(() -> {
                 highScoreFrame.setSize(this.getSize());
-                highScoreFrame.setLocation(this.getLocation()); });
+                highScoreFrame.setLocation(this.getLocation());
+            });
             EventQueue.invokeLater(() -> highScoreFrame.setVisible(true));
         });
         settingsButton.addActionListener(e -> {
@@ -81,12 +93,22 @@ public class MenuFrame extends JFrame {
                 settingsFrame.setSize(this.getSize());
                 settingsFrame.setLocation(this.getLocation()); });
             EventQueue.invokeLater(() -> settingsFrame.setVisible(true));
-
         });
-        exitButton.addActionListener(e -> System.exit(1));
+        exitButton.addActionListener(e -> {
+            EventQueue.invokeLater(() -> this.setVisible(false));
+            EventQueue.invokeLater(() -> {
+                ExitFrame exitFrame = new ExitFrame(game,this, this.getSize(), this.getLocation());
+                exitFrame.setVisible(true);
+            });
+        });
 
-        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) { System.exit(0); } });
-
+        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) {
+            EventQueue.invokeLater(() -> game.getMenuFrame().setVisible(false));
+            EventQueue.invokeLater(() -> {
+                ExitFrame exitFrame = new ExitFrame(game, game.getMenuFrame(), game.getMenuFrame().getSize(), game.getMenuFrame().getLocation());
+                exitFrame.setVisible(true);
+            });
+        }});
         pack();
     }
 }

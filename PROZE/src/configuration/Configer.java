@@ -92,9 +92,9 @@ public class Configer {
         return Integer.parseInt(proper.getProperty("initialLives"));
     }
     /** Metoda zwracająca labelPoints */
-    public String getLabelPoints() { return (proper.getProperty("labelPoints"));}
+    public String getLabelPoints() { return (proper.getProperty("labelPoints")); }
     /** Metoda zwracająca labelColorCannon */
-    public String getLabelColorCannon() { return (proper.getProperty("labelColorCannon"));}
+    public String getLabelColorCannon() { return (proper.getProperty("labelColorCannon")); }
     /** Metoda zwracająca labelLifesLeft */
     public String getLabelLivesLeft() {
         return (proper.getProperty("labelLivesLeft"));
@@ -110,13 +110,13 @@ public class Configer {
     /** Metoda zwracająca enemyDeadPoints */
     public int getEnemyDeadPoints() { return Integer.parseInt(proper.getProperty("enemyDeadPoints")); }
      /** Metoda zwracająca cannonXScreenPosition */
-    public float getCannonXScreenPosition() {return Float.parseFloat(proper.getProperty("cannonXScreenPosition"));}
+    public float getCannonXScreenPosition() {return Float.parseFloat(proper.getProperty("cannonXScreenPosition")); }
     /** Metoda zwracająca cannonYScreenPosition */
-    public float getCannonYScreenPosition() {return Float.parseFloat(proper.getProperty("cannonYScreenPosition"));}
+    public float getCannonYScreenPosition() {return Float.parseFloat(proper.getProperty("cannonYScreenPosition")); }
     /** Metoda zwracająca pathHighScores */
-    public String getPathHighScores() {return proper.getProperty("pathHighScores");}
+    public String getPathHighScores() {return proper.getProperty("pathHighScores"); }
     /** Metoda zwracająca colorCannon */
-    public String getColorCannon() { return proper.getProperty("colorCannon");}
+    public String getColorCannon() { return proper.getProperty("colorCannon"); }
     /** Metoda zwracająca cannonWeight */
     public float getCannonWidth() { return Float.parseFloat(proper.getProperty("cannonWidth"));}
     /** Metoda zwracająca cannonHeigh */
@@ -124,11 +124,11 @@ public class Configer {
     /** Metoda zwracająca cannonWeight */
     public float getEnemyWidth() { return Float.parseFloat(proper.getProperty("enemyWidth"));}
     /** Metoda zwracająca cannonHeight */
-    public float getEnemyHeight() { return Float.parseFloat(proper.getProperty("enemyHeight"));}
+    public float getEnemyHeight() { return Float.parseFloat(proper.getProperty("enemyHeight")); }
     /** Metoda zwracająca preferredScreenWidth */
-    public int getPreferredScreenWidth() { return Integer.parseInt(proper.getProperty("preferredScreenWidth"));}
+    public int getPreferredScreenWidth() { return Integer.parseInt(proper.getProperty("preferredScreenWidth")); }
     /** Metoda zwracająca preferredScreenHeight */
-    public int getPreferredScreenHeight() { return Integer.parseInt(proper.getProperty("preferredScreenHeight"));}
+    public int getPreferredScreenHeight() { return Integer.parseInt(proper.getProperty("preferredScreenHeight")); }
     /** Metoda zwracająca backToMenuText */
     public String getBackToMenuText() { return proper.getProperty("backToMenuText"); }
     /** Metoda zwracająca infoText */
@@ -155,4 +155,9 @@ public class Configer {
     public String getLabelLogin() { return proper.getProperty("labelLogin"); }
     /** Metoda zwracająca defaultNick*/
     public String getDefaultNick() { return proper.getProperty("defaultNick"); }
+    /** Metoda zwracająca exitFrameHeight */
+    public int getExitFrameHeight() { return Integer.parseInt(proper.getProperty("exitFrameHeight")); }
+    /** Metoda zwracająca exitFrameWidth */
+    public int getExitFrameWidth() { return Integer.parseInt(proper.getProperty("exitFrameWidth")); }
+
 }

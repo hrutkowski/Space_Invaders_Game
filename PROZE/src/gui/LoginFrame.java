@@ -58,6 +58,12 @@ public class LoginFrame extends JFrame {
                 menuFrame.setLocation(this.getLocation()); });
             EventQueue.invokeLater(() -> menuFrame.setVisible(true) );
         });
-        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) { System.exit(0); } });
+        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) {
+            EventQueue.invokeLater(() -> game.getMenuFrame().getLoginFrame().setVisible(false));
+            EventQueue.invokeLater(() -> {
+                ExitFrame exitFrame = new ExitFrame(game,game.getMenuFrame().getLoginFrame(), game.getMenuFrame().getLoginFrame().getSize(), game.getMenuFrame().getLoginFrame().getLocation());
+                exitFrame.setVisible(true);
+            });
+        }});
     }
 }

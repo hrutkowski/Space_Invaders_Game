@@ -41,7 +41,13 @@ public class InfoFrame extends JFrame {
             EventQueue.invokeLater(() -> menuFrame.setVisible(true) );
         });
 
-        addWindowListener(new WindowAdapter() {public void windowClosing(WindowEvent e) { System.exit(0); } });
+        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) {
+            EventQueue.invokeLater(() -> game.getMenuFrame().getInfoFrame().setVisible(false));
+            EventQueue.invokeLater(() -> {
+                ExitFrame exitFrame = new ExitFrame(game, game.getMenuFrame().getInfoFrame(), game.getMenuFrame().getInfoFrame().getSize(), game.getMenuFrame().getInfoFrame().getLocation());
+                exitFrame.setVisible(true);
+            });
+        }});
 
         pack();
     }

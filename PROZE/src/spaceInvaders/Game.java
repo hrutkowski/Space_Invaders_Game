@@ -101,6 +101,6 @@ public class Game {
         animation.setKicker(null);
         animation = null;
     }
-    /** metoda uruchamiajaca cala gre */
+    /** Metoda uruchamiajaca cala gre */
     public static void main(String[] args) { new Game(); }
 }

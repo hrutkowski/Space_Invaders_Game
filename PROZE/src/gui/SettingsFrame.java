@@ -52,7 +52,13 @@ public class SettingsFrame extends JFrame {
         blackColorButton.addActionListener(e -> cannon.setColor("black"));
         yellowColorButton.addActionListener(e -> cannon.setColor("yellow"));
 
-        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) { System.exit(0);} });
+        addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) {
+            EventQueue.invokeLater(() -> game.getMenuFrame().getSettingsFrame().setVisible(false));
+            EventQueue.invokeLater(() -> {
+                ExitFrame exitFrame = new ExitFrame(game, game.getMenuFrame().getSettingsFrame(), game.getMenuFrame().getSettingsFrame().getSize(), game.getMenuFrame().getSettingsFrame().getLocation());
+                exitFrame.setVisible(true);
+            });
+        }});
 
         pack();
     }
