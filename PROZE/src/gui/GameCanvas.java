@@ -2,6 +2,7 @@ package gui;
 
 import configuration.Configer;
 import gameLogic.Cannon;
+import gameLogic.GameBulletList;
 import gameLogic.GameObjectList;
 import gameLogic.MovingObject;
 import spaceInvaders.Game;
@@ -12,18 +13,21 @@ import java.awt.*;
 public class GameCanvas extends Canvas {
 
     /** Atrybut klasy GameObjectList */
-    private final GameObjectList gameObjectList;
+    private final GameObjectList gameEnemyList;
+    /** Atrybut klasy GameBulletList */
+    private final GameBulletList gameBulletList;
     /** Atrybut klasy Cannon */
     private final Cannon cannon;
     /** Atrybut klasy Configer */
     private final Configer confer;
 
     /** Konstruktor klasy GameCanvas */
-    public GameCanvas(Color colorBackground, GameObjectList gameObjectList, Cannon cannon, Game game) {
+    public GameCanvas(Color colorBackground, GameObjectList gameEnemyList, GameBulletList gameBulletList, Cannon cannon, Game game) {
         setBackground(colorBackground);
-        this.gameObjectList = gameObjectList;
+        this.gameEnemyList = gameEnemyList;
         this.cannon = cannon;
         this.confer = game.getConfiger();
+        this.gameBulletList = gameBulletList;
     }
     /** Metoda laczaca z zasobami ekranu */
     public void addNotify() {
@@ -33,11 +37,17 @@ public class GameCanvas extends Canvas {
     /** Metoda rysujaca po plotnie */
     public void paint(Graphics g) {
         Dimension size = getSize();
-        for (MovingObject shape : gameObjectList) {
-            g.setColor(shape.getColor());
-            g.fillRect((int) (shape.getX() * size.getWidth()), (int) (shape.getY() * size.getHeight()),
-                    (int) (shape.getWidth() * size.getWidth()), (int) (shape.getHeight() * size.getHeight()));
+        for (MovingObject enemy : gameEnemyList) {
+            g.setColor(enemy.getColor());
+            g.fillRect((int) (enemy.getX() * size.getWidth()), (int) (enemy.getY() * size.getHeight()),
+                    (int) (enemy.getWidth() * size.getWidth()), (int) (enemy.getHeight() * size.getHeight()));
+        }
+        for (MovingObject bullet : gameBulletList) {
+            g.setColor(bullet.getColor());
+            g.fillRect((int) (bullet.getX() * size.getWidth()), (int) (bullet.getY() * size.getHeight()),
+                    (int) (bullet.getWidth() * size.getWidth()), (int) (bullet.getHeight() * size.getHeight()));
         }
         cannon.draw(g, size);
+
     }
 }

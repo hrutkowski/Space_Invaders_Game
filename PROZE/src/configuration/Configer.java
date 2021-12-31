@@ -63,10 +63,6 @@ public class Configer {
     public String getButtonBackToMenuText() {
         return proper.getProperty("buttonBackToMenuText");
     }
-    /** Metoda zwracająca buttonAcceptText */
-    public String getButtonAcceptText() {
-        return proper.getProperty("buttonAcceptText");
-    }
     /** Metoda zwracająca buttonPauseText */
     public String getButtonPauseText() {
         return proper.getProperty("buttonPauseText");
@@ -78,10 +74,6 @@ public class Configer {
     /** Metoda zwracająca gameOverText */
     public String getGameOverText() {
         return proper.getProperty("gameOverText");
-    }
-    /** Metoda zwracająca nickText */
-    public String getNickText() {
-        return proper.getProperty("nickText");
     }
     /** Metoda zwracająca initialPoints */
     public int getInitialPoints() {
@@ -117,14 +109,18 @@ public class Configer {
     public String getPathHighScores() {return proper.getProperty("pathHighScores"); }
     /** Metoda zwracająca colorCannon */
     public String getColorCannon() { return proper.getProperty("colorCannon"); }
-    /** Metoda zwracająca cannonWeight */
+    /** Metoda zwracająca cannonWidth */
     public float getCannonWidth() { return Float.parseFloat(proper.getProperty("cannonWidth"));}
-    /** Metoda zwracająca cannonHeigh */
+    /** Metoda zwracająca cannonHeight */
     public float getCannonHeight() { return Float.parseFloat(proper.getProperty("cannonHeight"));}
-    /** Metoda zwracająca cannonWeight */
+    /** Metoda zwracająca cannonWidth */
     public float getEnemyWidth() { return Float.parseFloat(proper.getProperty("enemyWidth"));}
     /** Metoda zwracająca cannonHeight */
     public float getEnemyHeight() { return Float.parseFloat(proper.getProperty("enemyHeight")); }
+    /** Metoda zwracająca bulletWidth */
+    public float getBulletWidth() { return Float.parseFloat(proper.getProperty("bulletWidth"));}
+    /** Metoda zwracająca bulletHeight */
+    public float getBulletHeight() { return Float.parseFloat(proper.getProperty("bulletHeight")); }
     /** Metoda zwracająca preferredScreenWidth */
     public int getPreferredScreenWidth() { return Integer.parseInt(proper.getProperty("preferredScreenWidth")); }
     /** Metoda zwracająca preferredScreenHeight */
@@ -159,5 +155,6 @@ public class Configer {
     public int getExitFrameHeight() { return Integer.parseInt(proper.getProperty("exitFrameHeight")); }
     /** Metoda zwracająca exitFrameWidth */
     public int getExitFrameWidth() { return Integer.parseInt(proper.getProperty("exitFrameWidth")); }
-
+    /** Metoda zwracająca limitEnemyColumns */
+    public int getLimitEnemyColumns() { return Integer.parseInt(proper.getProperty("limitEnemyColumns")); }
 }

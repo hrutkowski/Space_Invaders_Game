@@ -1,11 +1,9 @@
 package gui;
 
+import gameLogic.*;
 import helpfulTools.ColorTranslator;
 import configuration.Configer;
 import configuration.Leveler;
-import gameLogic.Cannon;
-import gameLogic.Enemy;
-import gameLogic.GameObjectList;
 import spaceInvaders.Game;
 
 import java.awt.*;
@@ -19,6 +17,8 @@ public class GameFrame extends JFrame implements KeyListener{
 
     /** Atrybut klasy GameObjectList */
     private final GameObjectList gameObjectList;
+    /** Atrybut klasy GameBulletList */
+    private final GameBulletList gameBulletList;
     /** Atrybut klasy GameCanvas */
     private final GameCanvas gameCanvas;
     /** Atrybut klasy Cannon */
@@ -26,26 +26,24 @@ public class GameFrame extends JFrame implements KeyListener{
     /** Atrybut klasy TypeOfMove */
     private typeOfMove cannonState;
     /** Prywatna enumeracja */
-    private enum typeOfMove { LEFT, RIGHT, STOPPED}
+    private enum typeOfMove { LEFT, RIGHT, STOPPED }
+    /** Atrybut klasy Configer */
+    private final Configer confer;
+    /** Atrybut klasy Leveler */
+    private final Leveler lvl;
 
     /** Konstruktor klasy GameFrame */
     public GameFrame(Game game) {
         gameObjectList = new GameObjectList();
-        Configer confer = game.getConfiger();
+        gameBulletList = new GameBulletList();
+        this.confer = game.getConfiger();
         setTitle(confer.getGameTitle());
-        ColorTranslator color = new ColorTranslator();
-        Leveler lvl1 = game.getLeveler();
+        ColorTranslator colorTranslator = new ColorTranslator();
+        this.lvl = game.getLeveler();
 
         cannon = game.getCannon();
 
-        Enemy enemy1 = new Enemy(lvl1.getEnemy1XScreenPosition(), lvl1.getEnemy1YScreenPosition(), confer.getEnemyWidth(), confer.getEnemyHeight(), color.translateColor(lvl1.getColorEnemy()), confer.getEnemyLives());
-        Enemy enemy2 = new Enemy(lvl1.getEnemy2XScreenPosition(), lvl1.getEnemy2YScreenPosition(), confer.getEnemyWidth(), confer.getEnemyHeight(), color.translateColor(lvl1.getColorEnemy()),  confer.getEnemyLives());
-        Enemy enemy3 = new Enemy(lvl1.getEnemy3XScreenPosition(), lvl1.getEnemy3YScreenPosition(), confer.getEnemyWidth(), confer.getEnemyHeight(), color.translateColor(lvl1.getColorEnemy()),  confer.getEnemyLives());
-        Enemy enemy4 = new Enemy(lvl1.getEnemy4XScreenPosition(), lvl1.getEnemy4YScreenPosition(), confer.getEnemyWidth(), confer.getEnemyHeight(), color.translateColor(lvl1.getColorEnemy()),  confer.getEnemyLives());
-        gameObjectList.add(enemy1);
-        gameObjectList.add(enemy2);
-        gameObjectList.add(enemy3);
-        gameObjectList.add(enemy4);
+        addEnemy(lvl.getEnemyNumber(), colorTranslator);
 
         setLayout(new BorderLayout());
 
@@ -102,7 +100,7 @@ public class GameFrame extends JFrame implements KeyListener{
         topPanel.add(buttonPanel, BorderLayout.EAST);
         topPanel.add(pointsPanel, BorderLayout.WEST);
 
-        canvasPanel.add(gameCanvas = new GameCanvas(color.translateColor(lvl1.getColorBackground()), gameObjectList, cannon, game), BorderLayout.CENTER);
+        canvasPanel.add(gameCanvas = new GameCanvas(colorTranslator.translateColor(lvl.getColorBackground()), gameObjectList, gameBulletList, cannon, game), BorderLayout.CENTER);
         canvasPanel.addKeyListener(this);
         bottomPanel.add(livesPanel, BorderLayout.WEST);
 
@@ -130,6 +128,10 @@ public class GameFrame extends JFrame implements KeyListener{
     public GameObjectList getGameObjectList() {
         return gameObjectList;
     }
+    /** Metoda zwracajaca obiekt klasy GameBulletList */
+    public GameBulletList getGameBulletList() {
+        return gameBulletList;
+    }
     /** Metoda zwracająca obiekt klasy GameCanvas */
     public GameCanvas getGameCanvas() {
         return gameCanvas;
@@ -149,6 +151,29 @@ public class GameFrame extends JFrame implements KeyListener{
             }
         }
     }
+    /** Mwtoda tworząca Enemy */
+    public void addEnemy(int enemyNumber, ColorTranslator color) {
+        int rows = calulateRows(enemyNumber);
+        int columns;
+        for (int j = 0; j < rows; j++) {
+            float positionY = 0.1f * (j+1);
+            columns = Math.min(enemyNumber, confer.getLimitEnemyColumns());
+            for (int i = 0; i < columns; i++) {
+                float positionX = 1f / (columns + 1) * (i + 1) - confer.getEnemyWidth() / 2;
+                gameObjectList.add(new Enemy(positionX, positionY, confer.getEnemyWidth(), confer.getEnemyHeight(), color.translateColor(lvl.getColorEnemy()), confer.getEnemyLives()));
+            }
+            enemyNumber-=10;
+        }
+    }
+    /** Metoda wyliczajaca ilośc kolumn */
+    public int calulateRows(int enemyNumber){
+        int rows=0;
+        if(enemyNumber<=10) rows=1;
+        else if(enemyNumber<=20) rows=2;
+        else if(enemyNumber<=30) rows=3;
+        else if(enemyNumber<=40) rows=4;
+        return rows;
+    }
     /** Metoda nadpisujaca keyTyped */
     @Override
     public void keyTyped(KeyEvent e) {
@@ -165,7 +190,11 @@ public class GameFrame extends JFrame implements KeyListener{
                 setMovementState(typeOfMove.RIGHT);
                 moveCannon();
             }
-            case KeyEvent.VK_SPACE -> System.out.println("PIF PAF");
+            case KeyEvent.VK_SPACE -> {
+                float bulletX = cannon.getX() + cannon.getWidth()/2f;
+                float bulletY = cannon.getY() + cannon.getHeight()/2f;
+                getGameBulletList().add(new Bullet(bulletX, bulletY, confer.getBulletWidth(), confer.getBulletHeight(), Color.BLUE));
+            }
             default -> setMovementState(typeOfMove.STOPPED);
         }
     }

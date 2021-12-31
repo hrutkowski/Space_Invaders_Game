@@ -8,8 +8,10 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-
+/** Klasa odpowiadajaca za okienko pojawiajace sie przy wyjsciu */
 public class ExitFrame extends JFrame {
+
+    /** Konstruktor klasy ExitFrame */
     public ExitFrame(Game game, JFrame lastFrame, Dimension lastFrameDimension, Point lastFrameLocation) {
         Configer confer = game.getConfiger();
         setTitle(confer.getQuitDialogTitle());

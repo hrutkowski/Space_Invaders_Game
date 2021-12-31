@@ -24,6 +24,7 @@ public class Animation implements Runnable {
     @Override
     public void run() {
         GameObjectList gameObjectList = gameFrame.getGameObjectList();
+        GameBulletList gameBulletList = gameFrame.getGameBulletList();
         float dX = 0.015f;
         float dY = 0.015f;
         while (kicker == Thread.currentThread()) {
@@ -31,16 +32,16 @@ public class Animation implements Runnable {
             catch (InterruptedException ignore) {}
             float valueXRightEnemy = 0;
             float valueXLeftEnemy = 1;
-            float wodthRightEnemy = 0;
+            float widthRightEnemy = 0;
             float helpfulY = 0;
             for (Enemy shape : gameObjectList) {
                 if(shape.getX() > valueXRightEnemy) {
                     valueXRightEnemy = shape.getX();
-                    wodthRightEnemy = shape.getWidth();}
+                    widthRightEnemy = shape.getWidth();}
                 if(shape.getX() < valueXLeftEnemy) {
                     valueXLeftEnemy = shape.getX();}
             }
-            if ((valueXRightEnemy + dX) >= (1f - wodthRightEnemy) || valueXLeftEnemy + dX <= 0f) {
+            if ((valueXRightEnemy + dX) >= (1f - widthRightEnemy) || valueXLeftEnemy + dX <= 0f) {
                 dX = -dX;
                 helpfulY = dY;
             }
@@ -48,6 +49,13 @@ public class Animation implements Runnable {
                 shape.setX(shape.getX() + dX);
                 shape.setY(shape.getY() + helpfulY);
             }
+
+            for(Bullet bullet : gameBulletList) {
+                float temp = (float) (bullet.getY() - 0.01);
+                bullet.setY(temp);
+            }
+            gameBulletList.removeIf( bullet -> ( (bullet.getY()+bullet.getHeight()) <= 0.1f) );
+
             gameFrame.getGameCanvas().repaint();
         }
     }
