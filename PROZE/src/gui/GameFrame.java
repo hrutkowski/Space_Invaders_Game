@@ -196,7 +196,5 @@ public class GameFrame extends JFrame implements KeyListener{
         setMovementState(typeOfMove.STOPPED);
     }
     /** Metoda aktualizujac wynik */
-    public void setScore(int points){
-        pointsAmount.setText(String.valueOf(points));
-    }
+    public void setScore(int points){ pointsAmount.setText(String.valueOf(points)); }
 }
