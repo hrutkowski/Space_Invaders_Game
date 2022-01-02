@@ -1,7 +1,6 @@
 package gui;
 
 import configuration.Configer;
-import configuration.HighScoreManager;
 import spaceInvaders.Game;
 
 import javax.swing.*;
@@ -33,7 +32,6 @@ public class MenuFrame extends JFrame {
     /** Konstruktor klasy MenuFrame */
     public MenuFrame(Game game) {
         Configer confer = game.getConfiger();
-        HighScoreManager highScoreManager = game.getHighScoreManager();
         setTitle(confer.getMenuTitle());
 
         this.highScoreFrame = new HighScoreFrame(game, this);
@@ -101,6 +99,13 @@ public class MenuFrame extends JFrame {
                 exitFrame.setVisible(true);
             });
         });
+
+        if(game.isGameOver()){
+            EventQueue.invokeLater(() -> {
+                        // GameOverFrame gameOverFrame = new GameOverFrame(game, this, this.getSize(), this.getLocation());
+                        // gameOverFrame.setVisible(true);
+            });
+        }
 
         addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) {
             EventQueue.invokeLater(() -> game.getMenuFrame().setVisible(false));

@@ -32,6 +32,8 @@ public class Game {
     final private Cannon cannon;
     /** Atrybut klasy Player */
     final private Player player;
+    /** Atrybut mowiacy o koncu gry */
+    public boolean gameOver;
 
     /** Metoda zwracajaca obiekt klasy Animation */
     public Animation getAnimation() { return animation; }
@@ -53,6 +55,10 @@ public class Game {
     }
     /** Metoda zwracajaca obiekt klasy Player */
     public Player getPlayer() { return player; }
+    /** Metoda zwracajaca GameOver */
+    public boolean isGameOver() { return gameOver; }
+    /** Metoda ustawiajaca GameOver */
+    public void GameOver() { gameOver=true; }
 
     /** Konstruktor klasy Game */
     Game() {
@@ -72,6 +78,7 @@ public class Game {
         }
         leveler = lev1;
         configer = conf;
+        gameOver = false;
         player = new Player("",0);
         highScoreManager = new HighScoreManager(configer.getPathHighScores());
         ColorTranslator col = new ColorTranslator();

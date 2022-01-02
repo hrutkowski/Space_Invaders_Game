@@ -7,13 +7,14 @@ import java.util.Properties;
 
 /** Klasa odpowiedzialna za odczytywanie paramertów poziomów z pliku txt */
 public class Leveler {
-
+    private String path;
     /** Klasa typu Properties do wyciągania wartości z pliku txt */
     static Properties proper = new Properties();
 
     /** Metoda wczytująca dane z pliku txt */
-    public Leveler(String pathToMainConfiguration) throws IOException {
-        InputStream propertiesFile = new FileInputStream(pathToMainConfiguration);
+    public Leveler(String pathToTxT) throws IOException {
+        path = pathToTxT;
+        InputStream propertiesFile = new FileInputStream(path);
         proper.load(propertiesFile);
         propertiesFile.close();
     }
@@ -25,4 +26,7 @@ public class Leveler {
     public int getEnemyPoints() { return Integer.parseInt(proper.getProperty("enemyPoints")); }
     /** Metoda zwracająca ColorBackground */
     public String getColorBackground() {return proper.getProperty("colorBackground");}
+    public void setPath(String pathToTxT){
+        path=pathToTxT;
+    }
 }

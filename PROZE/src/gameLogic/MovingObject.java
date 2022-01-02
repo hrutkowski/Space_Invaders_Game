@@ -41,8 +41,12 @@ public class MovingObject {
     public void setY(float y) { this.y = y;}
     /** Metoda zwracajaca object typu Reactangle pomocny w sprawdzaniu kolizji */
     public Rectangle2D.Float getBounds(){ return new Rectangle2D.Float(this.x,this.y,this.width,this.height); }
-    /** Metoda sprawdzajaca czy Enemy żyje */
+    /** Metoda sprawdzajaca czy zyje */
     public boolean isKilled(){ return killed; }
-    /** Metoda uśmiercająca Enemy */
+    /** Metoda uśmiercająca */
     public void kill(){ killed=true; }
+    /** Metoda strzelania */
+    public void fire(GameObjectList gameBulletList, float width, float height){
+        gameBulletList.add(new Bullet(getX()+getWidth()/2f,getY()+getHeight()/2f, width, height, color));
+    }
 }

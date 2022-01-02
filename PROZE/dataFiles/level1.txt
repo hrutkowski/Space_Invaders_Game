@@ -1,4 +1,4 @@
-enemyNumber=22
+enemyNumber=8
 colorEnemy=red
 enemyPoints=10
 colorBackground=pink

@@ -3,6 +3,8 @@ package gameLogic;
 import gui.GameFrame;
 import spaceInvaders.Game;
 
+import java.util.Random;
+
 /** Klasa odpowiadajaca za animacje */
 public class Animation implements Runnable {
 
@@ -31,11 +33,15 @@ public class Animation implements Runnable {
     @Override
     public void run() {
         GameObjectList gameEnemyList = gameFrame.getGameEnemyList();
-        GameObjectList gameBulletList = gameFrame.getGameBulletList();
+        GameObjectList gameCannonBulletList = gameFrame.getGameCannonBulletList();
+        GameObjectList gameEnemyBulletList = gameFrame.getGameEnemyBulletList();
+
+        int counter=0;
+
         float dX = 0.015f;
         float dY = 0.015f;
         while (kicker == Thread.currentThread()) {
-            try {Thread.sleep(50);}
+            try {Thread.sleep(60);}
             catch (InterruptedException ignore) {}
             float valueXRightEnemy = 0;
             float valueXLeftEnemy = 1;
@@ -57,16 +63,42 @@ public class Animation implements Runnable {
                 shape.setY(shape.getY() + helpfulY);
             }
 
-            for(MovingObject bullet : gameBulletList) {
-                float temp = (float) (bullet.getY() - 0.01);
+            for(MovingObject bullet : gameCannonBulletList) {
+                float temp = (float) (bullet.getY() - 0.02);
                 bullet.setY(temp);
             }
 
+            for(MovingObject bullet : gameEnemyBulletList) {
+                float temp = (float) (bullet.getY() + 0.02);
+                bullet.setY(temp);
+            }
+
+            if(gameEnemyList.isEmpty()) {
+                // nowy poziom
+            }
+            else{
+                if(counter==15) {
+                    Random rand = new Random();
+                    gameEnemyList.get(rand.nextInt(gameEnemyList.size())).fire(gameEnemyBulletList, game.getConfiger().getBulletWidth(), game.getConfiger().getBulletHeight());
+                    counter = 0;
+                }
+            }
+
             gameFrame.setScore(game.getPlayer().getPoints());
+            gameFrame.setLives(game.getCannon().getLives());
 
-            gameBulletList.removeIf( bullet -> ( (bullet.getY()+bullet.getHeight()) <= 0.1f) );
+            gameCannonBulletList.removeIf( bullet -> ( (bullet.getY()+bullet.getHeight()) <= 0.05f) );
+            gameEnemyBulletList.removeIf( bullet -> ( (bullet.getY()) >= 0.95f) );
 
-            physics.collision(gameEnemyList,gameBulletList);
+            physics.collisionEnemy(gameEnemyList,gameCannonBulletList);
+            physics.collisionCannon(game.getCannon(),gameEnemyBulletList);
+
+            counter+=1;
+
+            if(game.getCannon().getLives()==0) {
+                game.stopAnimation();
+                game.GameOver();
+            }
 
             gameFrame.getGameCanvas().repaint();
         }

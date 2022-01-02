@@ -17,7 +17,8 @@ public class GameFrame extends JFrame implements KeyListener{
 
     /** Atrybut klasy GameObjectList */
     private final GameObjectList gameEnemyList;
-    private final GameObjectList gameBulletList;
+    private final GameObjectList gameCannonBulletList;
+    private final GameObjectList gameEnemyBulletList;
     /** Atrybut klasy GameCanvas */
     private final GameCanvas gameCanvas;
     /** Atrybut klasy Cannon */
@@ -32,11 +33,13 @@ public class GameFrame extends JFrame implements KeyListener{
     private final Leveler lvl;
     /** Atrybut klasy Label */
     private final Label pointsAmount;
+    private final Label livesAmount;
 
     /** Konstruktor klasy GameFrame */
     public GameFrame(Game game) {
         gameEnemyList = new GameObjectList();
-        gameBulletList = new GameObjectList();
+        gameCannonBulletList = new GameObjectList();
+        gameEnemyBulletList = new GameObjectList();
         this.confer = game.getConfiger();
         setTitle(confer.getGameTitle());
         ColorTranslator colorTranslator = new ColorTranslator();
@@ -58,7 +61,7 @@ public class GameFrame extends JFrame implements KeyListener{
         Label pointsLabel = new Label(confer.getLabelPoints());
         pointsAmount = new Label(Integer.toString(confer.getInitialPoints()));
         Label livesLabel = new Label(confer.getLabelLivesLeft());
-        Label livesAmount = new Label(Integer.toString(confer.getInitialLives()));
+        livesAmount = new Label(Integer.toString(confer.getInitialLives()));
 
         Button pauseButton = new Button(confer.getButtonStartText());
         Button exitButton = new Button(confer.getButtonEndText());
@@ -92,7 +95,7 @@ public class GameFrame extends JFrame implements KeyListener{
         topPanel.add(buttonPanel, BorderLayout.EAST);
         topPanel.add(pointsPanel, BorderLayout.WEST);
 
-        canvasPanel.add(gameCanvas = new GameCanvas(colorTranslator.translateColor(lvl.getColorBackground()), gameEnemyList, gameBulletList, cannon, game), BorderLayout.CENTER);
+        canvasPanel.add(gameCanvas = new GameCanvas(colorTranslator.translateColor(lvl.getColorBackground()), gameEnemyList, gameCannonBulletList, gameEnemyBulletList, cannon, game), BorderLayout.CENTER);
         canvasPanel.addKeyListener(this);
         bottomPanel.add(livesPanel, BorderLayout.WEST);
 
@@ -121,8 +124,12 @@ public class GameFrame extends JFrame implements KeyListener{
         return gameEnemyList;
     }
     /** Metoda zwracajaca obiekt klasy GameBulletList */
-    public GameObjectList getGameBulletList() {
-        return gameBulletList;
+    public GameObjectList getGameCannonBulletList() {
+        return gameCannonBulletList;
+    }
+    /** Metoda zwracajaca obiekt klasy GameEnemyBulletList */
+    public GameObjectList getGameEnemyBulletList() {
+        return gameEnemyBulletList;
     }
     /** Metoda zwracająca obiekt klasy GameCanvas */
     public GameCanvas getGameCanvas() {
@@ -182,11 +189,7 @@ public class GameFrame extends JFrame implements KeyListener{
                 setMovementState(typeOfMove.RIGHT);
                 moveCannon();
             }
-            case KeyEvent.VK_SPACE -> {
-                float bulletX = cannon.getX() + cannon.getWidth()/2f;
-                float bulletY = cannon.getY() + cannon.getHeight()/2f;
-                getGameBulletList().add(new Bullet(bulletX, bulletY, confer.getBulletWidth(), confer.getBulletHeight(), Color.BLUE));
-            }
+            case KeyEvent.VK_SPACE -> cannon.fire(gameCannonBulletList, confer.getBulletWidth(), confer.getBulletHeight());
             default -> setMovementState(typeOfMove.STOPPED);
         }
     }
@@ -197,4 +200,6 @@ public class GameFrame extends JFrame implements KeyListener{
     }
     /** Metoda aktualizujac wynik */
     public void setScore(int points){ pointsAmount.setText(String.valueOf(points)); }
+    /** Metoda aktualizujac ilosc zyc */
+    public void setLives(int lives){ livesAmount.setText(String.valueOf(lives)); }
 }
