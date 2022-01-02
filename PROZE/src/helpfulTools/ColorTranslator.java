@@ -17,6 +17,7 @@ public class ColorTranslator {
             case "pink" -> Color.pink;
             case "yellow" -> Color.yellow;
             case "gray" -> Color.gray;
+            case "cyan" -> Color.cyan;
             default -> Color.black;
         };
     }

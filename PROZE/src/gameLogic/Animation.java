@@ -3,6 +3,7 @@ package gameLogic;
 import gui.GameFrame;
 import spaceInvaders.Game;
 
+import java.io.IOException;
 import java.util.Random;
 
 /** Klasa odpowiadajaca za animacje */
@@ -74,7 +75,12 @@ public class Animation implements Runnable {
             }
 
             if(gameEnemyList.isEmpty()) {
-                // nowy poziom
+                game.getLeveler().setPath(game.getConfiger().getPathLevel2());
+                try {
+                    game.getLeveler().getInfo();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             else{
                 if(counter==15) {

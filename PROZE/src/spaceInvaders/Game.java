@@ -69,14 +69,14 @@ public class Game {
             e.printStackTrace();
             conf = null;
         }
-        Leveler lev1;
+        Leveler leveler = new Leveler(conf.getPathLevel1());
         try {
-            lev1 = new Leveler(conf.getPathLevel1());
+        leveler.getInfo();
         } catch (IOException e) {
             e.printStackTrace();
-            lev1 = null;
+            leveler = null;
         }
-        leveler = lev1;
+        this.leveler = leveler;
         configer = conf;
         gameOver = false;
         player = new Player("",0);
