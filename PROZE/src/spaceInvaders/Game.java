@@ -92,7 +92,7 @@ public class Game {
     }
     /** Metoda rozpoczynajaca animacje */
     public void startAnimation() {
-        Thread animationThread = new Thread(animation = new Animation(gameFrame));
+        Thread animationThread = new Thread(animation = new Animation(gameFrame,this));
         animation.setKicker(animationThread);
         animationThread.start();
     }

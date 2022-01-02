@@ -16,9 +16,8 @@ import javax.swing.*;
 public class GameFrame extends JFrame implements KeyListener{
 
     /** Atrybut klasy GameObjectList */
-    private final GameObjectList gameObjectList;
-    /** Atrybut klasy GameBulletList */
-    private final GameBulletList gameBulletList;
+    private final GameObjectList gameEnemyList;
+    private final GameObjectList gameBulletList;
     /** Atrybut klasy GameCanvas */
     private final GameCanvas gameCanvas;
     /** Atrybut klasy Cannon */
@@ -31,11 +30,13 @@ public class GameFrame extends JFrame implements KeyListener{
     private final Configer confer;
     /** Atrybut klasy Leveler */
     private final Leveler lvl;
+    /** Atrybut klasy Label */
+    private final Label pointsAmount;
 
     /** Konstruktor klasy GameFrame */
     public GameFrame(Game game) {
-        gameObjectList = new GameObjectList();
-        gameBulletList = new GameBulletList();
+        gameEnemyList = new GameObjectList();
+        gameBulletList = new GameObjectList();
         this.confer = game.getConfiger();
         setTitle(confer.getGameTitle());
         ColorTranslator colorTranslator = new ColorTranslator();
@@ -55,25 +56,17 @@ public class GameFrame extends JFrame implements KeyListener{
         Panel livesPanel = new Panel(new FlowLayout());
 
         Label pointsLabel = new Label(confer.getLabelPoints());
-        Label pointsAmount = new Label(Integer.toString(confer.getInitialPoints()));
+        pointsAmount = new Label(Integer.toString(confer.getInitialPoints()));
         Label livesLabel = new Label(confer.getLabelLivesLeft());
         Label livesAmount = new Label(Integer.toString(confer.getInitialLives()));
 
         Button pauseButton = new Button(confer.getButtonStartText());
         Button exitButton = new Button(confer.getButtonEndText());
-        Button backToMenuButton = new Button(confer.getButtonBackToMenuText());
 
         exitButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> game.getGameFrame().setVisible(false));
             EventQueue.invokeLater(() -> {ExitFrame exitFrame = new ExitFrame(game, game.getGameFrame(), game.getGameFrame().getSize(), game.getGameFrame().getLocation());
                 exitFrame.setVisible(true); });
-        });
-        backToMenuButton.addActionListener(e -> {
-            EventQueue.invokeLater(() -> this.setVisible(false));
-            EventQueue.invokeLater(() -> {
-                game.getMenuFrame().setSize(this.getSize());
-                game.getMenuFrame().setLocation(this.getLocation()); });
-            EventQueue.invokeLater(() -> game.getMenuFrame().setVisible(true) );
         });
         pauseButton.addActionListener(e -> {
             if (game.getAnimation() == null) {
@@ -88,7 +81,6 @@ public class GameFrame extends JFrame implements KeyListener{
             pack(); });
 
         buttonPanel.add(pauseButton);
-        buttonPanel.add(backToMenuButton);
         buttonPanel.add(exitButton);
 
         pointsPanel.add(pointsLabel);
@@ -100,7 +92,7 @@ public class GameFrame extends JFrame implements KeyListener{
         topPanel.add(buttonPanel, BorderLayout.EAST);
         topPanel.add(pointsPanel, BorderLayout.WEST);
 
-        canvasPanel.add(gameCanvas = new GameCanvas(colorTranslator.translateColor(lvl.getColorBackground()), gameObjectList, gameBulletList, cannon, game), BorderLayout.CENTER);
+        canvasPanel.add(gameCanvas = new GameCanvas(colorTranslator.translateColor(lvl.getColorBackground()), gameEnemyList, gameBulletList, cannon, game), BorderLayout.CENTER);
         canvasPanel.addKeyListener(this);
         bottomPanel.add(livesPanel, BorderLayout.WEST);
 
@@ -125,11 +117,11 @@ public class GameFrame extends JFrame implements KeyListener{
         pack();
     }
     /** Metoda zwracajaca obiekt klasy GameObjectList */
-    public GameObjectList getGameObjectList() {
-        return gameObjectList;
+    public GameObjectList getGameEnemyList() {
+        return gameEnemyList;
     }
     /** Metoda zwracajaca obiekt klasy GameBulletList */
-    public GameBulletList getGameBulletList() {
+    public GameObjectList getGameBulletList() {
         return gameBulletList;
     }
     /** Metoda zwracająca obiekt klasy GameCanvas */
@@ -160,9 +152,9 @@ public class GameFrame extends JFrame implements KeyListener{
             columns = Math.min(enemyNumber, confer.getLimitEnemyColumns());
             for (int i = 0; i < columns; i++) {
                 float positionX = 1f / (columns + 1) * (i + 1) - confer.getEnemyWidth() / 2;
-                gameObjectList.add(new Enemy(positionX, positionY, confer.getEnemyWidth(), confer.getEnemyHeight(), color.translateColor(lvl.getColorEnemy()), confer.getEnemyLives()));
+                gameEnemyList.add(new Enemy(positionX, positionY, confer.getEnemyWidth(), confer.getEnemyHeight(), color.translateColor(lvl.getColorEnemy()), confer.getEnemyLives()));
             }
-            enemyNumber-=10;
+            enemyNumber-=confer.getLimitEnemyColumns();
         }
     }
     /** Metoda wyliczajaca ilośc kolumn */
@@ -202,5 +194,9 @@ public class GameFrame extends JFrame implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
         setMovementState(typeOfMove.STOPPED);
+    }
+    /** Metoda aktualizujac wynik */
+    public void setScore(int points){
+        pointsAmount.setText(String.valueOf(points));
     }
 }

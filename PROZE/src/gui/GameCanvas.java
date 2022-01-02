@@ -2,7 +2,6 @@ package gui;
 
 import configuration.Configer;
 import gameLogic.Cannon;
-import gameLogic.GameBulletList;
 import gameLogic.GameObjectList;
 import gameLogic.MovingObject;
 import spaceInvaders.Game;
@@ -14,15 +13,14 @@ public class GameCanvas extends Canvas {
 
     /** Atrybut klasy GameObjectList */
     private final GameObjectList gameEnemyList;
-    /** Atrybut klasy GameBulletList */
-    private final GameBulletList gameBulletList;
+    private final GameObjectList gameBulletList;
     /** Atrybut klasy Cannon */
     private final Cannon cannon;
     /** Atrybut klasy Configer */
     private final Configer confer;
 
     /** Konstruktor klasy GameCanvas */
-    public GameCanvas(Color colorBackground, GameObjectList gameEnemyList, GameBulletList gameBulletList, Cannon cannon, Game game) {
+    public GameCanvas(Color colorBackground, GameObjectList gameEnemyList, GameObjectList gameBulletList, Cannon cannon, Game game) {
         setBackground(colorBackground);
         this.gameEnemyList = gameEnemyList;
         this.cannon = cannon;
