@@ -4,6 +4,7 @@ import java.awt.*;
 import java.io.IOException;
 
 import configuration.HighScoreManager;
+import configuration.LevelHelper;
 import gameLogic.Animation;
 import gameLogic.Cannon;
 import gameLogic.Player;
@@ -30,10 +31,12 @@ public class Game {
     final private MenuFrame menuFrame;
     /** Atrybut klasy Cannon */
     final private Cannon cannon;
-    /** Atrybut klasy Player */
-    final private Player player;
+    /** Atrybut klasy LevelHelper */
+    final private LevelHelper levelHelper;
     /** Atrybut mowiacy o koncu gry */
     public boolean gameOver;
+    /** Atrybut mowiacy o wygraniu gry */
+    public boolean gameWon;
 
     /** Metoda zwracajaca obiekt klasy Animation */
     public Animation getAnimation() { return animation; }
@@ -53,12 +56,16 @@ public class Game {
     public HighScoreManager getHighScoreManager() {
         return highScoreManager;
     }
-    /** Metoda zwracajaca obiekt klasy Player */
-    public Player getPlayer() { return player; }
+    /** Metoda zwracajaca obiekt klasy LevelHelper */
+    public LevelHelper getLevelHelper() { return levelHelper; }
     /** Metoda zwracajaca GameOver */
     public boolean isGameOver() { return gameOver; }
+    /** Metoda pobierająca GameWon */
+    public boolean isGameWon() { return gameWon; }
     /** Metoda ustawiajaca GameOver */
-    public void GameOver() { gameOver=true; }
+    public void setGameOver() { gameOver=true; }
+    /** Metoda ustawiajaca GameWon */
+    public void setGameWon() { gameWon=true; }
 
     /** Konstruktor klasy Game */
     Game() {
@@ -71,15 +78,17 @@ public class Game {
         }
         Leveler leveler = new Leveler(conf.getPathLevel1());
         try {
-        leveler.loadLevelConfiguration();
+        leveler.loadLevelConfiguration(conf.getPathLevel1());
         } catch (IOException e) {
             e.printStackTrace();
             leveler = null;
         }
+        this.levelHelper = new LevelHelper();
+        levelHelper.nextLevel();
         this.leveler = leveler;
         configer = conf;
         gameOver = false;
-        player = new Player("",0);
+        gameWon = false;
         highScoreManager = new HighScoreManager(configer.getPathHighScores());
         ColorTranslator col = new ColorTranslator();
         cannon = new Cannon(configer.getCannonXScreenPosition(), configer.getCannonYScreenPosition(), configer.getCannonWidth(), configer.getCannonHeight(), col.translateColor(configer.getColorCannon()), configer.getCannonLives());

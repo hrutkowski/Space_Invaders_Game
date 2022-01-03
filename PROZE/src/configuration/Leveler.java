@@ -14,21 +14,20 @@ public class Leveler {
     /** Konstruktor klasy Leveler */
     public Leveler(String pathToTxT) { path = pathToTxT; }
     /** Metoda wczytująca dane z pliku txt */
-    public void loadLevelConfiguration() throws IOException {
+    public void loadLevelConfiguration(String pathToTxt) throws IOException {
+        path = pathToTxt;
         InputStream propertiesFile = new FileInputStream(path);
         proper.load(propertiesFile);
-        System.out.println("Loading");
         propertiesFile.close();
     }
     /** Metoda zwracająca EnemyNumber */
-    public int getEnemyNumber() { return Integer.parseInt(proper.getProperty("enemyNumber"));}
+    public int getEnemyNumber() { return Integer.parseInt(proper.getProperty("enemyNumber")); }
     /** Metoda zwracająca ColorEnemy */
-    public String getColorEnemy() {return proper.getProperty("colorEnemy");}
+    public String getColorEnemy() {return proper.getProperty("colorEnemy"); }
     /** Metoda zwracająca enemyPoints */
     public int getEnemyPoints() { return Integer.parseInt(proper.getProperty("enemyPoints")); }
     /** Metoda zwracająca ColorBackground */
     public String getColorBackground() {return proper.getProperty("colorBackground"); }
-    public void setPath(String pathToTxT){path=pathToTxT; }
     /** Metoda zwracająca endLevelPoints */
     public int getEndLevelPoints() { return Integer.parseInt(proper.getProperty("endLevelPoints")); }
 }

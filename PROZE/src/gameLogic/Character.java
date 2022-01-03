@@ -15,5 +15,5 @@ public class Character extends MovingObject {
     /** Metoda zwracajaca ilosc zyc */
     public int getLives() { return lives; }
     /** Metoda odpowiadajaca za trafienie */
-    public void hit() { lives-=1; }
+    public void hit() { lives -= 1; }
 }

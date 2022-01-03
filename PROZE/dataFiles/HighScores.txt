@@ -1,12 +1,12 @@
-#Fri Dec 10 16:08:42 CET 2021
-wynik_0=800
+#Mon Jan 03 22:10:42 CET 2022
+wynik_0=1070
 liczba_nickow=5
-nick_4=maks
-nick_3=kuba
-wynik_4=200
-nick_2=stasiek
-wynik_3=300
-nick_1=skibi
-wynik_2=400
-nick_0=tobiasz
-wynik_1=750
+nick_4=Kuba
+nick_3=Tomasz
+wynik_4=374
+nick_2=Franek
+wynik_3=400
+nick_1=Andrzejek
+wynik_2=500
+nick_0=Hubert
+wynik_1=500

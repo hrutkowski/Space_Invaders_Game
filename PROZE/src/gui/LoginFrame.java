@@ -15,7 +15,7 @@ public class LoginFrame extends JFrame {
     LoginFrame(Game game, MenuFrame menuFrame) {
         Configer confer = game.getConfiger();
         GameFrame gameFrame = game.getGameFrame();
-        Player player = game.getPlayer();
+        Player player = game.getGameFrame().getPlayer();
         setTitle(confer.getLoginTitle());
 
         Panel mainPanel = new Panel(new BorderLayout());

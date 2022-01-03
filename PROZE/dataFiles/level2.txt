@@ -1,5 +1,5 @@
 enemyNumber=16
 colorEnemy=yellow
-enemyPoints=10
+enemyPoints=4
 colorBackground=green
-endLevelPoints=200
+endLevelPoints=50

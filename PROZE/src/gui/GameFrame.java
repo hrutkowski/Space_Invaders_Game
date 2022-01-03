@@ -13,11 +13,13 @@ import java.awt.event.KeyListener;
 import javax.swing.*;
 
 /** Klasa odpowiadajaca za okno gry */
-public class GameFrame extends JFrame implements KeyListener{
+public class GameFrame extends JFrame implements KeyListener {
 
     /** Atrybut klasy GameObjectList */
     private final GameObjectList gameEnemyList;
+    /** Atrybut klasy GameObjectList */
     private final GameObjectList gameCannonBulletList;
+    /** Atrybut klasy GameObjectList */
     private final GameObjectList gameEnemyBulletList;
     /** Atrybut klasy GameCanvas */
     private final GameCanvas gameCanvas;
@@ -33,7 +35,15 @@ public class GameFrame extends JFrame implements KeyListener{
     private final Leveler lvl;
     /** Atrybut klasy Label */
     private final Label pointsAmount;
+    /** Atrybut klasy Label */
     private final Label livesAmount;
+    /** Atrybut klasy Label */
+    private final Label levelNumber;
+    /** Atrybut klasy Panel */
+    private final Panel canvasPanel;
+    /** Atrybut klasy Player */
+    private final Player player;
+
 
     /** Konstruktor klasy GameFrame */
     public GameFrame(Game game) {
@@ -44,6 +54,7 @@ public class GameFrame extends JFrame implements KeyListener{
         setTitle(confer.getGameTitle());
         ColorTranslator colorTranslator = new ColorTranslator();
         this.lvl = game.getLeveler();
+        player = new Player("",confer.getInitialPoints());
 
         cannon = game.getCannon();
 
@@ -54,14 +65,17 @@ public class GameFrame extends JFrame implements KeyListener{
         Panel topPanel = new Panel(new BorderLayout());
         Panel buttonPanel = new Panel(new FlowLayout());
         Panel bottomPanel = new Panel(new BorderLayout());
-        Panel canvasPanel = new Panel(new BorderLayout());
+        canvasPanel = new Panel(new BorderLayout());
         Panel pointsPanel = new Panel(new FlowLayout());
         Panel livesPanel = new Panel(new FlowLayout());
+        Panel levelPanel = new Panel(new FlowLayout());
 
         Label pointsLabel = new Label(confer.getLabelPoints());
         pointsAmount = new Label(Integer.toString(confer.getInitialPoints()));
         Label livesLabel = new Label(confer.getLabelLivesLeft());
         livesAmount = new Label(Integer.toString(confer.getInitialLives()));
+        Label levelLabel = new Label(confer.getLabelLevel());
+        levelNumber = new Label(Integer.toString(confer.getInitialLevel()));
 
         Button pauseButton = new Button(confer.getButtonStartText());
         Button exitButton = new Button(confer.getButtonEndText());
@@ -92,7 +106,11 @@ public class GameFrame extends JFrame implements KeyListener{
         livesPanel.add(livesLabel);
         livesPanel.add(livesAmount);
 
+        levelPanel.add(levelLabel);
+        levelPanel.add(levelNumber);
+
         topPanel.add(buttonPanel, BorderLayout.EAST);
+        topPanel.add(levelPanel, BorderLayout.CENTER);
         topPanel.add(pointsPanel, BorderLayout.WEST);
 
         canvasPanel.add(gameCanvas = new GameCanvas(colorTranslator.translateColor(lvl.getColorBackground()), gameEnemyList, gameCannonBulletList, gameEnemyBulletList, cannon, game), BorderLayout.CENTER);
@@ -116,6 +134,19 @@ public class GameFrame extends JFrame implements KeyListener{
                 exitFrame.setVisible(true);
             });
         }});
+
+        if(game.isGameOver()) {
+            EventQueue.invokeLater(() -> {
+                // GameOverFrame gameOverFrame = new GameOverFrame(game, this, this.getSize(), this.getLocation());
+                // gameOverFrame.setVisible(true);
+            });
+        }
+        if(game.isGameWon()) {
+            EventQueue.invokeLater(() -> {
+                // GameWonFrame gameWonFrame = new GameWonFrame(game, this, this.getSize(), this.getLocation());
+                // gameWinFrame.setVisible(true);
+            });
+        }
 
         pack();
     }
@@ -141,7 +172,7 @@ public class GameFrame extends JFrame implements KeyListener{
     public void moveCannon() {
         float stepX = 0.01f;
         if (cannonState == typeOfMove.LEFT) {
-            if (Float.compare(cannon.getX(), 0f) > 0) {
+            if (Float.compare(cannon.getX(), 0.01f) > 0) {
                 cannon.setX(cannon.getX() - stepX);
             }
         } else if (cannonState == typeOfMove.RIGHT) {
@@ -150,7 +181,7 @@ public class GameFrame extends JFrame implements KeyListener{
             }
         }
     }
-    /** Mwtoda tworząca Enemy */
+    /** Metoda tworząca Enemy */
     public void addEnemy(int enemyNumber, ColorTranslator color) {
         int rows = calulateRows(enemyNumber);
         int columns;
@@ -182,15 +213,20 @@ public class GameFrame extends JFrame implements KeyListener{
     public void keyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getKeyCode()) {
             case KeyEvent.VK_LEFT -> {
+                canvasPanel.requestFocus();
                 setMovementState(typeOfMove.LEFT);
                 moveCannon();
             }
             case KeyEvent.VK_RIGHT -> {
+                canvasPanel.requestFocus();
                 setMovementState(typeOfMove.RIGHT);
                 moveCannon();
             }
             case KeyEvent.VK_SPACE -> cannon.fire(gameCannonBulletList, confer.getBulletWidth(), confer.getBulletHeight());
-            default -> setMovementState(typeOfMove.STOPPED);
+            default -> {
+                setMovementState(typeOfMove.STOPPED);
+                canvasPanel.requestFocus();
+            }
         }
     }
     /** Metoda nadpisujaca keyReleased */
@@ -202,4 +238,8 @@ public class GameFrame extends JFrame implements KeyListener{
     public void setScore(int points){ pointsAmount.setText(String.valueOf(points)); }
     /** Metoda aktualizujac ilosc zyc */
     public void setLives(int lives){ livesAmount.setText(String.valueOf(lives)); }
+    /** Metoda aktualizujac numer poziomu */
+    public void nextLevel(){ levelNumber.setText(String.valueOf(Integer.parseInt(levelNumber.getText())+1)); }
+    /** Metoda zwracajaca obiekt klasy Player */
+    public Player getPlayer() { return player; }
 }

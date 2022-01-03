@@ -44,7 +44,7 @@ public class MovingObject {
     /** Metoda sprawdzajaca czy zyje */
     public boolean isKilled(){ return killed; }
     /** Metoda uśmiercająca */
-    public void kill(){ killed = true; }
+    public void kill(){ killed = true;}
     /** Metoda strzelania */
     public void fire(GameObjectList gameBulletList, float width, float height){
         gameBulletList.add(new Bullet(getX()+getWidth()/2f-width/2f,getY(), width, height, color));

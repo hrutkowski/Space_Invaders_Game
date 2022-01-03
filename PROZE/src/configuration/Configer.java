@@ -83,6 +83,10 @@ public class Configer {
     public int getInitialLives() {
         return Integer.parseInt(proper.getProperty("initialLives"));
     }
+    /** Metoda zwracająca initialLevel */
+    public int getInitialLevel() {
+        return Integer.parseInt(proper.getProperty("initialLevel"));
+    }
     /** Metoda zwracająca labelPoints */
     public String getLabelPoints() { return (proper.getProperty("labelPoints")); }
     /** Metoda zwracająca labelColorCannon */
@@ -149,10 +153,14 @@ public class Configer {
     public String getLabelLogin() { return proper.getProperty("labelLogin"); }
     /** Metoda zwracająca defaultNick*/
     public String getDefaultNick() { return proper.getProperty("defaultNick"); }
+    /** Metoda zwracająca labelLevel*/
+    public String getLabelLevel() { return proper.getProperty("labelLevel"); }
     /** Metoda zwracająca exitFrameHeight */
     public int getExitFrameHeight() { return Integer.parseInt(proper.getProperty("exitFrameHeight")); }
     /** Metoda zwracająca exitFrameWidth */
     public int getExitFrameWidth() { return Integer.parseInt(proper.getProperty("exitFrameWidth")); }
     /** Metoda zwracająca limitEnemyColumns */
     public int getLimitEnemyColumns() { return Integer.parseInt(proper.getProperty("limitEnemyColumns")); }
+    /** Metoda zwracajaca numberLevels */
+    public int getNumberLevels() { return Integer.parseInt(proper.getProperty("numberLevels")); }
 }

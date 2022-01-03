@@ -10,11 +10,14 @@ public class HighScoreManager {
 
     /** Atrybut klasy properties */
     final private Properties properties = new Properties();
+    /** Atrybut listy graczy */
     List<Player> highScoreTable = new Vector<>();
+    final private String path;
 
     /** Konstruktor tworzący listę obiektów typu Player na podstawie pliku HighScore.txt */
     public HighScoreManager(String pathHighScores) {
-        try (FileReader fr = new FileReader(pathHighScores)) { properties.load(fr); }
+        path = pathHighScores;
+        try (FileReader fr = new FileReader(path)) { properties.load(fr); }
         catch (IOException ioe) { ioe.printStackTrace(); }
         for (int i = 0; i < Integer.parseInt(properties.getProperty("liczba_nickow")); i++) {
             String nick = properties.getProperty("nick_" + i);
@@ -24,13 +27,10 @@ public class HighScoreManager {
          Collections.sort(highScoreTable);
     }
     /** Metoda dodająca obiekt Player do listy wewnątrz Managera */
-    private void addPlayer(Player plr) {
-        highScoreTable.add(plr);
-    }
+    public void addPlayer(Player plr) { highScoreTable.add(plr); }
     /** Metoda zapisujaca biezaca liste mistrzow w pliku txt */
-     private void saveScores() throws IOException {
+    public void saveScores() throws IOException {
         Properties playersProperties = new Properties();
-        String filename = "./src/HighScores.txt";
         Collections.sort(highScoreTable);
         playersProperties.setProperty("liczba_nickow", properties.getProperty("liczba_nickow"));
         for(int i=0; i<Integer.parseInt(properties.getProperty("liczba_nickow")); i++) {
@@ -38,7 +38,7 @@ public class HighScoreManager {
             String temp_points = Integer.toString(highScoreTable.get(i).getPoints());
             playersProperties.setProperty("wynik_" + i, temp_points);
         }
-        playersProperties.store(new FileOutputStream(filename), null);
+        playersProperties.store(new FileOutputStream(path), null);
     }
     /** Metoda odpowiadajaca za przekazywanie rankingu do wyświetlenia */
     public String showHighScore() {
@@ -47,9 +47,5 @@ public class HighScoreManager {
         textHighScore += i+1 + ". " + highScoreTable.get(i).getNick() + " = " + highScoreTable.get(i).getPoints() + " points" +"\n";
         }
         return textHighScore;
-    }
-    /** Metoda dodająca gracza do wewnętrznej listy graczy */
-    public void addPlayer(String nick, int points) {
-        highScoreTable.add(new Player(nick, points));
     }
 }

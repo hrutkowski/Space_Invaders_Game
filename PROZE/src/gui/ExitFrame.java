@@ -35,6 +35,7 @@ public class ExitFrame extends JFrame {
         mainPanel.add(buttonPanel, BorderLayout.CENTER);
 
         add(mainPanel, BorderLayout.CENTER);
+
         yesButton.addActionListener(e-> System.exit(0));
         noButton.addActionListener(e -> {
             EventQueue.invokeLater(this::dispose);

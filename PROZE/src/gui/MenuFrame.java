@@ -100,13 +100,6 @@ public class MenuFrame extends JFrame {
             });
         });
 
-        if(game.isGameOver()){
-            EventQueue.invokeLater(() -> {
-                        // GameOverFrame gameOverFrame = new GameOverFrame(game, this, this.getSize(), this.getLocation());
-                        // gameOverFrame.setVisible(true);
-            });
-        }
-
         addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) {
             EventQueue.invokeLater(() -> game.getMenuFrame().setVisible(false));
             EventQueue.invokeLater(() -> {
