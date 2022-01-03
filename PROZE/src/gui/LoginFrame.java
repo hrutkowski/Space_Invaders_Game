@@ -9,9 +9,10 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-
+/** Klasa ona logowania */
 public class LoginFrame extends JFrame {
 
+    /** Konstruktor klasy LoginFrame */
     LoginFrame(Game game, MenuFrame menuFrame) {
         Configer confer = game.getConfiger();
         GameFrame gameFrame = game.getGameFrame();

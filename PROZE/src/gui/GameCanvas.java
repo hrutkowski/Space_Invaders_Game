@@ -13,7 +13,9 @@ public class GameCanvas extends Canvas {
 
     /** Atrybut klasy GameObjectList */
     private final GameObjectList gameEnemyList;
+    /** Atrybut klasy GameObjectList */
     private final GameObjectList gameCannonBulletList;
+    /** Atrybut klasy GameObjectList */
     private final GameObjectList gameEnemyBulletList;
     /** Atrybut klasy Cannon */
     private final Cannon cannon;

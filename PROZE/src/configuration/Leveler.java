@@ -7,6 +7,8 @@ import java.util.Properties;
 
 /** Klasa odpowiedzialna za odczytywanie paramertów poziomów z pliku txt */
 public class Leveler {
+
+    /** Atrybut przechowujacy sciezke do pliku txt */
     private String path;
     /** Klasa typu Properties do wyciągania wartości z pliku txt */
     static Properties proper = new Properties();

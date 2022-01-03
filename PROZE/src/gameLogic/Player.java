@@ -4,6 +4,7 @@ import java.util.Objects;
 
 /** Klasa reprezentująca gracza */
 public class Player implements Comparable<Player> {
+
     /** Nick gracza */
     private String nick;
     /** Ilośc punktów gracza */
@@ -28,7 +29,6 @@ public class Player implements Comparable<Player> {
     }
     /** Metoda ustawiająca nick */
     public void setNick(String nick) { this.nick = nick; }
-
    /**  Nadpisana metoda equals */
     @Override
     public boolean equals(Object o) {

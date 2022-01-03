@@ -12,6 +12,7 @@ public class HighScoreManager {
     final private Properties properties = new Properties();
     /** Atrybut listy graczy */
     List<Player> highScoreTable = new Vector<>();
+    /** Atrybut typu String przechowujący ścieżkę do pliku txt */
     final private String path;
 
     /** Konstruktor tworzący listę obiektów typu Player na podstawie pliku HighScore.txt */

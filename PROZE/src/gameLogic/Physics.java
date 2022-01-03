@@ -5,6 +5,7 @@ import spaceInvaders.Game;
 
 /** Klasa odpowiedzialna za fizykę gry */
 public class Physics {
+
     /** Atrybut klasy Player */
     private final Player player;
     /** Atrybut klasy Leveler */

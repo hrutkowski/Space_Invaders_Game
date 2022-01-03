@@ -7,7 +7,6 @@ import configuration.HighScoreManager;
 import configuration.LevelHelper;
 import gameLogic.Animation;
 import gameLogic.Cannon;
-import gameLogic.Player;
 import gui.GameFrame;
 import configuration.Configer;
 import configuration.Leveler;
@@ -99,7 +98,7 @@ public class Game {
         EventQueue.invokeLater(() -> menuFrame.setVisible(true));
         Thread repaintThread = new Thread(() -> {
             try {
-                Thread.sleep(configer.getFps()); // FPS
+                Thread.sleep(configer.getFps());
                 gameFrame.repaint();
             } catch (InterruptedException ignore) {
             }

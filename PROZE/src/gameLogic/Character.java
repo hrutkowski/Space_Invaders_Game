@@ -4,6 +4,7 @@ import java.awt.*;
 
 /** Klasa odpowiadajaca za postacie z życiem */
 public class Character extends MovingObject {
+
     /** Atrybut zyc */
     private int lives;
 
