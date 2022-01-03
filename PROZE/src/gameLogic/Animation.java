@@ -38,9 +38,9 @@ public class Animation implements Runnable {
         GameObjectList gameEnemyBulletList = gameFrame.getGameEnemyBulletList();
 
         int counter=0;
-
         float dX = 0.015f;
         float dY = 0.015f;
+
         while (kicker == Thread.currentThread()) {
             try {Thread.sleep(60);}
             catch (InterruptedException ignore) {}
@@ -55,10 +55,12 @@ public class Animation implements Runnable {
                 if(shape.getX() < valueXLeftEnemy) {
                     valueXLeftEnemy = shape.getX();}
             }
+
             if ((valueXRightEnemy + dX) >= (1f - widthRightEnemy) || valueXLeftEnemy + dX <= 0f) {
                 dX = -dX;
                 helpfulY = dY;
             }
+
             for (MovingObject shape : gameEnemyList) {
                 shape.setX(shape.getX() + dX);
                 shape.setY(shape.getY() + helpfulY);
@@ -74,24 +76,15 @@ public class Animation implements Runnable {
                 bullet.setY(temp);
             }
 
-            if(gameEnemyList.isEmpty()) {
-                game.getLeveler().setPath(game.getConfiger().getPathLevel2());
-                try {
-                    game.getLeveler().getInfo();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            if(gameEnemyList.isEmpty()) { // cos
             }
-            else{
+            else {
                 if(counter==15) {
                     Random rand = new Random();
                     gameEnemyList.get(rand.nextInt(gameEnemyList.size())).fire(gameEnemyBulletList, game.getConfiger().getBulletWidth(), game.getConfiger().getBulletHeight());
                     counter = 0;
                 }
             }
-
-            gameFrame.setScore(game.getPlayer().getPoints());
-            gameFrame.setLives(game.getCannon().getLives());
 
             gameCannonBulletList.removeIf( bullet -> ( (bullet.getY()+bullet.getHeight()) <= 0.05f) );
             gameEnemyBulletList.removeIf( bullet -> ( (bullet.getY()) >= 0.95f) );
@@ -101,6 +94,9 @@ public class Animation implements Runnable {
 
             counter+=1;
 
+            gameFrame.setScore(game.getPlayer().getPoints());
+            gameFrame.setLives(game.getCannon().getLives());
+
             if(game.getCannon().getLives()==0) {
                 game.stopAnimation();
                 game.GameOver();
@@ -108,5 +104,12 @@ public class Animation implements Runnable {
 
             gameFrame.getGameCanvas().repaint();
         }
+        game.getLeveler().setPath(game.getConfiger().getPathLevel2());
+        try {
+            game.getLeveler().loadLevelConfiguration();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        game.getPlayer().setPoints(game.getPlayer().getPoints()+game.getLeveler().getEndLevelPoints());
     }
 }

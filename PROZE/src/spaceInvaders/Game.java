@@ -71,7 +71,7 @@ public class Game {
         }
         Leveler leveler = new Leveler(conf.getPathLevel1());
         try {
-        leveler.getInfo();
+        leveler.loadLevelConfiguration();
         } catch (IOException e) {
             e.printStackTrace();
             leveler = null;

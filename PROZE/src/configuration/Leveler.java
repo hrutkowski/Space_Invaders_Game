@@ -14,9 +14,10 @@ public class Leveler {
     /** Konstruktor klasy Leveler */
     public Leveler(String pathToTxT) { path = pathToTxT; }
     /** Metoda wczytująca dane z pliku txt */
-    public void getInfo() throws IOException {
+    public void loadLevelConfiguration() throws IOException {
         InputStream propertiesFile = new FileInputStream(path);
         proper.load(propertiesFile);
+        System.out.println("Loading");
         propertiesFile.close();
     }
     /** Metoda zwracająca EnemyNumber */
@@ -28,4 +29,6 @@ public class Leveler {
     /** Metoda zwracająca ColorBackground */
     public String getColorBackground() {return proper.getProperty("colorBackground"); }
     public void setPath(String pathToTxT){path=pathToTxT; }
+    /** Metoda zwracająca endLevelPoints */
+    public int getEndLevelPoints() { return Integer.parseInt(proper.getProperty("endLevelPoints")); }
 }

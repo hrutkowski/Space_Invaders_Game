@@ -99,8 +99,6 @@ public class Configer {
     public int getEnemyLives() { return Integer.parseInt(proper.getProperty("enemyLives")); }
     /** Metoda zwracająca cannonLifes */
     public int getCannonLives() { return Integer.parseInt(proper.getProperty("cannonLives")); }
-    /** Metoda zwracająca enemyDeadPoints */
-    public int getEnemyDeadPoints() { return Integer.parseInt(proper.getProperty("enemyDeadPoints")); }
      /** Metoda zwracająca cannonXScreenPosition */
     public float getCannonXScreenPosition() {return Float.parseFloat(proper.getProperty("cannonXScreenPosition")); }
     /** Metoda zwracająca cannonYScreenPosition */

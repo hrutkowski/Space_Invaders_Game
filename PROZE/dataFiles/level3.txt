@@ -2,3 +2,4 @@ enemyNumber=25
 colorEnemy=red
 enemyPoints=15
 colorBackground=cyan
+endLevelPoints=300
