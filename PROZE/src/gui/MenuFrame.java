@@ -18,7 +18,9 @@ public class MenuFrame extends JFrame {
     /** Atrybut klasy SettingFrame */
     private SettingsFrame settingsFrame;
     /** Atrybut klasy LoginFrame */
-    private  LoginFrame loginFrame;
+    private LoginFrame loginFrame;
+    /** Atrybut klasy GameFrame */
+    private GameFrame gameFrame;
 
     /** Metoda zwracajaca obiekt klasy InfoFrame */
     public InfoFrame getInfoFrame() { return infoFrame; }
@@ -28,6 +30,8 @@ public class MenuFrame extends JFrame {
     public HighScoreFrame getHighScoreFrame() { return highScoreFrame; }
     /** Metoda zwracajaca obiekt klasy LoginFrame */
     public LoginFrame getLoginFrame() { return loginFrame; }
+    /** Metoda zwracajaca obiekt klasy GameFrame */
+    public GameFrame getGameFrame() { return gameFrame; }
 
     /** Konstruktor klasy MenuFrame */
     public MenuFrame(Game game) {
@@ -58,6 +62,7 @@ public class MenuFrame extends JFrame {
 
         startButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
+            EventQueue.invokeLater(() -> this.gameFrame = new GameFrame(game));
             EventQueue.invokeLater(() -> {
                 this.loginFrame = new LoginFrame(game, this);
                 loginFrame.setSize(this.getSize());

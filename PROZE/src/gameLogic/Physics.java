@@ -13,18 +13,18 @@ public class Physics {
 
     /** Konstruktor klasy Physics */
     public Physics(Game game){
-        this.player = game.getGameFrame().getPlayer();
+        this.player = game.getMenuFrame().getLoginFrame().getPlayer();
         this.leveler = game.getLeveler();
     }
     /** Metoda dotyczaca kolizji pocisku Cannona z Enemy*/
     public void collisionEnemy(GameObjectList gameEnemyList, GameObjectList gameCannonBulletList) {
-        gameEnemyList.forEach(enemy -> {
+        for (MovingObject enemy : gameEnemyList) {
             gameCannonBulletList.stream().filter(bullet -> bullet.getBounds().intersects(enemy.getBounds())).forEach(bullet -> {
                 enemy.kill();
                 player.setPoints(player.getPoints() + leveler.getEnemyPoints());
             });
             gameCannonBulletList.removeIf(bullet -> (bullet.getBounds().intersects(enemy.getBounds())));
-        });
+        }
         gameEnemyList.removeIf(MovingObject::isKilled);
     }
     /** Metoda dotyczaca kolizji pocisku Enemy z Cannonem */

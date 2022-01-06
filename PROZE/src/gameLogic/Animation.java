@@ -19,7 +19,6 @@ public class Animation implements Runnable {
     /** Atrybut klasy Physics */
     final private Physics physics;
 
-
     /** Konstruktor klasy Animation */
     public Animation(GameFrame gameFrame, Game game) {
         this.gameFrame = gameFrame;
@@ -84,11 +83,10 @@ public class Animation implements Runnable {
 
             if (game.getLevelHelper().getLevel() == game.getConfiger().getNumberLevels() && gameEnemyList.isEmpty()) {
                 game.stopAnimation();
-                game.setGameWon();
                 game.showGameWon();
+                game.getLevelHelper().resetLevel();
             }
-
-            if (gameEnemyList.isEmpty() && !game.isGameWon()) {
+            else if (gameEnemyList.isEmpty()) {
                 game.getLevelHelper().nextLevel();
                 try {
                     game.getLeveler().loadLevelConfiguration(game.getLevelHelper().getLevelPath(game.getConfiger()));
@@ -96,15 +94,15 @@ public class Animation implements Runnable {
                     e.printStackTrace();
                 }
                 ColorTranslator colorTranslator = new ColorTranslator();
-                game.getGameFrame().addEnemy(game.getLeveler().getEnemyNumber(), colorTranslator);
-                game.getGameFrame().getGameCanvas().setBackground(colorTranslator.translateColor(game.getLeveler().getColorBackground()));
-                game.getGameFrame().getPlayer().setPoints(game.getGameFrame().getPlayer().getPoints()+game.getLeveler().getEndLevelPoints());
-                game.getGameFrame().nextLevel();
+                game.getMenuFrame().getGameFrame().addEnemy(game.getLeveler(), colorTranslator);
+                game.getMenuFrame().getGameFrame().getGameCanvas().setBackground(colorTranslator.translateColor(game.getLeveler().getColorBackground()));
+                game.getMenuFrame().getLoginFrame().getPlayer().setPoints(game.getMenuFrame().getLoginFrame().getPlayer().getPoints()+game.getLeveler().getEndLevelPoints());
+                game.getMenuFrame().getGameFrame().nextLevel(game.getLevelHelper());
                 gameEnemyBulletList.clear();
                 gameCannonBulletList.clear();
             }
             else {
-                if(counter==15 && !game.gameWon) {
+                if(counter==15) {
                     Random rand = new Random();
                     gameEnemyList.get(rand.nextInt(gameEnemyList.size())).fire(gameEnemyBulletList, game.getConfiger().getBulletWidth(), game.getConfiger().getBulletHeight());
                     counter = 0;
@@ -121,12 +119,13 @@ public class Animation implements Runnable {
 
             counter+=1;
 
-            gameFrame.setScore(game.getGameFrame().getPlayer().getPoints());
+            gameFrame.setScore(game.getMenuFrame().getLoginFrame().getPlayer().getPoints());
             gameFrame.setLives(game.getCannon().getLives());
 
             if(game.getCannon().getLives()==0) {
                 game.stopAnimation();
                 game.showGameOver();
+                game.getLevelHelper().resetLevel();
             }
             gameFrame.getGameCanvas().repaint();
         }

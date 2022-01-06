@@ -12,12 +12,17 @@ import java.awt.event.WindowEvent;
 /** Klasa ona logowania */
 public class LoginFrame extends JFrame {
 
+    /** Atrybut klasy Player */
+    private final Player player;
+
     /** Konstruktor klasy LoginFrame */
     LoginFrame(Game game, MenuFrame menuFrame) {
         Configer confer = game.getConfiger();
-        GameFrame gameFrame = game.getGameFrame();
-        Player player = game.getGameFrame().getPlayer();
+        GameFrame gameFrame = menuFrame.getGameFrame();
         setTitle(confer.getLoginTitle());
+
+        player = new Player("",confer.getInitialPoints());
+        game.getCannon().setLives(confer.getInitialLives());
 
         Panel mainPanel = new Panel(new BorderLayout());
         Panel loginPanel = new Panel();
@@ -43,7 +48,7 @@ public class LoginFrame extends JFrame {
                 nickField.setText(confer.getDefaultNick());
             }
             else {
-                EventQueue.invokeLater(() -> player.setNick(nickField.getText()));
+                EventQueue.invokeLater(() -> getPlayer().setNick(nickField.getText()));
                 EventQueue.invokeLater(() -> this.setVisible(false));
                 EventQueue.invokeLater(() -> {
                     gameFrame.setSize(this.getSize());
@@ -66,5 +71,9 @@ public class LoginFrame extends JFrame {
                 exitFrame.setVisible(true);
             });
         }});
+
+        pack();
     }
+    /** Metoda zwracajaca obiekt klasy Player */
+    public Player getPlayer() { return player; }
 }

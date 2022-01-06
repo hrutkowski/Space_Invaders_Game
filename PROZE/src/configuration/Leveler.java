@@ -8,17 +8,14 @@ import java.util.Properties;
 /** Klasa odpowiedzialna za odczytywanie paramertów poziomów z pliku txt */
 public class Leveler {
 
-    /** Atrybut przechowujacy sciezke do pliku txt */
-    private String path;
     /** Klasa typu Properties do wyciągania wartości z pliku txt */
     static Properties proper = new Properties();
 
     /** Konstruktor klasy Leveler */
-    public Leveler(String pathToTxT) { path = pathToTxT; }
+    public Leveler() {}
     /** Metoda wczytująca dane z pliku txt */
     public void loadLevelConfiguration(String pathToTxt) throws IOException {
-        path = pathToTxt;
-        InputStream propertiesFile = new FileInputStream(path);
+        InputStream propertiesFile = new FileInputStream(pathToTxt);
         proper.load(propertiesFile);
         propertiesFile.close();
     }

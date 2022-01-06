@@ -1,5 +1,6 @@
 package gui;
 
+import configuration.LevelHelper;
 import gameLogic.*;
 import helpfulTools.ColorTranslator;
 import configuration.Configer;
@@ -10,6 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 import javax.swing.*;
 
 /** Klasa odpowiadajaca za okno gry */
@@ -31,8 +33,6 @@ public class GameFrame extends JFrame implements KeyListener {
     private enum typeOfMove { LEFT, RIGHT, STOPPED }
     /** Atrybut klasy Configer */
     private final Configer confer;
-    /** Atrybut klasy Leveler */
-    private final Leveler lvl;
     /** Atrybut klasy Label */
     public final Label pointsAmount;
     /** Atrybut klasy Label */
@@ -41,8 +41,6 @@ public class GameFrame extends JFrame implements KeyListener {
     private final Label levelNumber;
     /** Atrybut klasy Panel */
     private final Panel canvasPanel;
-    /** Atrybut klasy Player */
-    private final Player player;
 
 
     /** Konstruktor klasy GameFrame */
@@ -53,12 +51,15 @@ public class GameFrame extends JFrame implements KeyListener {
         this.confer = game.getConfiger();
         setTitle(confer.getGameTitle());
         ColorTranslator colorTranslator = new ColorTranslator();
-        this.lvl = game.getLeveler();
-        player = new Player("",confer.getInitialPoints());
-
         cannon = game.getCannon();
 
-        addEnemy(lvl.getEnemyNumber(), colorTranslator);
+        try {
+            game.getLeveler().loadLevelConfiguration(game.getConfiger().getPathLevel1());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        addEnemy(game.getLeveler(), colorTranslator);
 
         setLayout(new BorderLayout());
 
@@ -81,8 +82,8 @@ public class GameFrame extends JFrame implements KeyListener {
         Button exitButton = new Button(confer.getButtonEndText());
 
         exitButton.addActionListener(e -> {
-            EventQueue.invokeLater(() -> game.getGameFrame().setVisible(false));
-            EventQueue.invokeLater(() -> {ExitFrame exitFrame = new ExitFrame(game, game.getGameFrame(), game.getGameFrame().getSize(), game.getGameFrame().getLocation());
+            EventQueue.invokeLater(() -> game.getMenuFrame().getGameFrame().setVisible(false));
+            EventQueue.invokeLater(() -> {ExitFrame exitFrame = new ExitFrame(game, game.getMenuFrame().getGameFrame(), game.getMenuFrame().getGameFrame().getSize(), game.getMenuFrame().getGameFrame().getLocation());
                 exitFrame.setVisible(true); });
         });
         pauseButton.addActionListener(e -> {
@@ -113,7 +114,7 @@ public class GameFrame extends JFrame implements KeyListener {
         topPanel.add(levelPanel, BorderLayout.CENTER);
         topPanel.add(pointsPanel, BorderLayout.WEST);
 
-        canvasPanel.add(gameCanvas = new GameCanvas(colorTranslator.translateColor(lvl.getColorBackground()), gameEnemyList, gameCannonBulletList, gameEnemyBulletList, cannon, game), BorderLayout.CENTER);
+        canvasPanel.add(gameCanvas = new GameCanvas(colorTranslator.translateColor(game.getLeveler().getColorBackground()), gameEnemyList, gameCannonBulletList, gameEnemyBulletList, cannon, game), BorderLayout.CENTER);
         canvasPanel.addKeyListener(this);
         bottomPanel.add(livesPanel, BorderLayout.WEST);
 
@@ -128,12 +129,21 @@ public class GameFrame extends JFrame implements KeyListener {
         addKeyListener(this);
 
         addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent e) {
-            EventQueue.invokeLater(() -> game.getGameFrame().setVisible(false));
+            EventQueue.invokeLater(() -> game.getMenuFrame().getGameFrame().setVisible(false));
             EventQueue.invokeLater(() -> {
-                ExitFrame exitFrame = new ExitFrame(game, game.getGameFrame(), game.getGameFrame().getSize(), game.getGameFrame().getLocation());
+                ExitFrame exitFrame = new ExitFrame(game, game.getMenuFrame().getGameFrame(), game.getMenuFrame().getGameFrame().getSize(), game.getMenuFrame().getGameFrame().getLocation());
                 exitFrame.setVisible(true);
             });
         }});
+
+        Thread repaintThread = new Thread(() -> {
+            try {
+                Thread.sleep(confer.getFps());
+                repaint();
+            } catch (InterruptedException ignore) {
+            }
+        });
+        repaintThread.start();
 
         pack();
     }
@@ -169,15 +179,16 @@ public class GameFrame extends JFrame implements KeyListener {
         }
     }
     /** Metoda tworząca Enemy */
-    public void addEnemy(int enemyNumber, ColorTranslator color) {
-        int rows = calulateRows(enemyNumber);
+    public void addEnemy(Leveler leveler, ColorTranslator color) {
+        int rows = calulateRows(leveler.getEnemyNumber());
         int columns;
+        int enemyNumber = leveler.getEnemyNumber();
         for (int j = 0; j < rows; j++) {
             float positionY = 0.1f * (j+1);
             columns = Math.min(enemyNumber, confer.getLimitEnemyColumns());
             for (int i = 0; i < columns; i++) {
                 float positionX = 1f / (columns + 1) * (i + 1) - confer.getEnemyWidth() / 2;
-                gameEnemyList.add(new Enemy(positionX, positionY, confer.getEnemyWidth(), confer.getEnemyHeight(), color.translateColor(lvl.getColorEnemy()), confer.getEnemyLives()));
+                gameEnemyList.add(new Enemy(positionX, positionY, confer.getEnemyWidth(), confer.getEnemyHeight(), color.translateColor(leveler.getColorEnemy()), confer.getEnemyLives()));
             }
             enemyNumber-=confer.getLimitEnemyColumns();
         }
@@ -226,7 +237,5 @@ public class GameFrame extends JFrame implements KeyListener {
     /** Metoda aktualizujac ilosc zyc */
     public void setLives(int lives){ livesAmount.setText(String.valueOf(lives)); }
     /** Metoda aktualizujac numer poziomu */
-    public void nextLevel(){ levelNumber.setText(String.valueOf(Integer.parseInt(levelNumber.getText())+1)); }
-    /** Metoda zwracajaca obiekt klasy Player */
-    public Player getPlayer() { return player; }
+    public void nextLevel(LevelHelper levelHelper){ levelNumber.setText(String.valueOf(levelHelper.getLevel())); }
 }

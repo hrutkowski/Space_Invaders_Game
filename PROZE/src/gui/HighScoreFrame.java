@@ -12,7 +12,7 @@ import java.awt.event.WindowEvent;
 public class HighScoreFrame extends JFrame {
 
     /** Konstruktor klasy HighScoreFrame */
-    public HighScoreFrame(Game game, MenuFrame menuFrame){
+    HighScoreFrame(Game game, MenuFrame menuFrame){
         Configer confer = game.getConfiger();
         setTitle(confer.getHighScoreTitle());
 

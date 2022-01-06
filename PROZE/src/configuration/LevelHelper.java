@@ -2,15 +2,16 @@ package configuration;
 
 /** Klasa pomocnicza do zmian poziomu */
 public class LevelHelper {
-    /** Atrybut posiadajacy numer boecnego poziomu */
+    /** Atrybut posiadajacy numer aktualnego poziomu */
     int level;
 
     /** Konstruktor klasy LevelHelper */
     public LevelHelper() {
-        level=0;
+        level = 1;
     }
     /** Metoda zwracajaca sciezke do poziomu */
     public String getLevelPath(Configer configer) {
+        System.out.println(level);
         return switch (level) {
             case 2 -> configer.getPathLevel2();
             case 3 -> configer.getPathLevel3();
@@ -19,6 +20,8 @@ public class LevelHelper {
     }
     /** Metoda zwracajaca numer obecnego poziomu */
     public int getLevel() { return level; }
-    /** metoda zwiekszajaca numer pziomu */
+    /** Metoda zwiekszajaca numer poziomu */
     public void nextLevel() { level += 1; }
+    /** Metoda zeruje poziom */
+    public void resetLevel() { level = 1; }
 }

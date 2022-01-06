@@ -80,9 +80,7 @@ public class Configer {
         return Integer.parseInt(proper.getProperty("initialLives"));
     }
     /** Metoda zwracająca initialLevel */
-    public int getInitialLevel() {
-        return Integer.parseInt(proper.getProperty("initialLevel"));
-    }
+    public int getInitialLevel() { return Integer.parseInt(proper.getProperty("initialLevel")); }
     /** Metoda zwracająca labelPoints */
     public String getLabelPoints() { return (proper.getProperty("labelPoints")); }
     /** Metoda zwracająca labelColorCannon */

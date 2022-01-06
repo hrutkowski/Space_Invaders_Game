@@ -60,4 +60,4 @@ exitFrameWidth=5
 finishedGameFrameHeight=100
 finishedGameFrameWidth=150
 limitEnemyColumns=10
-numberLevels = 3
+numberLevels = 1
