@@ -1,7 +1,6 @@
 package gui;
 
 import configuration.Configer;
-import configuration.HighScoreManager;
 import spaceInvaders.Game;
 
 import javax.swing.*;
@@ -23,21 +22,20 @@ public class HighScoreFrame extends JFrame {
 
         Button backToMenuButton = new Button(confer.getBackToMenuText());
 
-        HighScoreManager highScoreManager = game.getHighScoreManager();
-        JTextArea text = new JTextArea(highScoreManager.showHighScore());
-        text.setPreferredSize(new Dimension(confer.getPreferredScreenWidth()-100, confer.getPreferredScreenHeight()-100));
-        text.setFont(new Font("Serif", Font.PLAIN, 20));
-        text.setLineWrap(true);
-        text.setWrapStyleWord(true);
-        text.setEditable(false);
+        JTextArea ranking = new JTextArea(game.getHighScoreManager().showHighScore());
+        ranking.setPreferredSize(new Dimension(confer.getPreferredScreenWidth()-100, confer.getPreferredScreenHeight()-100));
+        ranking.setFont(new Font("Serif", Font.PLAIN, 20));
+        ranking.setLineWrap(true);
+        ranking.setWrapStyleWord(true);
+        ranking.setEditable(false);
 
-        mainPanel.add(text, BorderLayout.CENTER);
+        mainPanel.add(ranking, BorderLayout.CENTER);
         mainPanel.add(backToMenuButton, BorderLayout.SOUTH);
 
         add(mainPanel);
 
         backToMenuButton.addActionListener(e -> {
-            EventQueue.invokeLater(() -> this.setVisible(false));
+            EventQueue.invokeLater(this::dispose);
             EventQueue.invokeLater(() -> {
                 menuFrame.setSize(this.getSize());
                 menuFrame.setLocation(this.getLocation()); });
@@ -51,8 +49,6 @@ public class HighScoreFrame extends JFrame {
                 exitFrame.setVisible(true);
             });
         }});
-
         pack();
     }
-
 }

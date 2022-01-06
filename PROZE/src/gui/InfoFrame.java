@@ -34,7 +34,7 @@ public class InfoFrame extends JFrame {
         add(mainPanel, BorderLayout.CENTER);
 
         backToMenuButton.addActionListener(e -> {
-            EventQueue.invokeLater(() -> this.setVisible(false));
+            EventQueue.invokeLater(this::dispose);
             EventQueue.invokeLater(() -> {
                 menuFrame.setSize(this.getSize());
                 menuFrame.setLocation(this.getLocation()); });

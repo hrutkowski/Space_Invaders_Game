@@ -12,13 +12,13 @@ import java.awt.event.WindowEvent;
 public class MenuFrame extends JFrame {
 
     /** Atrybut klasy HighScoreFrame */
-    private final HighScoreFrame highScoreFrame;
+    private HighScoreFrame highScoreFrame;
     /** Atrybut klasy InfoFrame */
-    private final InfoFrame infoFrame;
+    private InfoFrame infoFrame;
     /** Atrybut klasy SettingFrame */
-    private final SettingsFrame settingsFrame;
+    private SettingsFrame settingsFrame;
     /** Atrybut klasy LoginFrame */
-    private final LoginFrame loginFrame;
+    private  LoginFrame loginFrame;
 
     /** Metoda zwracajaca obiekt klasy InfoFrame */
     public InfoFrame getInfoFrame() { return infoFrame; }
@@ -33,11 +33,6 @@ public class MenuFrame extends JFrame {
     public MenuFrame(Game game) {
         Configer confer = game.getConfiger();
         setTitle(confer.getMenuTitle());
-
-        this.highScoreFrame = new HighScoreFrame(game, this);
-        this.infoFrame = new InfoFrame(game, this);
-        this.settingsFrame = new SettingsFrame(game, this);
-        this.loginFrame = new LoginFrame(game, this);
 
         setLayout(new BorderLayout());
 
@@ -64,6 +59,7 @@ public class MenuFrame extends JFrame {
         startButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
             EventQueue.invokeLater(() -> {
+                this.loginFrame = new LoginFrame(game, this);
                 loginFrame.setSize(this.getSize());
                 loginFrame.setLocation(this.getLocation());
             });
@@ -72,6 +68,7 @@ public class MenuFrame extends JFrame {
         infoButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
             EventQueue.invokeLater(() -> {
+                this.infoFrame = new InfoFrame(game, this);
                 infoFrame.setSize(this.getSize());
                 infoFrame.setLocation(this.getLocation());
             });
@@ -80,6 +77,7 @@ public class MenuFrame extends JFrame {
         highScoreButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
             EventQueue.invokeLater(() -> {
+                this.highScoreFrame = new HighScoreFrame(game, this);
                 highScoreFrame.setSize(this.getSize());
                 highScoreFrame.setLocation(this.getLocation());
             });
@@ -88,6 +86,7 @@ public class MenuFrame extends JFrame {
         settingsButton.addActionListener(e -> {
             EventQueue.invokeLater(() -> this.setVisible(false));
             EventQueue.invokeLater(() -> {
+                this.settingsFrame = new SettingsFrame(game, this);
                 settingsFrame.setSize(this.getSize());
                 settingsFrame.setLocation(this.getLocation()); });
             EventQueue.invokeLater(() -> settingsFrame.setVisible(true));

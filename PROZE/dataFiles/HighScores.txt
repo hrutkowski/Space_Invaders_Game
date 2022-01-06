@@ -1,12 +1,12 @@
-#Mon Jan 03 22:10:42 CET 2022
-wynik_0=1070
+#Thu Jan 06 20:58:11 CET 2022
+wynik_0=200
 liczba_nickow=5
-nick_4=Kuba
-nick_3=Tomasz
-wynik_4=374
+nick_4=Zosia
+nick_3=Kuba
+wynik_4=16
 nick_2=Franek
-wynik_3=400
+wynik_3=20
 nick_1=Andrzejek
-wynik_2=500
-nick_0=Hubert
-wynik_1=500
+wynik_2=100
+nick_0=Adam
+wynik_1=150

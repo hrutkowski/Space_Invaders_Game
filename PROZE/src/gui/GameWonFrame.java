@@ -8,29 +8,42 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 public class GameWonFrame extends JFrame {
     /** Konstruktor GameWonFrame */
     public GameWonFrame(Game game, MenuFrame menuFrame, Dimension lastFrameDimension, Point lastFrameLocation) {
         Configer confer = game.getConfiger();
-        setTitle(confer.getGameWonText());
+        setTitle(confer.getGameWonTitle());
         setSize(confer.getFinishedGameFrameWidth(), confer.getFinishedGameFrameHeight());
         setLocation(lastFrameLocation);
 
         JFrame gameWonFrame = this;
 
         Panel mainPanel = new Panel(new BorderLayout());
-        Panel buttonPanel = new Panel(new FlowLayout());
+        Panel labelPanel = new Panel(new FlowLayout());
 
-        Label gameWonLabel = new Label(confer.getGameWonText());
+        Label congratulationLabel = new Label(confer.getCongratulationsText());
+        Label playerPoints = new Label(String.valueOf(game.getGameFrame().getPlayer().getPoints()));
+        Label finalPoints = new Label(confer.getPlayerFinalPointsText());
 
         Button backToMenuButton = new Button(confer.getBackToMenuText());
 
-        mainPanel.add(gameWonLabel, BorderLayout.NORTH);
-        mainPanel.add(buttonPanel, BorderLayout.CENTER);
+        labelPanel.add(finalPoints);
+        labelPanel.add(playerPoints);
+
+        mainPanel.add(congratulationLabel, BorderLayout.NORTH);
+        mainPanel.add(labelPanel, BorderLayout.CENTER);
         mainPanel.add(backToMenuButton, BorderLayout.SOUTH);
 
         add(mainPanel, BorderLayout.CENTER);
+
+        game.getHighScoreManager().addPlayer(game.getGameFrame().getPlayer());
+        try {
+            game.getHighScoreManager().saveScores();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         backToMenuButton.addActionListener(e -> {
             EventQueue.invokeLater(gameWonFrame::dispose);

@@ -18,13 +18,9 @@ public class Configer {
         propertiesFile.close();
     }
     /** Metoda zwracająca gameHeight */
-    public int getGameHeight() {
-        return Integer.parseInt(proper.getProperty("gameHeight"));
-    }
+    public int getGameHeight() { return Integer.parseInt(proper.getProperty("gameHeight")); }
     /** Metoda zwracająca gameWidth */
-    public int getGameWidth() {
-        return Integer.parseInt(proper.getProperty("gameWidth"));
-    }
+    public int getGameWidth() { return Integer.parseInt(proper.getProperty("gameWidth")); }
     /** Metoda zwracająca gameTitle */
     public String getGameTitle() { return proper.getProperty("gameTitle"); }
     /** Metoda zwracająca buttonStartText */
@@ -59,25 +55,21 @@ public class Configer {
     public String getQuitDialogNo() {
         return proper.getProperty("quitDialogNo");
     }
-    /** Metoda zwracająca buttonBackToMenuText */
-    public String getButtonBackToMenuText() {
-        return proper.getProperty("buttonBackToMenuText");
-    }
     /** Metoda zwracająca buttonPauseText */
     public String getButtonPauseText() {
         return proper.getProperty("buttonPauseText");
-    }
-    /** Metoda zwracająca buttonPlayAgainText */
-    public String getButtonPlayAgainText() {
-        return proper.getProperty("buttonPlayAgainText");
     }
     /** Metoda zwracająca gameOverText */
     public String getGameOverText() {
         return proper.getProperty("gameOverText");
     }
-    /** Metoda zwracająca gameWonText */
-    public String getGameWonText() {
-        return proper.getProperty("gameWonText");
+    /** Metoda zwracająca congratulationsText */
+    public String getCongratulationsText() {
+        return proper.getProperty("congratulationsText");
+    }
+    /** Metoda zwracająca playerFinalPointsText */
+    public String getPlayerFinalPointsText() {
+        return proper.getProperty("playerFinalPointsText");
     }
     /** Metoda zwracająca initialPoints */
     public int getInitialPoints() {
@@ -143,6 +135,10 @@ public class Configer {
     public String getSettingsTitle() { return proper.getProperty("settingsTitle"); }
     /** Metoda zwracająca menuTitle */
     public String getMenuTitle() { return proper.getProperty("menuTitle"); }
+    /** Metoda zwracająca gameOverTitle */
+    public String getGameOverTitle() { return proper.getProperty("gameOverTitle"); }
+    /** Metoda zwracająca gameWonTitle */
+    public String getGameWonTitle() { return proper.getProperty("gameWonTitle"); }
     /** Metoda zwracająca pathLevel1*/
     public String getPathLevel1() { return proper.getProperty("pathLevel1"); }
     /** Metoda zwracająca pathLevel2*/

@@ -7,7 +7,6 @@ import configuration.HighScoreManager;
 import configuration.LevelHelper;
 import gameLogic.Animation;
 import gameLogic.Cannon;
-import gameLogic.Player;
 import gui.GameFrame;
 import configuration.Configer;
 import configuration.Leveler;
@@ -35,8 +34,6 @@ public class Game {
     final private Cannon cannon;
     /** Atrybut klasy LevelHelper */
     final private LevelHelper levelHelper;
-    /** Atrybut mowiacy o koncu gry */
-    public boolean gameOver;
     /** Atrybut mowiacy o wygraniu gry */
     public boolean gameWon;
 
@@ -60,12 +57,8 @@ public class Game {
     }
     /** Metoda zwracajaca obiekt klasy LevelHelper */
     public LevelHelper getLevelHelper() { return levelHelper; }
-    /** Metoda zwracajaca GameOver */
-    public boolean isGameOver() { return gameOver; }
     /** Metoda pobierająca GameWon */
     public boolean isGameWon() { return gameWon; }
-    /** Metoda ustawiajaca GameOver */
-    public void setGameOver() { gameOver=true; }
     /** Metoda ustawiajaca GameWon */
     public void setGameWon() { gameWon=true; }
 
@@ -89,7 +82,6 @@ public class Game {
         levelHelper.nextLevel();
         this.leveler = leveler;
         configer = conf;
-        gameOver = false;
         gameWon = false;
         highScoreManager = new HighScoreManager(configer.getPathHighScores());
         ColorTranslator col = new ColorTranslator();
@@ -124,6 +116,7 @@ public class Game {
         EventQueue.invokeLater(() -> {
             GameOverFrame gameOverFrame = new GameOverFrame(this, menuFrame, gameFrame.getSize(), gameFrame.getLocation());
             gameOverFrame.setVisible(true);
+            gameOverFrame.requestFocus();
         });
     }
     /** Metoda zwracająca okienko gameWon */
@@ -131,6 +124,7 @@ public class Game {
         EventQueue.invokeLater(() -> {
             GameWonFrame gameWonFrame = new GameWonFrame(this, menuFrame, gameFrame.getSize(), gameFrame.getLocation());
             gameWonFrame.setVisible(true);
+            gameWonFrame.requestFocus();
         });
     }
     /** Metoda uruchamiajaca cala gre */

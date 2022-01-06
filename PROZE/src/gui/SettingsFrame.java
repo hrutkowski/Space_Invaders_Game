@@ -25,7 +25,7 @@ public class SettingsFrame extends JFrame {
         Panel buttonPanel = new Panel(new FlowLayout());
 
         Button backToMenuButton = new Button(confer.getBackToMenuText());
-        Button blackColorButton = new Button("black"); // POTEM DO ZMIANY
+        Button blackColorButton = new Button("black");
         Button blueColorButton = new Button("blue");
         Button yellowColorButton = new Button("yellow");
 

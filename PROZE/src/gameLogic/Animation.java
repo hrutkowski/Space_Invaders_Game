@@ -85,12 +85,7 @@ public class Animation implements Runnable {
             if (game.getLevelHelper().getLevel() == game.getConfiger().getNumberLevels() && gameEnemyList.isEmpty()) {
                 game.stopAnimation();
                 game.setGameWon();
-                game.getHighScoreManager().addPlayer(game.getGameFrame().getPlayer());
-                try {
-                    game.getHighScoreManager().saveScores();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                game.showGameWon();
             }
 
             if (gameEnemyList.isEmpty() && !game.isGameWon()) {
@@ -132,9 +127,7 @@ public class Animation implements Runnable {
             if(game.getCannon().getLives()==0) {
                 game.stopAnimation();
                 game.showGameOver();
-                game.showGameWon();
             }
-
             gameFrame.getGameCanvas().repaint();
         }
     }

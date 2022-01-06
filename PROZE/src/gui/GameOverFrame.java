@@ -5,32 +5,43 @@ import spaceInvaders.Game;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class GameOverFrame extends JFrame {
     /** Konstruktor GameWonFrame */
     public GameOverFrame(Game game, MenuFrame menuFrame, Dimension lastFrameDimension, Point lastFrameLocation) {
         Configer confer = game.getConfiger();
-        setTitle(confer.getGameOverText());
+        setTitle(confer.getGameOverTitle());
         setSize(confer.getFinishedGameFrameWidth(), confer.getFinishedGameFrameHeight());
         setLocation(lastFrameLocation);
 
-        JFrame gameOverFrame = this;
-
         Panel mainPanel = new Panel(new BorderLayout());
-        Panel buttonPanel = new Panel(new FlowLayout());
+        Panel labelPanel = new Panel(new FlowLayout());
 
         Label gameOverLabel = new Label(confer.getGameOverText());
+        Label playerPoints = new Label(String.valueOf(game.getGameFrame().getPlayer().getPoints()));
+        Label finalPoints = new Label(confer.getPlayerFinalPointsText());
 
         Button backToMenuButton = new Button(confer.getBackToMenuText());
 
+        labelPanel.add(finalPoints);
+        labelPanel.add(playerPoints);
+
         mainPanel.add(gameOverLabel, BorderLayout.NORTH);
-        mainPanel.add(buttonPanel, BorderLayout.CENTER);
+        mainPanel.add(labelPanel, BorderLayout.CENTER);
         mainPanel.add(backToMenuButton, BorderLayout.SOUTH);
 
         add(mainPanel, BorderLayout.CENTER);
 
+        game.getHighScoreManager().addPlayer(game.getGameFrame().getPlayer());
+        try {
+            game.getHighScoreManager().saveScores();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         backToMenuButton.addActionListener(e -> {
-            EventQueue.invokeLater(gameOverFrame::dispose);
+            EventQueue.invokeLater(this::dispose);
             EventQueue.invokeLater(() -> {
                 menuFrame.setSize(lastFrameDimension);
                 menuFrame.setLocation(lastFrameLocation);
