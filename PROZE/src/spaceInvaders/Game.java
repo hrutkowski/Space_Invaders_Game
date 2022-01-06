@@ -10,6 +10,8 @@ import gameLogic.Cannon;
 import gui.GameFrame;
 import configuration.Configer;
 import configuration.Leveler;
+import gui.GameOverFrame;
+import gui.GameWonFrame;
 import gui.MenuFrame;
 import helpfulTools.ColorTranslator;
 
@@ -115,6 +117,20 @@ public class Game {
     public void stopAnimation() {
         animation.setKicker(null);
         animation = null;
+    }
+    /** Metoda zwracająca okienko gameOver */
+    public void showGameOver(){
+        EventQueue.invokeLater(() -> {
+            GameOverFrame gameOverFrame = new GameOverFrame(this, menuFrame, gameFrame.getSize(), gameFrame.getLocation());
+            gameOverFrame.setVisible(true);
+        });
+    }
+    /** Metoda zwracająca okienko gameWon */
+    public void showGameWon(){
+        EventQueue.invokeLater(() -> {
+            GameWonFrame gameWonFrame = new GameWonFrame(this, menuFrame, gameFrame.getSize(), gameFrame.getLocation());
+            gameWonFrame.setVisible(true);
+        });
     }
     /** Metoda uruchamiajaca cala gre */
     public static void main(String[] args) { new Game(); }

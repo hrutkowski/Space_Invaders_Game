@@ -131,7 +131,8 @@ public class Animation implements Runnable {
 
             if(game.getCannon().getLives()==0) {
                 game.stopAnimation();
-                game.setGameOver();
+                game.showGameOver();
+                game.showGameWon();
             }
 
             gameFrame.getGameCanvas().repaint();

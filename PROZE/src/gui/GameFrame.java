@@ -135,19 +135,6 @@ public class GameFrame extends JFrame implements KeyListener {
             });
         }});
 
-        if(game.isGameOver()) {
-            EventQueue.invokeLater(() -> {
-                // GameOverFrame gameOverFrame = new GameOverFrame(game, this, this.getSize(), this.getLocation());
-                // gameOverFrame.setVisible(true);
-            });
-        }
-        if(game.isGameWon()) {
-            EventQueue.invokeLater(() -> {
-                // GameWonFrame gameWonFrame = new GameWonFrame(game, this, this.getSize(), this.getLocation());
-                // gameWinFrame.setVisible(true);
-            });
-        }
-
         pack();
     }
     /** Metoda zwracajaca obiekt klasy GameObjectList */

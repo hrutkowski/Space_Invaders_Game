@@ -75,6 +75,10 @@ public class Configer {
     public String getGameOverText() {
         return proper.getProperty("gameOverText");
     }
+    /** Metoda zwracająca gameWonText */
+    public String getGameWonText() {
+        return proper.getProperty("gameWonText");
+    }
     /** Metoda zwracająca initialPoints */
     public int getInitialPoints() {
         return Integer.parseInt(proper.getProperty("initialPoints"));
@@ -159,6 +163,10 @@ public class Configer {
     public int getExitFrameHeight() { return Integer.parseInt(proper.getProperty("exitFrameHeight")); }
     /** Metoda zwracająca exitFrameWidth */
     public int getExitFrameWidth() { return Integer.parseInt(proper.getProperty("exitFrameWidth")); }
+    /** Metoda zwracająca finishedGameFrameHeight */
+    public int getFinishedGameFrameHeight() { return Integer.parseInt(proper.getProperty("finishedGameFrameHeight")); }
+    /** Metoda zwracająca finishedGameFrameWidth */
+    public int getFinishedGameFrameWidth() { return Integer.parseInt(proper.getProperty("finishedGameFrameWidth")); }
     /** Metoda zwracająca limitEnemyColumns */
     public int getLimitEnemyColumns() { return Integer.parseInt(proper.getProperty("limitEnemyColumns")); }
     /** Metoda zwracajaca numberLevels */
