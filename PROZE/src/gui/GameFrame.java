@@ -34,7 +34,7 @@ public class GameFrame extends JFrame implements KeyListener {
     /** Atrybut klasy Leveler */
     private final Leveler lvl;
     /** Atrybut klasy Label */
-    private final Label pointsAmount;
+    public final Label pointsAmount;
     /** Atrybut klasy Label */
     private final Label livesAmount;
     /** Atrybut klasy Label */

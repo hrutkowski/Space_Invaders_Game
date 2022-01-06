@@ -7,6 +7,7 @@ import configuration.HighScoreManager;
 import configuration.LevelHelper;
 import gameLogic.Animation;
 import gameLogic.Cannon;
+import gameLogic.Player;
 import gui.GameFrame;
 import configuration.Configer;
 import configuration.Leveler;

@@ -1,6 +1,7 @@
 package gui;
 
 import configuration.Configer;
+import gameLogic.Player;
 import spaceInvaders.Game;
 
 import javax.swing.*;

@@ -5,8 +5,6 @@ import spaceInvaders.Game;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 public class GameOverFrame extends JFrame {
     /** Konstruktor GameWonFrame */
