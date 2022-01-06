@@ -127,7 +127,7 @@ public class Game {
         });
     }
     /** Metoda zwracająca okienko gameWon */
-    public void showGameWon(){
+    public void showGameWon() {
         EventQueue.invokeLater(() -> {
             GameWonFrame gameWonFrame = new GameWonFrame(this, menuFrame, gameFrame.getSize(), gameFrame.getLocation());
             gameWonFrame.setVisible(true);
