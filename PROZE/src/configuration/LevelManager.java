@@ -1,12 +1,12 @@
 package configuration;
 
 /** Klasa pomocnicza do zmian poziomu */
-public class LevelHelper {
+public class LevelManager {
     /** Atrybut posiadajacy numer aktualnego poziomu */
     int level;
 
-    /** Konstruktor klasy LevelHelper */
-    public LevelHelper() {
+    /** Konstruktor klasy LevelManager */
+    public LevelManager() {
         level = 1;
     }
     /** Metoda zwracajaca sciezke do poziomu */

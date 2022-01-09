@@ -83,7 +83,7 @@ public class Animation implements Runnable {
 
             if (game.getLevelHelper().getLevel() == game.getConfiger().getNumberLevels() && gameEnemyList.isEmpty()) {
                 game.stopAnimation();
-                game.showGameWon();
+                game.getMenuFrame().getGameFrame().showGameWon(game);
                 game.getLevelHelper().resetLevel();
             }
             else if (gameEnemyList.isEmpty()) {
@@ -102,7 +102,7 @@ public class Animation implements Runnable {
                 gameCannonBulletList.clear();
             }
             else {
-                if(counter==15) {
+                if(counter==game.getLeveler().getShootingRatio()) {
                     Random rand = new Random();
                     gameEnemyList.get(rand.nextInt(gameEnemyList.size())).fire(gameEnemyBulletList, game.getConfiger().getBulletWidth(), game.getConfiger().getBulletHeight());
                     counter = 0;
@@ -124,7 +124,7 @@ public class Animation implements Runnable {
 
             if(game.getCannon().getLives()==0) {
                 game.stopAnimation();
-                game.showGameOver();
+                game.getMenuFrame().getGameFrame().showGameOver(game);
                 game.getLevelHelper().resetLevel();
             }
             gameFrame.getGameCanvas().repaint();

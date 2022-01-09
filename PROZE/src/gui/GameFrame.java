@@ -1,6 +1,6 @@
 package gui;
 
-import configuration.LevelHelper;
+import configuration.LevelManager;
 import gameLogic.*;
 import helpfulTools.ColorTranslator;
 import configuration.Configer;
@@ -237,5 +237,25 @@ public class GameFrame extends JFrame implements KeyListener {
     /** Metoda aktualizujac ilosc zyc */
     public void setLives(int lives){ livesAmount.setText(String.valueOf(lives)); }
     /** Metoda aktualizujac numer poziomu */
-    public void nextLevel(LevelHelper levelHelper){ levelNumber.setText(String.valueOf(levelHelper.getLevel())); }
+    public void nextLevel(LevelManager levelManager){ levelNumber.setText(String.valueOf(levelManager.getLevel())); }
+    /** Metoda wyswiwtlajaca okienko gameOver */
+    public void showGameOver(Game game){
+        EventQueue.invokeLater(() -> {
+            GameOverFrame gameOverFrame = new GameOverFrame(game, game.getMenuFrame(), game.getMenuFrame().getGameFrame().getSize(), game.getMenuFrame().getGameFrame().getLocation());
+            gameOverFrame.setVisible(true);
+            gameOverFrame.requestFocus();
+            gameOverFrame.setSize(getSize());
+        });
+        EventQueue.invokeLater(this::dispose);
+    }
+    /** Metoda wyswiwtlajaca okienko gameWon */
+    public void showGameWon(Game game) {
+        EventQueue.invokeLater(() -> {
+            GameWonFrame gameWonFrame = new GameWonFrame(game, game.getMenuFrame(), game.getMenuFrame().getGameFrame().getSize(), game.getMenuFrame().getGameFrame().getLocation());
+            gameWonFrame.setVisible(true);
+            gameWonFrame.requestFocus();
+            gameWonFrame.setSize(getSize());
+        });
+        EventQueue.invokeLater(this::dispose);
+    }
 }

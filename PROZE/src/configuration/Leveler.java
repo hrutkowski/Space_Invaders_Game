@@ -29,4 +29,8 @@ public class Leveler {
     public String getColorBackground() {return proper.getProperty("colorBackground"); }
     /** Metoda zwracająca endLevelPoints */
     public int getEndLevelPoints() { return Integer.parseInt(proper.getProperty("endLevelPoints")); }
+    /** Metoda zwracająca shootingRatio */
+    public int getShootingRatio() {
+        System.out.println(proper.getProperty("shootingRatio"));
+        return Integer.parseInt(proper.getProperty("shootingRatio")); }
 }

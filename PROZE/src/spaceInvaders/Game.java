@@ -4,7 +4,7 @@ import java.awt.*;
 import java.io.IOException;
 
 import configuration.HighScoreManager;
-import configuration.LevelHelper;
+import configuration.LevelManager;
 import gameLogic.Animation;
 import gameLogic.Cannon;
 import configuration.Configer;
@@ -29,8 +29,8 @@ public class Game {
     final private MenuFrame menuFrame;
     /** Atrybut klasy Cannon */
     final private Cannon cannon;
-    /** Atrybut klasy LevelHelper */
-    final private LevelHelper levelHelper;
+    /** Atrybut klasy LevelManager */
+    final private LevelManager levelManager;
 
     /** Metoda zwracajaca obiekt klasy Animation */
     public Animation getAnimation() { return animation; }
@@ -48,8 +48,8 @@ public class Game {
     public HighScoreManager getHighScoreManager() {
         return highScoreManager;
     }
-    /** Metoda zwracajaca obiekt klasy LevelHelper */
-    public LevelHelper getLevelHelper() { return levelHelper; }
+    /** Metoda zwracajaca obiekt klasy LevelManager */
+    public LevelManager getLevelHelper() { return levelManager; }
 
     /** Konstruktor klasy Game */
     Game() {
@@ -61,7 +61,7 @@ public class Game {
             conf = null;
         }
         this.leveler = new Leveler();
-        this.levelHelper = new LevelHelper();
+        this.levelManager = new LevelManager();
         configer = conf;
         highScoreManager = new HighScoreManager(configer.getPathHighScores());
         ColorTranslator col = new ColorTranslator();
@@ -81,26 +81,6 @@ public class Game {
     public void stopAnimation() {
         animation.setKicker(null);
         animation = null;
-    }
-    /** Metoda wyswiwtlajaca okienko gameOver */
-    public void showGameOver(){
-        EventQueue.invokeLater(() -> {
-            GameOverFrame gameOverFrame = new GameOverFrame(this, menuFrame, menuFrame.getGameFrame().getSize(), menuFrame.getGameFrame().getLocation());
-            gameOverFrame.setVisible(true);
-            gameOverFrame.requestFocus();
-            gameOverFrame.setSize(getMenuFrame().getGameFrame().getSize());
-        });
-        EventQueue.invokeLater(getMenuFrame().getGameFrame()::dispose);
-    }
-    /** Metoda wyswiwtlajaca okienko gameWon */
-    public void showGameWon() {
-        EventQueue.invokeLater(() -> {
-            GameWonFrame gameWonFrame = new GameWonFrame(this, menuFrame, menuFrame.getGameFrame().getSize(), menuFrame.getGameFrame().getLocation());
-            gameWonFrame.setVisible(true);
-            gameWonFrame.requestFocus();
-            gameWonFrame.setSize(getMenuFrame().getGameFrame().getSize());
-        });
-        EventQueue.invokeLater(getMenuFrame().getGameFrame()::dispose);
     }
     /** Metoda uruchamiajaca cala gre */
     public static void main(String[] args) { new Game(); }

@@ -3,3 +3,4 @@ colorEnemy=yellow
 enemyPoints=4
 colorBackground=green
 endLevelPoints=50
+shootingRatio=13
