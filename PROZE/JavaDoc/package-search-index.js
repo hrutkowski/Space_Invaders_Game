@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"configuration"},{"l":"gameLogic"},{"l":"gui"},{"l":"helpfulTools"},{"l":"spaceInvaders"}];updateSearchResults();
