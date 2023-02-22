@@ -11,7 +11,6 @@ public class LevelManager {
     }
     /** Metoda zwracajaca sciezke do poziomu */
     public String getLevelPath(Configer configer) {
-        System.out.println(level);
         return switch (level) {
             case 2 -> configer.getPathLevel2();
             case 3 -> configer.getPathLevel3();

@@ -1,12 +1,12 @@
-#Sun Jan 09 17:57:38 CET 2022
+#Wed Feb 22 22:18:04 CET 2023
 wynik_0=412
 liczba_nickow=5
-nick_4=Krzysiek
-nick_3=Hubert
-wynik_4=60
-nick_2=Adam
-wynik_3=70
-nick_1=Tomek
-wynik_2=100
+nick_4=Adam
+nick_3=bgh
+wynik_4=100
+nick_2=Tomek
+wynik_3=102
+nick_1=hrrrr
+wynik_2=160
 nick_0=lukaszek
-wynik_1=160
+wynik_1=374

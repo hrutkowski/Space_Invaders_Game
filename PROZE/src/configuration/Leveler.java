@@ -30,7 +30,5 @@ public class Leveler {
     /** Metoda zwracająca endLevelPoints */
     public int getEndLevelPoints() { return Integer.parseInt(proper.getProperty("endLevelPoints")); }
     /** Metoda zwracająca shootingRatio */
-    public int getShootingRatio() {
-        System.out.println(proper.getProperty("shootingRatio"));
-        return Integer.parseInt(proper.getProperty("shootingRatio")); }
+    public int getShootingRatio() { return Integer.parseInt(proper.getProperty("shootingRatio")); }
 }
